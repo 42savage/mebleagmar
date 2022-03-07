@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-    <h1>Test from layout</h1>
     <Navigation />
     <Nuxt />
   </div>
@@ -10,7 +9,7 @@
 export default {}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 $base-font-family: 'Roboto', sans-serif;
 * {
   margin: 0;
