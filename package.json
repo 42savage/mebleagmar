@@ -12,6 +12,7 @@
     "lintfix": "prettier --write --list-different ."
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.3.0",
     "@egjs/vue-flicking": "^4.5.2",
     "core-js": "^3.19.3",
     "gsap": "^3.9.1",

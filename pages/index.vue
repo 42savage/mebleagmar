@@ -18,7 +18,7 @@
       </div>
     </header>
     <section class="realisations">
-      <h1>Jak wygląda proces realizacji?</h1>
+      <h3 class="section-title">Jak wygląda proces realizacji?</h3>
       <client-only>
         <Flicking class="boxes">
           <div
@@ -45,7 +45,11 @@
         producentów.
       </p>
       <client-only>
-        <Flicking class="producers" circural="true">
+        <Flicking
+          class="producers"
+          :plugins="plugins"
+          :options="{ align: 'center', circular: true }"
+        >
           <img
             v-for="producer in producers"
             :key="producer.id"
@@ -57,14 +61,55 @@
         </Flicking>
       </client-only>
     </section>
+    <section class="realisation-gallery">
+      <h3 class="section-title">Sprawdź nasze realizacje</h3>
+      <div class="gallery">
+        <div
+          class="single-image"
+          v-for="image in images"
+          :key="image.id"
+          v-bind:style="{
+            backgroundImage:
+              'url(' + require(`~/assets/gallery/${image.src}.jpg`) + ')',
+          }"
+        ></div>
+      </div>
+      <div class="check">
+        <a>Zobacz pełną galerię</a>
+        <svg-arrow :color="'black'" :width="16" :height="24" />
+      </div>
+    </section>
+    <section class="offer">
+      <h3 class="section-title">Zapoznaj się z naszą ofertą</h3>
+      <div class="offer-wrapper">
+        <div
+          class="single-offer"
+          v-for="singleOffer in offer"
+          :key="singleOffer.id"
+          v-bind:style="{
+            backgroundImage:
+              'url(' + require(`~/assets/offer/${singleOffer.bg}.jpg`) + ')',
+          }"
+        >
+          <div class="overlay" :style="{ background: singleOffer.overlay }">
+            <h4>{{ singleOffer.name }}</h4>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+import { AutoPlay } from '@egjs/flicking-plugins'
+
 export default {
   name: 'IndexPage',
   data() {
     return {
+      plugins: [
+        new AutoPlay({ duration: 600, direction: 'NEXT', stopOnHover: false }),
+      ],
       boxes: [
         {
           id: 0,
@@ -132,6 +177,78 @@ export default {
           id: 3,
           name: 'blum',
         },
+        {
+          id: 4,
+          name: 'gamet',
+        },
+        {
+          id: 5,
+          name: 'siro',
+        },
+        {
+          id: 6,
+          name: 'schwinn',
+        },
+        {
+          id: 7,
+          name: 'gamet',
+        },
+        {
+          id: 8,
+          name: 'siro',
+        },
+        {
+          id: 9,
+          name: 'schwinn',
+        },
+      ],
+      images: [
+        {
+          id: 0,
+          src: 'img1',
+        },
+        {
+          id: 1,
+          src: 'img2',
+        },
+        {
+          id: 2,
+          src: 'img3',
+        },
+        {
+          id: 3,
+          src: 'img4',
+        },
+        {
+          id: 4,
+          src: 'img5',
+        },
+      ],
+      offer: [
+        {
+          id: 0,
+          name: 'Meble kuchenne',
+          bg: 'kitchen',
+          overlay: 'rgba(202, 103, 2, 0.815)',
+        },
+        {
+          id: 1,
+          name: 'Meble pokojowe',
+          bg: 'salon',
+          overlay: 'rgba(0, 139, 139, 0.815)',
+        },
+        {
+          id: 2,
+          name: 'Meble łazienkowe',
+          bg: 'bathroom',
+          overlay: 'rgba(155, 34, 38, 0.815)',
+        },
+        {
+          id: 3,
+          name: 'Łoża sypialniane',
+          bg: 'bed',
+          overlay: 'rgba(148, 210, 189,  0.815)',
+        },
       ],
     }
   },
@@ -196,15 +313,15 @@ export default {
   }
 }
 .realisations {
-  margin-top: 140px;
   padding: 0 24px;
-  h1 {
-    font-size: 36px;
-    color: #3d3d3d;
-    font-weight: bold;
-    width: 265px;
-    line-height: 34px;
-  }
+}
+.section-title {
+  margin: 60px 0;
+  font-size: 36px;
+  color: #3d3d3d;
+  font-weight: bold;
+  width: 265px;
+  line-height: 34px;
 }
 .boxes {
   margin: 60px 0;
@@ -241,5 +358,59 @@ export default {
   min-width: 120px;
   min-height: 30px;
   margin: 0 12px;
+}
+.realisation-gallery {
+  padding: 0 24px;
+}
+.gallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.single-image {
+  width: 100%;
+  height: 180px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  margin: 12px 0;
+}
+.check {
+  width: 100%;
+  margin: 24px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  svg {
+    margin: 0 0 0 16px;
+  }
+}
+.offer {
+  padding: 24px;
+  .section-title {
+    margin-bottom: 60px;
+  }
+}
+.single-offer {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  margin: 12px 0;
+  .overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 24px;
+  }
+  h4 {
+    color: white;
+    font-size: 16 px;
+    font-weight: bold;
+  }
 }
 </style>
