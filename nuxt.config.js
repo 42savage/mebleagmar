@@ -36,7 +36,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/gsap.js' }],
+  plugins: [
+    { src: '~/plugins/gsap.js' },
+    { src: '~/plugins/flicking.js', mode: 'server', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -49,4 +52,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  server: {
+    host: '0.0.0.0',
+    port: 8080,
+  },
 }
