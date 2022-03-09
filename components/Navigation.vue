@@ -95,7 +95,7 @@ $nav-index: 10;
 .main-navigation {
   z-index: 2;
   width: 100%;
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -97,6 +97,28 @@
         </div>
       </div>
     </section>
+    <section class="contact">
+      <h3 class="section-title">Skontaktuj się z nami</h3>
+      <h4 class="contact-sub-title">Przez formularz</h4>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Imię i Nazwisko" />
+        <input type="text" name="name" placeholder="Adres e-mail" />
+        <input type="text" name="name" placeholder="Numer telefonu" />
+        <input type="text" name="name" placeholder="Firma (opcjonalnie)" />
+        <textarea
+          placeholder="Opisz w kilku słowach swoje wymarzone zamówienie..."
+        ></textarea>
+        <input type="submit" value="Wyślij" />
+      </form>
+      <div class="contact-box">
+        <div class="overlay">
+          <h4 class="contact-sub-title">Bezpośrednio przez maila</h4>
+          <p>e-mail: dyniameble@op.pl</p>
+          <h4 class="contact-sub-title">Lub telefonicznie</h4>
+          <p>telefon: 222-444-333</p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -411,6 +433,68 @@ export default {
     color: white;
     font-size: 16 px;
     font-weight: bold;
+  }
+}
+.contact {
+  padding: 24px;
+}
+.contact-sub-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin: 16px 0;
+}
+.contact-form {
+  width: 100%;
+  input {
+    width: 100%;
+    margin: 8px 0;
+    background: #f4f4f4;
+    border: 1px solid #f1f1f1;
+    height: 36x;
+    padding: 8px;
+  }
+  textarea {
+    width: 100%;
+    height: 120px;
+    background: #f4f4f4;
+    border: 1px solid #f1f1f1;
+    padding: 8px;
+  }
+  input:nth-last-child(1) {
+    background: darkcyan;
+    width: 100%;
+    height: 36px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+.contact-box {
+  width: 100%;
+  margin-top: 16px;
+  height: 200px;
+  background-image: url('~/assets/gallery/img1.jpg');
+  background-size: cover;
+  background-position: center;
+  .overlay {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 25, 43, 0.81);
+    h4 {
+      margin: 8px 0;
+    }
+    h4,
+    p {
+      color: white;
+      margin-bottom: 12px;
+    }
   }
 }
 </style>
