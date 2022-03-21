@@ -1,168 +1,266 @@
 <template>
-  <nav class="main-navigation">
-    <div class="logo">
-      <a href="#"><b>meble</b>agmar</a>
-    </div>
-    <button ref="button" @click="state = !state" class="navButton">
+  <nav class="navigation" v-scroll-lock="state">
+    <a ref="logo" class="logo" href="#"
+      ><span><b>meble</b>agmar</span></a
+    >
+    <button class="navBtn" ref="navBtn" @click="state = !state">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </button>
-    <ul ref="navList" class="navigation-list">
-      <li>
-        <a>Zadzwoń</a>
-        <a>698-088-271</a>
-      </li>
-      <li><a href="#">Strona główna</a></li>
-      <li><a href="#">Oferta</a></li>
-      <li><a href="#">Realizacje</a></li>
-      <li><a href="#">Kontakt</a></li>
-      <div class="socials">
-        <svg-instagram :width="baseSize" :height="baseSize" />
-        <svg-fb :width="baseSize" :height="baseSize" />
-        <svg-website :width="baseSize" :height="baseSize" />
+    <div ref="wrapper" class="wrapper">
+      <div class="first-section">
+        <div class="sec">
+          <svg-compass :width="24" :height="24" color="#94D2BD" />
+          <div>
+            <p class="title">Adres siedziby</p>
+            <p class="subtitle">Skaryszew, ul. Złota 7</p>
+          </div>
+        </div>
+        <div class="sec">
+          <svg-phone :width="24" :height="24" color="#94D2BD" />
+          <div>
+            <p class="title">Zadzwoń</p>
+            <p class="subtitle">698-088-271</p>
+          </div>
+        </div>
+        <div class="sec">
+          <svg-clock :width="24" :height="24" color="#94D2BD" />
+          <div>
+            <p class="title">Godziny pracy</p>
+            <p class="subtitle">Pon-Pt: 8:00-17:00</p>
+          </div>
+        </div>
+        <div class="line"></div>
       </div>
-    </ul>
+      <div class="second-section">
+        <ul class="list" ref="list">
+          <li>
+            <a class="active" href="#">Strona główna</a>
+          </li>
+          <li>
+            <a href="#">Realizacje</a>
+          </li>
+          <li><a href="#">Oferta</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+        <div class="socials">
+          <p ref="soc"><span>Zajrzyj na nasze sociale</span></p>
+          <ul class="social-list">
+            <li>
+              <svg-website color="#94D2BD" />
+            </li>
+            <li>
+              <svg-fb color="#94D2BD" />
+            </li>
+            <li><svg-instagram color="#94D2BD" /></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'Navigation',
   data() {
     return {
-      baseSize: 32,
       state: false,
     }
   },
+
   watch: {
     state: function (n) {
       if (n) {
         this.tl.play()
         this.tl
-          .to(this.$refs.navList, {
-            xPercent: 100,
-          })
           .to(
-            this.$refs.navList.children,
+            this.$refs.wrapper,
             {
-              opacity: 1,
-              duration: 0.4,
-              y: 10,
-              stagger: 0.1,
+              xPercent: 100,
             },
-            'same'
+            'btn'
           )
           .to(
-            this.$refs.button.children[2],
+            this.$refs.navBtn.children[2],
             {
-              y: -10,
-              width: 6,
               opacity: 0,
+              duration: 0.01,
             },
-            '-=same'
+            '-=btn'
           )
           .to(
-            this.$refs.button.children[0],
+            this.$refs.navBtn.children[1],
             {
-              rotation: '45deg',
+              rotate: -45,
+              y: -10,
             },
-            '-=same'
+            'btn'
           )
           .to(
-            this.$refs.button.children[1],
+            this.$refs.navBtn.children[0],
             {
-              rotation: '-45deg',
-              width: '42px',
-              y: -9,
+              rotate: 45,
             },
-            '-=same'
+            'btn'
+          )
+          .to(
+            this.arr,
+            {
+              yPercent: -100,
+              stagger: 0.15,
+              ease: 'power4.out',
+            },
+            'btn+=0.2'
+          )
+          .to(
+            [this.arr2, this.arr3, this.arr4, this.$refs.soc],
+            {
+              yPercent: 0,
+            },
+            'btn+=0.2'
           )
       } else {
         this.tl.reversed(!this.tl.reversed())
-        console.log('bec')
       }
     },
   },
   mounted() {
-    this.tl = this.$gsap.timeline({ paused: true, autoAlpha: 1 })
+    this.tl = this.$gsap.timeline({ paused: true })
+    this.arr = this.$el.querySelectorAll('.list li a')
+    this.arr2 = this.$el.querySelectorAll('.sec div')
+    this.arr3 = this.$el.querySelectorAll('.sec svg')
+    this.arr4 = this.$el.querySelectorAll('.socials svg')
+    this.logo = this.$el.querySelector('.logo span')
+    console.log(this.logo)
+    this.$gsap.set([this.arr2, this.arr3, this.arr4, this.$refs.soc], {
+      yPercent: 100,
+    })
   },
 }
 </script>
 
 <style scoped lang="scss">
-$base-color: white;
-$base-margin-y: 24px;
-$base-margin-x: 48px;
-$nav-index: 10;
-
-.main-navigation {
-  z-index: 2;
-  width: 100%;
-  position: absolute;
+li {
+  overflow: hidden;
+}
+.navigation {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: $base-margin-x $base-margin-y;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 24px;
+  z-index: 2;
 }
 .logo {
-  z-index: $nav-index;
-  a {
-    color: $base-color;
-    font-size: 24px;
-    text-decoration: none;
-  }
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  z-index: 2;
 }
-.navButton {
+.navBtn {
+  z-index: 2;
   background: none;
+  display: flex;
+  flex-direction: column;
+  width: 42px;
   border: none;
-  z-index: $nav-index;
-  cursor: pointer;
   .line {
+    background: white;
     width: 42px;
     height: 4px;
-    background: $base-color;
-    margin: 6px 0;
-    &:nth-child(2) {
-      width: 36px;
+    margin: 4px 0;
+    &:nth-child(3) {
+      width: 24px;
     }
   }
 }
-.navigation-list {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  background: #001219;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.wrapper {
   width: 100vw;
   height: 100vh;
-  li {
-    list-style-type: none;
-    margin: 12px 0;
-    opacity: 0;
-    overflow: hidden;
-    a {
-      color: white;
-      text-decoration: none;
-      font-size: 48px;
-      font-weight: 700;
-    }
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: #1d1d1d;
+  top: 0;
+  left: -100%;
+  padding: 124px 24px;
+}
+.sec {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+  margin: 8px;
+  &:nth-child(2) svg {
+    width: 36px;
+    transform: rotate(45deg);
   }
 }
-.socials {
-  width: 100%;
+.first-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.subtitle {
+  font-size: 12px;
+}
+.sec svg {
+  margin-right: 16px;
+}
+.line {
+  background: #3e3e3e;
+  width: 100%;
+  height: 1px;
+}
+.list {
+  list-style-type: none;
+  li {
+    margin: 8px 0;
+    position: relative;
+    width: 100%;
+    height: 50px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 36px;
+    bottom: -100%;
+    position: absolute;
+  }
+}
+.active {
+  color: #8d8d8d !important;
+}
+.socials {
   position: absolute;
   bottom: 48px;
-  left: 0;
-  color: white;
-  opacity: 0;
+  justify-content: center;
+  overflow: hidden;
+  p {
+    margin: 16px 0;
+    color: #8d8d8d;
+    overflow: hidden;
+  }
+  li {
+    margin: 0 8px;
+  }
+  .social-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+  }
 }
 </style>
