@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <modalImage :imageSrc="currentImage" />
     <header>
       <div class="top-content">
         <h1>Meble na wymiar Radom</h1>
@@ -72,6 +73,7 @@
             backgroundImage:
               'url(' + require(`~/assets/gallery/${image.src}.jpg`) + ')',
           }"
+          @click="openModal(`${image.src}`)"
         ></div>
       </div>
       <div class="check">
@@ -82,10 +84,12 @@
     <section class="offer">
       <h3 class="section-title">Zapoznaj się z naszą ofertą</h3>
       <div class="offer-wrapper">
-        <div
+        <nuxt-link
+          tag="div"
           class="single-offer"
           v-for="singleOffer in offer"
           :key="singleOffer.id"
+          :to="singleOffer.route"
           v-bind:style="{
             backgroundImage:
               'url(' + require(`~/assets/offer/${singleOffer.bg}.jpg`) + ')',
@@ -94,7 +98,7 @@
           <div class="overlay" :style="{ background: singleOffer.overlay }">
             <h4>{{ singleOffer.name }}</h4>
           </div>
-        </div>
+        </nuxt-link>
       </div>
     </section>
     <section class="contact">
@@ -132,6 +136,7 @@ export default {
       plugins: [
         new AutoPlay({ duration: 600, direction: 'NEXT', stopOnHover: false }),
       ],
+      currentImage: '',
       boxes: [
         {
           id: 0,
@@ -252,27 +257,36 @@ export default {
           name: 'Meble kuchenne',
           bg: 'kitchen',
           overlay: 'rgba(202, 103, 2, 0.815)',
+          route: 'meble_kuchenne',
         },
         {
           id: 1,
           name: 'Meble pokojowe',
           bg: 'salon',
           overlay: 'rgba(0, 139, 139, 0.815)',
+          route: 'meble_pokojowe',
         },
         {
           id: 2,
           name: 'Meble łazienkowe',
           bg: 'bathroom',
           overlay: 'rgba(155, 34, 38, 0.815)',
+          route: 'meble_lazienkowe',
         },
         {
           id: 3,
           name: 'Łoża sypialniane',
           bg: 'bed',
           overlay: 'rgba(148, 210, 189,  0.815)',
+          route: 'loza_sypialniane',
         },
       ],
     }
+  },
+  methods: {
+    openModal(src) {
+      this.currentImage = src
+    },
   },
 }
 </script>
@@ -420,6 +434,7 @@ export default {
   height: 180px;
   background-size: cover;
   background-position: center;
+  text-decoration: none;
   margin: 12px 0;
   .overlay {
     width: 100%;

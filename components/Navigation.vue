@@ -9,6 +9,10 @@
       <div class="line"></div>
     </button>
     <ul ref="navList" class="navigation-list">
+      <li>
+        <a>Zadzwoń</a>
+        <a>698-088-271</a>
+      </li>
       <li><a href="#">Strona główna</a></li>
       <li><a href="#">Oferta</a></li>
       <li><a href="#">Realizacje</a></li>
