@@ -89,7 +89,7 @@
           class="single-offer"
           v-for="singleOffer in offer"
           :key="singleOffer.id"
-          :to="singleOffer.route"
+          :to="`oferta/${singleOffer.route}`"
           v-bind:style="{
             backgroundImage:
               'url(' + require(`~/assets/offer/${singleOffer.bg}.jpg`) + ')',
@@ -286,6 +286,11 @@ export default {
   methods: {
     openModal(src) {
       this.currentImage = src
+    },
+    enter: function (el, done) {
+      console.log(el)
+
+      done()
     },
   },
 }

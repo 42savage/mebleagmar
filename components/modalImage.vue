@@ -45,16 +45,19 @@ export default {
 .modal {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.342);
+  background: rgba(0, 0, 0, 0.555);
   padding: 48px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .image {
   width: 100%;
-  height: 100%;
+  height: 300px;
   background-size: cover;
   background-position: center;
 }
@@ -62,6 +65,7 @@ export default {
   background: none;
   border: none;
   position: absolute;
+  top: 30%;
   right: 0;
   .line {
     width: 42px;
