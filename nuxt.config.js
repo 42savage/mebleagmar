@@ -40,6 +40,9 @@ export default {
     { src: '~/plugins/gsap.js' },
     { src: '~/plugins/flicking.js', mode: 'server', ssr: false },
     { src: '~/plugins/scrollLock.js' },
+    {
+      src: '~/plugins/vuexSync.js',
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

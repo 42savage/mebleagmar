@@ -1,7 +1,7 @@
 <template>
   <nav class="navigation" v-scroll-lock="state">
-    <a ref="logo" class="logo" href="#"
-      ><span><b>meble</b>agmar</span></a
+    <nuxt-link to="/" ref="logo" class="logo" href="#"
+      ><span><b>meble</b>agmar</span></nuxt-link
     >
     <button class="navBtn" ref="navBtn" @click="state = !state">
       <div class="line"></div>

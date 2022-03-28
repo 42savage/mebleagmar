@@ -69,7 +69,7 @@
           class="single-image"
           v-for="image in images"
           :key="image.id"
-          v-bind:style="{
+          :style="{
             backgroundImage:
               'url(' + require(`~/assets/gallery/${image.src}.jpg`) + ')',
           }"

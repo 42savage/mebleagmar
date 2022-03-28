@@ -1,16 +1,17 @@
 <template>
-  <div v-if="showModal" class="modal">
-    <button class="close" @click="modalState">
-      <div class="line"></div>
-      <div class="line"></div>
-    </button>
+  <div v-if="showModal" class="modal" v-scroll-lock="showModal">
     <div
       class="image"
       :style="{
         backgroundImage:
           'url(' + require(`~/assets/gallery/${imageSrc}.jpg`) + ')',
       }"
-    ></div>
+    >
+      <button class="close" @click="modalState">
+        <div class="line"></div>
+        <div class="line"></div>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -46,7 +47,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.555);
-  padding: 48px;
+  padding: 0 24px;
   position: fixed;
   top: 0;
   left: 0;
@@ -60,12 +61,13 @@ export default {
   height: 300px;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 .close {
   background: none;
   border: none;
   position: absolute;
-  top: 30%;
+  top: -36px;
   right: 0;
   .line {
     width: 42px;
