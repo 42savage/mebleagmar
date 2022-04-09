@@ -17,7 +17,7 @@
             class="link"
             to="/"
             >Strona główna</nuxt-link
-          ><span>></span><span>{{ this.specifiedOffer.title }}</span>
+          ><span> > </span><span>{{ this.specifiedOffer.title }}</span>
         </div>
       </div>
       <div class="content">
@@ -25,6 +25,7 @@
           {{ this.specifiedOffer.title }}
         </h1>
         <p class="subTitle">{{ this.specifiedOffer.subTitle }}</p>
+        <p>{{ this.specifiedOffer.textContent }}</p>
         <ul class="images">
           <li v-for="image in this.specifiedOffer.images" :key="image.id">
             <img :src="image.src" :alt="image.desc" />
@@ -94,7 +95,7 @@ export default {
   }
 }
 .content {
-  padding: 32px 24px;
+  padding: 32px 24px 0;
 }
 .breadcrumbs {
   width: 100%;
@@ -119,6 +120,10 @@ export default {
   font-size: 36px;
   font-weight: bold;
 }
+.subTitle {
+  font-weight: bold;
+  margin-bottom: 24px;
+}
 .images {
   width: 100%;
   list-style-type: none;
@@ -136,7 +141,6 @@ export default {
 .list {
   font-size: 18px;
   margin-left: 24px;
-  list-style: none;
   li {
     position: relative;
   }
@@ -148,6 +152,6 @@ export default {
   }
 }
 .extrass {
-  padding: 24px;
+  padding: 0 24px;
 }
 </style>

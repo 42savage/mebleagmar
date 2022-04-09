@@ -4,8 +4,9 @@ export const state = () => ({
       id: 0,
       name: 'meble_kuchenne',
       title: 'Meble kuchenne',
-      subTitle: 'Szeroka oferta',
-      textContent: 'W skład naszej oferty wchodzi lorem ipsum dolor sit amen.',
+      subTitle: 'Z myślą o Tobie.',
+      textContent:
+        'Meble kuchenne wykonujemy z dbałością o każdy szczegół. Bierzemy pod uwagę rozmieszenie gniazdek ściennych, rozmieszczenie rur i wymiary pomieszczenia.',
       bg: require('~/assets/offer/kitchen.jpg'),
       bgColor: '#ca6602',
       images: [
@@ -25,8 +26,8 @@ export const state = () => ({
           desc: 'Zdjęcie przedstawiające drewnianą kuchnię',
         },
       ],
-      header: 'Nagłówek, a do tego lista.',
-      list: ['Element 1', 'Element 2', 'Element 3'],
+      header: 'Dodatkowo do wyboru',
+      list: ['Projekt 3D pomieszczenia', 'Systemy', 'Szkło-grafika'],
       extrass: [
         { id: 0, name: 'szklo_grafika' },
         { id: 1, name: 'fronty_mdf' },

@@ -293,6 +293,9 @@ export default {
       done()
     },
   },
+  beforeMount() {
+    this.$router.push('/build')
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -514,6 +517,69 @@ export default {
     p {
       color: white;
       margin-bottom: 12px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .top-content {
+    top: 42%;
+    margin: 0 48px;
+    width: 600px;
+    h1 {
+      font-size: 72px;
+      line-height: 68px;
+    }
+    p {
+      font-size: 36px;
+    }
+  }
+  .bottom-content {
+    bottom: 64px;
+    a {
+      font-size: 36px;
+    }
+  }
+  .realisations,
+  .realisation-gallery,
+  .offer,
+  .contact {
+    padding: 0 48px;
+  }
+  .section-title {
+    font-size: 64px;
+    line-height: 62px;
+    width: 600px;
+  }
+  .text {
+    font-size: 36px;
+    line-height: 34px;
+  }
+  .check {
+    a {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  .single-image {
+    height: 240px;
+  }
+  .single-offer {
+    height: 240px;
+    h4 {
+      font-size: 32px;
+    }
+  }
+  .contact-sub-title {
+    font-size: 24px;
+  }
+  .contact-form {
+    input,
+    input[type='submit'] {
+      height: 60px;
+      font-size: 24px;
+    }
+    textarea {
+      font-size: 24px;
     }
   }
 }

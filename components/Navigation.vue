@@ -132,7 +132,6 @@ export default {
     this.arr3 = this.$el.querySelectorAll('.sec svg')
     this.arr4 = this.$el.querySelectorAll('.socials svg')
     this.logo = this.$el.querySelector('.logo span')
-    console.log(this.logo)
     this.$gsap.set([this.arr2, this.arr3, this.arr4, this.$refs.soc], {
       yPercent: 100,
     })
@@ -261,6 +260,28 @@ li {
     display: flex;
     flex-direction: row;
     list-style-type: none;
+  }
+}
+@media (min-width: 768px) {
+  .logo {
+    font-size: 36px;
+  }
+  .navigation {
+    padding: 64px 48px;
+  }
+  .list {
+    li {
+      margin: 48px 0;
+    }
+  }
+  .list > li > a {
+    font-size: 64px;
+    line-height: 52px;
+  }
+  .first-section {
+    p {
+      font-size: 24px;
+    }
   }
 }
 </style>
