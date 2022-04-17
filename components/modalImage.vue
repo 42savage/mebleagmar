@@ -46,7 +46,7 @@ export default {
 .modal {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.555);
+  background: rgba(0, 0, 0, 0.871);
   padding: 0 24px;
   position: fixed;
   top: 0;
@@ -67,8 +67,11 @@ export default {
   background: none;
   border: none;
   position: absolute;
-  top: -36px;
+  top: -48px;
   right: 0;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
   .line {
     width: 42px;
     height: 4px;
@@ -81,6 +84,17 @@ export default {
       transform: rotate(45deg);
       margin: -6px 0;
     }
+  }
+}
+
+@media (min-width: 1024px) {
+  .image {
+    height: 80%;
+  }
+}
+@media (min-width: 1440px) {
+  .image {
+    width: 80%;
   }
 }
 </style>

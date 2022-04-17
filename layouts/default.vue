@@ -28,6 +28,7 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 32px;
   align-items: center;
   padding: 0 24px;
 }

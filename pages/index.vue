@@ -9,19 +9,41 @@
           W naszej ofercie znajdziesz szerokiej maści meble, zaczynająć od
           prostych stolików, kończąc na pełnoprawnych zabudowach kuchennych.
         </p>
+        <div v-if="$mq === 'lg'" class="bottom-content">
+          <svg-check :width="120" :height="120" /><a>Nasze realizacje</a>
+        </div>
       </div>
       <div class="overlay">
         <div class="upper"></div>
         <video src="bg.mp4" muted loop autoplay></video>
       </div>
-      <div class="bottom-content">
+      <div class="bottom-content" v-if="$mq !== 'lg'">
         <svg-check :width="66" :height="36" /><a>Nasze realizacje</a>
       </div>
     </header>
     <section class="realisations">
       <h3 class="section-title">Jak wygląda proces realizacji?</h3>
+      <p>Proces realizacji zamówienia jest na prawdę banalny</p>
+      <p>
+        Wszystko zaczyna się od telefonu do jednego z naszych pracowników, który
+        ustali najbliższy możliwy termin pomiaru.
+      </p>
+      <p>
+        Następnie w umówionym terminie wykonujemy pomiar wybranych przez Ciebie
+        pomieszczeń pod wstępny zarys kuchni.
+      </p>
+      <p>
+        Po wykonaniu pomiaru przechodzimy do przygotowania projektu na papierze
+        i wyceny. Jeżeli dokupisz dodatkową usługę jaką jest projekt komputerowy
+        3D. to dodatkowo zobaczysz jak może prezentować się twoje pomieszczenie.
+      </p>
+      <p>
+        Po zaakceptowaniu wyceny i ewentualnej wizualizacji 3D zabieramy się za
+        przenisienie projektu z papieru w rzeczywistość.
+      </p>
+      <p>Ostatnim i ulubionym krokiem klientów jest dostawa i montaż mebli.</p>
       <client-only>
-        <Flicking class="boxes">
+        <Flicking v-if="$mq !== 'lg'" class="boxes">
           <div
             v-for="box in boxes"
             :key="box.id"
@@ -40,13 +62,43 @@
             <p v-bind:style="{ color: box.icon.color }">{{ box.content }}</p>
           </div>
         </Flicking>
+        <div v-else class="boxes">
+          <div
+            v-for="box in boxes"
+            :key="box.id"
+            class="single-box"
+            v-bind:style="{ backgroundColor: box.color }"
+          >
+            <component
+              :is="`svg-${box.icon.name}`"
+              v-bind="{
+                color: box.icon.color,
+                width: box.icon.width,
+                height: box.icon.height,
+              }"
+            />
+            <h4 v-bind:style="{ color: box.icon.color }">{{ box.name }}</h4>
+            <p v-bind:style="{ color: box.icon.color }">{{ box.content }}</p>
+          </div>
+        </div>
       </client-only>
       <p class="text">
         Do produkcji naszych mebli wykorzystujemy systemy renomowanych
         producentów.
       </p>
+      <p>
+        Wychodzimy z założenia, że lepiej troszeczkę więcej zainwestować w
+        systemy, przetrwają zdecydowanie więcej niż tańsze rozwiązania innych
+        producentów. Zachowują przy tym lepszy komfort użytkowania i są mniej
+        awaryjne.
+      </p>
+      <p>
+        Do naszych mebli kuchennych stosujemy systemy firm takich jak Blum,
+        Siro, Gamet, Schwinn
+      </p>
       <client-only>
         <Flicking
+          v-if="$mq !== 'lg'"
           class="producers"
           :plugins="plugins"
           :options="{ align: 'center', circular: true }"
@@ -60,10 +112,28 @@
           />
           -->
         </Flicking>
+        <div class="producers" v-else>
+          <img
+            v-for="producer in selectedProducers"
+            :key="producer.id"
+            :src="require(`~/assets/${producer.name}.jpg`)"
+            :alt="`${producer.name} logo`"
+            class="producer"
+          />
+        </div>
       </client-only>
     </section>
     <section class="realisation-gallery">
       <h3 class="section-title">Sprawdź nasze realizacje</h3>
+      <p>
+        Możesz zobaczyć jak wyglądają ostatnie realizacje dostarczone naszym
+        klientom.
+      </p>
+      <p>
+        Poniżej znajduje się mini galeria z najlepszymi realizacjami, jeżeli
+        chcesz zobaczyć więcej kliknij w link pod spodem
+      </p>
+      <p>Wszystkie realiacje na bieżąco wstawiamy na facebooka.</p>
       <div class="gallery">
         <div
           class="single-image"
@@ -83,6 +153,10 @@
     </section>
     <section class="offer">
       <h3 class="section-title">Zapoznaj się z naszą ofertą</h3>
+      <p>
+        Wychodząc na przeciw oczekiwaniom naszych klientów wykonujemy zarówno
+        meble kuchenne, meble pokojowe, meble łazienkowe jak i łoża sypialniane.
+      </p>
       <div class="offer-wrapper">
         <nuxt-link
           tag="div"
@@ -104,22 +178,27 @@
     <section class="contact">
       <h3 class="section-title">Skontaktuj się z nami</h3>
       <h4 class="contact-sub-title">Przez formularz</h4>
-      <form class="contact-form">
-        <input type="text" name="name" placeholder="Imię i Nazwisko" />
-        <input type="text" name="name" placeholder="Adres e-mail" />
-        <input type="text" name="name" placeholder="Numer telefonu" />
-        <input type="text" name="name" placeholder="Firma (opcjonalnie)" />
-        <textarea
-          placeholder="Opisz w kilku słowach swoje wymarzone zamówienie..."
-        ></textarea>
-        <input type="submit" value="Wyślij" />
-      </form>
-      <div class="contact-box">
-        <div class="overlay">
-          <h4 class="contact-sub-title">Bezpośrednio przez maila</h4>
-          <p>e-mail: dyniameble@op.pl</p>
-          <h4 class="contact-sub-title">Lub telefonicznie</h4>
-          <p>telefon: 222-444-333</p>
+      <div class="contact-wrapper">
+        <form class="contact-form">
+          <input type="text" name="name" placeholder="Imię i Nazwisko" />
+          <input type="text" name="name" placeholder="Adres e-mail" />
+          <input type="text" name="name" placeholder="Numer telefonu" />
+          <input type="text" name="name" placeholder="Firma (opcjonalnie)" />
+          <textarea
+            placeholder="Opisz w kilku słowach swoje wymarzone zamówienie..."
+          ></textarea>
+          <input type="submit" value="Wyślij" />
+        </form>
+        <div class="contact-box">
+          <div class="overlay">
+            <h4 class="contact-sub-title">Bezpośrednio przez maila</h4>
+            <p>
+              e-mail:
+              <a href="mailto: kontakt@radommeble.pl">kontakt@radommeble.pl</a>
+            </p>
+            <h4 class="contact-sub-title">Lub telefonicznie</h4>
+            <p>telefon: 222-444-333</p>
+          </div>
         </div>
       </div>
     </section>
@@ -141,7 +220,8 @@ export default {
         {
           id: 0,
           name: 'Kontakt',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          content:
+            'Pierwszy i zarazem kluczowy punkt. To tu się wszystko zaczyna.',
           color: '#E9D8A6',
           icon: {
             name: 'phone',
@@ -153,7 +233,8 @@ export default {
         {
           id: 1,
           name: 'Pomiar',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          content:
+            'Wizyta u klienta w celu wymierzenia ścian i określenia charakterystycznych punktów.',
           color: '#94D2BD',
           icon: {
             name: 'ruler',
@@ -165,7 +246,7 @@ export default {
         {
           id: 2,
           name: 'Realizacja',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          content: 'Proddukcja mebli skrojonych idealnie pod Twoje potrzeby.',
           color: '#F09F4B',
           icon: {
             name: 'box',
@@ -177,7 +258,7 @@ export default {
         {
           id: 3,
           name: 'Dostawa i montaż',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          content: 'Montaż mebli w wybranym przez Ciebie terminie.',
           color: '#E56659',
           icon: {
             name: 'truck',
@@ -283,6 +364,15 @@ export default {
       ],
     }
   },
+  computed: {
+    selectedProducers() {
+      const arr = []
+      for (let i = 0; i <= 3; i++) {
+        arr.push(this.producers[i])
+      }
+      return arr
+    },
+  },
   methods: {
     openModal(src) {
       this.currentImage = src
@@ -293,9 +383,9 @@ export default {
       done()
     },
   },
-  beforeMount() {
-    this.$router.push('/build')
-  },
+  // beforeMount() {
+  //   this.$router.push('/build')
+  // },
 }
 </script>
 <style lang="scss" scoped>
@@ -369,6 +459,8 @@ export default {
 }
 .boxes {
   margin: 60px 0;
+  display: flex;
+  flex-direction: row;
 }
 .single-box {
   width: 240px;
@@ -518,11 +610,14 @@ export default {
       color: white;
       margin-bottom: 12px;
     }
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
 }
 @media (min-width: 768px) {
   .top-content {
-    top: 42%;
     margin: 0 48px;
     width: 600px;
     h1 {
@@ -534,7 +629,7 @@ export default {
     }
   }
   .bottom-content {
-    bottom: 64px;
+    bottom: 4%;
     a {
       font-size: 36px;
     }
@@ -581,6 +676,98 @@ export default {
     textarea {
       font-size: 24px;
     }
+  }
+}
+@media (min-width: 1440px) {
+  .section-title {
+    font-size: 48px;
+    width: 600px;
+    line-height: 98%;
+    margin-bottom: 12px;
+  }
+  .top-content p {
+    font-size: 22px;
+  }
+  .top-content h1 {
+    width: 500px;
+  }
+  .bottom-content {
+    a {
+      font-size: 22px;
+    }
+  }
+  .text {
+    font-size: 22px;
+    color: #9b2226;
+  }
+  .producers {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 32px 0;
+
+    :nth-child(1) {
+      margin-left: 0;
+    }
+  }
+  .producer {
+    filter: grayscale(80%);
+    opacity: 0.5;
+    margin: 0 40px;
+  }
+  .gallery {
+    flex-wrap: wrap;
+    flex-direction: row;
+    cursor: pointer;
+  }
+  .single-image {
+    width: 46%;
+    margin: 12px;
+    &:nth-last-child(1) {
+      width: 94%;
+      height: 400px;
+    }
+  }
+  .offer-wrapper {
+    display: flex;
+    flex-direction: row;
+    .single-offer {
+      width: 50%;
+      margin: 0 6px;
+      cursor: pointer;
+      h4 {
+        font-size: 24px;
+      }
+    }
+  }
+  .contact-form {
+    width: 50%;
+    margin: 0 12px 0 0;
+  }
+  .contact-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-box {
+    width: 50%;
+    height: 490px;
+    margin: 0 !important;
+  }
+  .bottom-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: initial;
+    width: initial;
+    a {
+      color: white;
+    }
+  }
+  section p {
+    width: 600px;
   }
 }
 </style>

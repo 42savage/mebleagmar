@@ -132,9 +132,11 @@ export default {
     this.arr3 = this.$el.querySelectorAll('.sec svg')
     this.arr4 = this.$el.querySelectorAll('.socials svg')
     this.logo = this.$el.querySelector('.logo span')
-    this.$gsap.set([this.arr2, this.arr3, this.arr4, this.$refs.soc], {
-      yPercent: 100,
-    })
+    if (this.$mq !== 'lg') {
+      this.$gsap.set([this.arr2, this.arr3, this.arr4, this.$refs.soc], {
+        yPercent: 100,
+      })
+    }
   },
 }
 </script>
@@ -282,6 +284,77 @@ li {
     p {
       font-size: 24px;
     }
+  }
+}
+@media (min-width: 1440px) {
+  .navBtn {
+    display: none;
+  }
+  .wrapper {
+    top: 0;
+    background: none;
+    left: 0;
+  }
+  .first-section {
+    background: #1d1d1d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: initial;
+  }
+  .first-section p {
+    font-size: 12px;
+  }
+  .line {
+    display: none;
+  }
+  .socials {
+    bottom: initial;
+    top: 10px;
+    right: 48px;
+    p {
+      display: none;
+    }
+  }
+  .wrapper {
+    width: 100%;
+    height: 40px;
+  }
+  .list {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 80px;
+    right: 0px;
+    width: 480px;
+    bottom: initial;
+    a {
+      bottom: initial;
+    }
+    li {
+      margin: initial;
+      max-width: 116px;
+      margin: 0 16px;
+      &:nth-child(2) {
+        width: 80px;
+      }
+      &:nth-child(3) {
+        width: 50px;
+      }
+      &:nth-child(4) {
+        width: 61px;
+      }
+    }
+  }
+  .list > li > a {
+    font-size: 18px;
+    line-height: initial;
+    &:hover {
+      color: darkcyan;
+    }
+  }
+  #__layout > div > nav > div > div.first-section > div:nth-child(2) > svg {
+    height: 20px;
   }
 }
 </style>
