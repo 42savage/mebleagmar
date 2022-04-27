@@ -3,17 +3,84 @@
     <Navigation />
     <Nuxt />
     <footer>
-      <div class="top">
-        <svg-logo />
-        <div class="line"></div>
-        <a class="author">Projekt i realizacja <span>SAVAGE AGENCY</span></a>
+      <svg-logo />
+      <div class="menuShortcut">
+        <ul class="menuSection">
+          <p class="menuTitle">Meble</p>
+          <li><nuxt-link to="oferta/meble/kuchenne">Kuchenne</nuxt-link></li>
+          <li><nuxt-link to="oferta/meble/pokojowe">Pokojowe</nuxt-link></li>
+          <li>
+            <nuxt-link to="oferta/meble/lazienkowe">Łazienkowe</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="oferta/meble/loza_sypialniane"
+              >Łoża sypialniane</nuxt-link
+            >
+          </li>
+        </ul>
+        <ul class="menuSection">
+          <p class="menuTitle">Systemy</p>
+          <li><nuxt-link to="oferta/systemy/blum">Blum</nuxt-link></li>
+          <li><nuxt-link to="oferta/systemy/schwinn">Schwinn</nuxt-link></li>
+          <li>
+            <nuxt-link to="oferta/systemy/gamet">Gamet</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="oferta/systemy/siro">Siro</nuxt-link>
+          </li>
+        </ul>
+        <ul class="menuSection">
+          <p class="menuTitle">Fronty</p>
+          <li><nuxt-link to="oferta/fronty/mdf">Fronty MDF</nuxt-link></li>
+          <li>
+            <nuxt-link to="oferta/fronty/drewniane">Fronty drewniane</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="oferta/fronty/lakierowane"
+              >Fronty lakierowane</nuxt-link
+            >
+          </li>
+          <li>
+            <nuxt-link to="oferta/fronty/akrylowe">Fronty akrylowe</nuxt-link>
+          </li>
+        </ul>
+        <ul class="menuSection">
+          <p class="menuTitle">Szkło grafika</p>
+          <li><nuxt-link to="oferta/szklo/fraktale">Fraktale</nuxt-link></li>
+          <li><nuxt-link to="oferta/szklo/tekstsury">Tekstury</nuxt-link></li>
+          <li>
+            <nuxt-link to="oferta/szklo/zwierzeta">Zwierzęta</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="oferta/szklo/krajobrazy">Krajobrazy</nuxt-link>
+          </li>
+        </ul>
+        <p class="author">
+          Projekt i realizacja: <b>Strony internetowe Radom</b>
+        </p>
       </div>
     </footer>
   </div>
 </template>
 
 <style lang="scss">
+body {
+  position: relative;
+  // &:before {
+  //   position: absolute;
+  //   content: '';
+  //   width: 2px;
+  //   height: 100%;
+  //   background: red;
+  //   left: 80px;
+  //   top: 0;
+  //   z-index: 2;
+  // }
+}
 $base-font-family: 'Roboto', sans-serif;
+svg {
+  margin-top: 32px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -21,35 +88,43 @@ $base-font-family: 'Roboto', sans-serif;
   font-family: $base-font-family;
 }
 footer {
-  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 32px;
   align-items: center;
-  padding: 0 24px;
-}
-.line {
-  height: 1px;
-  background: rgb(199, 199, 199);
   width: 100%;
-  margin: 24px 0;
+  flex-direction: column;
+  background: #f1f1f1;
 }
-.top {
+.menuShortcut {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 32px;
+}
+.menuSection {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  a {
+  margin: 16px;
+  li {
+    list-style-type: none;
+    margin: 4px 0;
+    font-size: 22px;
+  }
+  li > a {
+    text-decoration: none;
     color: black;
-    font-size: 16px;
-    span {
-      color: crimson;
-      font-weight: bold;
-    }
   }
-  .author {
-    margin-bottom: 24px;
-  }
+}
+.menuTitle {
+  font-size: 26px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.author {
+  color: #98bfd0;
 }
 </style>

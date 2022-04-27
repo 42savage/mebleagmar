@@ -94,8 +94,12 @@
               :height="box.icon.height"
               :color="box.icon.color"
             ></component>
-            <p class="boxTitle">{{ box.title }}</p>
-            <p class="boxSubTitle">{{ box.subTitle }}</p>
+            <p class="boxTitle" :style="{ color: box.icon.color }">
+              {{ box.title }}
+            </p>
+            <p :style="{ color: box.icon.color }" class="boxSubTitle">
+              {{ box.subTitle }}
+            </p>
           </div>
         </flicking>
       </client-only>
@@ -341,6 +345,18 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+#__layout
+  > div
+  > div
+  > section.howTo
+  > div.boxes.flicking-viewport
+  > div
+  > div:nth-child(1)
+  > svg {
+  transform: rotate(45deg);
+  width: 48px;
+  margin-bottom: 8px;
+}
 .overlay {
   overflow: hidden;
   position: relative;
