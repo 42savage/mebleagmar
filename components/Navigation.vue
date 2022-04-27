@@ -1,8 +1,8 @@
 <template>
   <nav class="navigation" v-scroll-lock="state">
     <nuxt-link to="/" ref="logo" class="logo" href="#"
-      ><span><b>meble</b>agmar</span></nuxt-link
-    >
+      ><svg-logo fill="white"
+    /></nuxt-link>
     <button class="navBtn" ref="navBtn" @click="state = !state">
       <div class="line"></div>
       <div class="line"></div>

@@ -4,17 +4,13 @@
     <Nuxt />
     <footer>
       <div class="top">
-        <a class="logo" href="#"><b>meble</b>agmar</a>
+        <svg-logo />
         <div class="line"></div>
         <a class="author">Projekt i realizacja <span>SAVAGE AGENCY</span></a>
       </div>
     </footer>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style lang="scss">
 $base-font-family: 'Roboto', sans-serif;
@@ -34,7 +30,7 @@ footer {
 }
 .line {
   height: 1px;
-  background: rgb(0, 99, 74);
+  background: rgb(199, 199, 199);
   width: 100%;
   margin: 24px 0;
 }
@@ -44,10 +40,6 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .logo {
-    font-size: 24px;
-    text-decoration: none;
-  }
   a {
     color: black;
     font-size: 16px;

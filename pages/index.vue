@@ -21,184 +21,160 @@
         <svg-check :width="66" :height="36" /><a>Nasze realizacje</a>
       </div>
     </header>
-    <section class="realisations">
-      <h3 class="section-title">Jak wygląda proces realizacji?</h3>
-      <p>Proces realizacji zamówienia jest na prawdę banalny</p>
-      <p>
-        Wszystko zaczyna się od telefonu do jednego z naszych pracowników, który
-        ustali najbliższy możliwy termin pomiaru.
-      </p>
-      <p>
-        Następnie w umówionym terminie wykonujemy pomiar wybranych przez Ciebie
-        pomieszczeń pod wstępny zarys kuchni.
-      </p>
-      <p>
-        Po wykonaniu pomiaru przechodzimy do przygotowania projektu na papierze
-        i wyceny. Jeżeli dokupisz dodatkową usługę jaką jest projekt komputerowy
-        3D. to dodatkowo zobaczysz jak może prezentować się twoje pomieszczenie.
-      </p>
-      <p>
-        Po zaakceptowaniu wyceny i ewentualnej wizualizacji 3D zabieramy się za
-        przenisienie projektu z papieru w rzeczywistość.
-      </p>
-      <p>Ostatnim i ulubionym krokiem klientów jest dostawa i montaż mebli.</p>
-      <client-only>
-        <Flicking v-if="$mq !== 'lg'" class="boxes">
-          <div
-            v-for="box in boxes"
-            :key="box.id"
-            class="single-box"
-            v-bind:style="{ backgroundColor: box.color }"
-          >
-            <component
-              :is="`svg-${box.icon.name}`"
-              v-bind="{
-                color: box.icon.color,
-                width: box.icon.width,
-                height: box.icon.height,
-              }"
-            />
-            <h4 v-bind:style="{ color: box.icon.color }">{{ box.name }}</h4>
-            <p v-bind:style="{ color: box.icon.color }">{{ box.content }}</p>
-          </div>
-        </Flicking>
-        <div v-else class="boxes">
-          <div
-            v-for="box in boxes"
-            :key="box.id"
-            class="single-box"
-            v-bind:style="{ backgroundColor: box.color }"
-          >
-            <component
-              :is="`svg-${box.icon.name}`"
-              v-bind="{
-                color: box.icon.color,
-                width: box.icon.width,
-                height: box.icon.height,
-              }"
-            />
-            <h4 v-bind:style="{ color: box.icon.color }">{{ box.name }}</h4>
-            <p v-bind:style="{ color: box.icon.color }">{{ box.content }}</p>
-          </div>
+    <section class="aboutus">
+      <div class="content">
+        <p class="subTitle">Dlaczego my?</p>
+        <p class="title">Kilka słów o nas</p>
+        <p class="contentText">
+          W prężnie rozwijająćym się rynku stolarskim jesteśmy od lat. Od lat
+          produkujemy dla was szerokiej maści meble kuchenne, meble pokojowe,
+          meble łazienkowe oraz łoża sypialniane. Od niedawna rozszerzyliśmy
+          nasze struktury o pełnoprawne biuro projektowe.
+        </p>
+      </div>
+      <div class="counters">
+        <div class="singleCounter">
+          <p class="bigNumber">99+</p>
+          <p class="smallText">wykonanych projektów 3D</p>
         </div>
-      </client-only>
-      <p class="text">
-        Do produkcji naszych mebli wykorzystujemy systemy renomowanych
-        producentów.
-      </p>
-      <p>
-        Wychodzimy z założenia, że lepiej troszeczkę więcej zainwestować w
-        systemy, przetrwają zdecydowanie więcej niż tańsze rozwiązania innych
-        producentów. Zachowują przy tym lepszy komfort użytkowania i są mniej
-        awaryjne.
-      </p>
-      <p>
-        Do naszych mebli kuchennych stosujemy systemy firm takich jak Blum,
-        Siro, Gamet, Schwinn
-      </p>
-      <client-only>
-        <Flicking
-          v-if="$mq !== 'lg'"
-          class="producers"
-          :plugins="plugins"
-          :options="{ align: 'center', circular: true }"
-        >
+        <div class="singleCounter">
+          <p class="bigNumber">20</p>
+          <p class="smallText">lat na rynku</p>
+        </div>
+        <div class="singleCounter">
+          <p class="bigNumber">499+</p>
+          <p class="smallText">Zadowolonych klientów</p>
+        </div>
+      </div>
+      <div class="systems">
+        <p class="systemsTitle">Wykorzystujemy systemy renomowanych firm</p>
+        <p class="systemsText">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
+          purus sit
+        </p>
+        <div class="producers">
           <img
+            loading="lazy"
+            class="singleProducer"
             v-for="producer in producers"
             :key="producer.id"
-            :src="require(`~/assets/${producer.name}.jpg`)"
-            :alt="`${producer.name} logo`"
-            class="producer"
-          />
-          -->
-        </Flicking>
-        <div class="producers" v-else>
-          <img
-            v-for="producer in selectedProducers"
-            :key="producer.id"
-            :src="require(`~/assets/${producer.name}.jpg`)"
-            :alt="`${producer.name} logo`"
-            class="producer"
+            :src="require(`~/assets/${producer.src}.jpg`)"
+            :alt="producer.src"
           />
         </div>
-      </client-only>
-    </section>
-    <section class="realisation-gallery">
-      <h3 class="section-title">Sprawdź nasze realizacje</h3>
-      <p>
-        Możesz zobaczyć jak wyglądają ostatnie realizacje dostarczone naszym
-        klientom.
-      </p>
-      <p>
-        Poniżej znajduje się mini galeria z najlepszymi realizacjami, jeżeli
-        chcesz zobaczyć więcej kliknij w link pod spodem
-      </p>
-      <p>Wszystkie realiacje na bieżąco wstawiamy na facebooka.</p>
-      <div class="gallery">
-        <div
-          class="single-image"
-          v-for="image in images"
-          :key="image.id"
-          :style="{
-            backgroundImage:
-              'url(' + require(`~/assets/gallery/${image.src}.jpg`) + ')',
-          }"
-          @click="openModal(`${image.src}`)"
-        ></div>
       </div>
-      <div class="check">
-        <a>Zobacz pełną galerię</a>
-        <svg-arrow :color="'black'" :width="16" :height="24" />
+    </section>
+    <section class="howTo">
+      <div class="content">
+        <img
+          loading="lazy"
+          src="~/assets/gallery/img2.jpg"
+          alt="Fotografia przedstawiająca kuchnie"
+          class="photo"
+        />
+        <p class="subTitle">Jest to na prawdę banalnie proste</p>
+        <p class="title">Jak wygląda proces realizacji zamówienia?</p>
+        <p class="contentText">
+          Meble kuchnne jak i zarówno meble pokojowe to trzon naszej
+          działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
+          małą prezentację jak to wygląda od strony kuchni.
+        </p>
+      </div>
+      <client-only>
+        <flicking class="boxes">
+          <div
+            class="singleBox"
+            v-for="box in boxes"
+            :key="box.id"
+            :style="{ background: box.color }"
+          >
+            <component
+              :is="`svg-${box.icon.name}`"
+              :width="box.icon.width"
+              :height="box.icon.height"
+              :color="box.icon.color"
+            ></component>
+            <p class="boxTitle">{{ box.title }}</p>
+            <p class="boxSubTitle">{{ box.subTitle }}</p>
+          </div>
+        </flicking>
+      </client-only>
+
+      <div class="stripe">
+        <button class="prev"><svg-arrow /></button>
+        <button class="next"><svg-arrow /></button>
+      </div>
+    </section>
+    <section class="realisations">
+      <div class="content">
+        <p class="subTitle">Jest tego na prawdę dużo</p>
+        <p class="title">Sprawdź nasze realizacje</p>
+        <p class="contentText">
+          Meble kuchnne jak i zarówno meble pokojowe to trzon naszej
+          działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
+          małą prezentację jak to wygląda od strony kuchni.
+        </p>
+        <a href="#" class="contentButton">Zajrzyj do galerii</a>
+        <img
+          loading="lazy"
+          src="~/assets/gallery/img1.jpg"
+          alt="Zdjęcie przedstawiające kuchnie"
+          class="realisationImages"
+        />
+        <img
+          loading="lazy"
+          src="~/assets/gallery/img3.jpg"
+          alt="Zdjęcie przedstawiające kuchnie"
+          class="realisationImages"
+        />
       </div>
     </section>
     <section class="offer">
-      <h3 class="section-title">Zapoznaj się z naszą ofertą</h3>
-      <p>
-        Wychodząc na przeciw oczekiwaniom naszych klientów wykonujemy zarówno
-        meble kuchenne, meble pokojowe, meble łazienkowe jak i łoża sypialniane.
-      </p>
-      <div class="offer-wrapper">
+      <div class="content">
+        <p class="subTitle">Jest tego na prawdę dużo</p>
+        <p class="title">Oferta tak ogromna, że czacha dyni dymi</p>
+        <p class="contentText">
+          Meble kuchnne jak i zarówno meble pokojowe to trzon naszej
+          działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
+          małą prezentację jak to wygląda od strony kuchni.
+        </p>
+      </div>
+      <div class="offerList">
         <nuxt-link
-          tag="div"
-          class="single-offer"
-          v-for="singleOffer in offer"
-          :key="singleOffer.id"
-          :to="`oferta/${singleOffer.route}`"
-          v-bind:style="{
-            backgroundImage:
-              'url(' + require(`~/assets/offer/${singleOffer.bg}.jpg`) + ')',
-          }"
+          class="singleOffer"
+          v-for="element in offer"
+          :key="element.id"
+          :to="`oferta/${element.route}`"
+          :style="`background: url(${element.bg}); background-size: cover; background-position: center; box-shadow: 0px 0px 0px 4000px ${element.overlay} inset;`"
         >
-          <div class="overlay" :style="{ background: singleOffer.overlay }">
-            <h4>{{ singleOffer.name }}</h4>
-          </div>
+          <p class="offerTitle">{{ element.name }}</p>
         </nuxt-link>
       </div>
     </section>
     <section class="contact">
-      <h3 class="section-title">Skontaktuj się z nami</h3>
-      <h4 class="contact-sub-title">Przez formularz</h4>
-      <div class="contact-wrapper">
-        <form class="contact-form">
-          <input type="text" name="name" placeholder="Imię i Nazwisko" />
-          <input type="text" name="name" placeholder="Adres e-mail" />
-          <input type="text" name="name" placeholder="Numer telefonu" />
-          <input type="text" name="name" placeholder="Firma (opcjonalnie)" />
+      <div class="content">
+        <p class="contactSubTitle">Stworzymi Ci coś niezwykłego</p>
+        <p class="contactTitle">Skontaktuj się z nami</p>
+        <form class="contactForm">
+          <p class="contactNdTitle">Przez formularz</p>
+          <input type="text" class="name" placeholder="Imię i nazwisko" />
+          <input
+            type="text,"
+            class="company"
+            placeholder="Firma(opcjonalnie)"
+          />
+          <input type="text," class="email" placeholder="Adres email" />
+          <input type="text," class="phone" placeholder="Numer telefonu" />
           <textarea
-            placeholder="Opisz w kilku słowach swoje wymarzone zamówienie..."
+            placeholder="Opisz w kilku słowach swoje zamówienie"
           ></textarea>
-          <input type="submit" value="Wyślij" />
+          <input type="submit" class="submit" value="Wyślij" />
         </form>
-        <div class="contact-box">
-          <div class="overlay">
-            <h4 class="contact-sub-title">Bezpośrednio przez maila</h4>
-            <p>
-              e-mail:
-              <a href="mailto: kontakt@radommeble.pl">kontakt@radommeble.pl</a>
-            </p>
-            <h4 class="contact-sub-title">Lub telefonicznie</h4>
-            <p>telefon: 222-444-333</p>
-          </div>
+        <p class="contactNdTitle">Telefonicznie lub mailowo</p>
+        <div class="contactInfoBox">
+          <p class="phone">tel. 698-088-271</p>
+          <p class="mail">email: kontakt@radommeble.pl</p>
+          <p class="mail">email: dyniameble@wp.pl</p>
         </div>
       </div>
     </section>
@@ -219,8 +195,8 @@ export default {
       boxes: [
         {
           id: 0,
-          name: 'Kontakt',
-          content:
+          title: 'Kontakt',
+          subTitle:
             'Pierwszy i zarazem kluczowy punkt. To tu się wszystko zaczyna.',
           color: '#E9D8A6',
           icon: {
@@ -232,8 +208,8 @@ export default {
         },
         {
           id: 1,
-          name: 'Pomiar',
-          content:
+          title: 'Pomiar',
+          subTitle:
             'Wizyta u klienta w celu wymierzenia ścian i określenia charakterystycznych punktów.',
           color: '#94D2BD',
           icon: {
@@ -245,8 +221,8 @@ export default {
         },
         {
           id: 2,
-          name: 'Realizacja',
-          content: 'Proddukcja mebli skrojonych idealnie pod Twoje potrzeby.',
+          title: 'Realizacja',
+          subTitle: 'Proddukcja mebli skrojonych idealnie pod Twoje potrzeby.',
           color: '#F09F4B',
           icon: {
             name: 'box',
@@ -257,8 +233,8 @@ export default {
         },
         {
           id: 3,
-          name: 'Dostawa i montaż',
-          content: 'Montaż mebli w wybranym przez Ciebie terminie.',
+          title: 'Dostawa i montaż',
+          subTitle: 'Montaż mebli w wybranym przez Ciebie terminie.',
           color: '#E56659',
           icon: {
             name: 'truck',
@@ -271,43 +247,19 @@ export default {
       producers: [
         {
           id: 0,
-          name: 'gamet',
+          src: 'gamet',
         },
         {
           id: 1,
-          name: 'siro',
+          src: 'siro',
         },
         {
           id: 2,
-          name: 'schwinn',
+          src: 'schwinn',
         },
         {
           id: 3,
-          name: 'blum',
-        },
-        {
-          id: 4,
-          name: 'gamet',
-        },
-        {
-          id: 5,
-          name: 'siro',
-        },
-        {
-          id: 6,
-          name: 'schwinn',
-        },
-        {
-          id: 7,
-          name: 'gamet',
-        },
-        {
-          id: 8,
-          name: 'siro',
-        },
-        {
-          id: 9,
-          name: 'schwinn',
+          src: 'blum',
         },
       ],
       images: [
@@ -336,29 +288,29 @@ export default {
         {
           id: 0,
           name: 'Meble kuchenne',
-          bg: 'kitchen',
-          overlay: 'rgba(202, 103, 2, 0.815)',
+          bg: require('~/assets/offer/kitchen.jpg'),
+          overlay: 'rgba(202, 103, 2, 0.615)',
           route: 'meble_kuchenne',
         },
         {
           id: 1,
           name: 'Meble pokojowe',
-          bg: 'salon',
-          overlay: 'rgba(0, 139, 139, 0.815)',
+          bg: require('~/assets/offer/salon.jpg'),
+          overlay: 'rgba(0, 139, 139, 0.615)',
           route: 'meble_pokojowe',
         },
         {
           id: 2,
           name: 'Meble łazienkowe',
-          bg: 'bathroom',
-          overlay: 'rgba(155, 34, 38, 0.815)',
+          bg: require('~/assets/offer/bathroom.jpg'),
+          overlay: 'rgba(155, 34, 38, 0.615)',
           route: 'meble_lazienkowe',
         },
         {
           id: 3,
           name: 'Łoża sypialniane',
-          bg: 'bed',
-          overlay: 'rgba(148, 210, 189,  0.815)',
+          bg: require('~/assets/offer/bed.jpg'),
+          overlay: 'rgba(148, 210, 189,  0.615)',
           route: 'loza_sypialniane',
         },
       ],
@@ -413,7 +365,6 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   position: absolute;
-  // width: 330px;
   top: 220px;
   margin: 24px;
   z-index: 1;
@@ -446,174 +397,246 @@ export default {
     margin-left: 16px;
   }
 }
-.realisations {
-  padding: 0 24px;
-}
-.section-title {
-  margin: 60px 0;
-  font-size: 36px;
-  color: #3d3d3d;
-  font-weight: bold;
-  width: 265px;
-  line-height: 34px;
-}
-.boxes {
-  margin: 60px 0;
+
+.content {
+  padding: 32px;
   display: flex;
-  flex-direction: row;
-}
-.single-box {
-  width: 240px;
-  height: 240px;
-  padding: 24px;
-  display: flex;
-  margin: 0 12px;
-  justify-content: flex-end;
-  align-items: flex-start;
   flex-direction: column;
-  h4 {
-    font-size: 24px;
-  }
-  p {
-    font-size: 16px;
-  }
-  svg {
-    margin: 8px 0;
-    width: 80px;
-    margin-left: -24px;
-  }
+  place-content: center;
 }
-.text {
+.subTitle {
   font-size: 24px;
   font-weight: bold;
+  color: #f09f4b;
+  position: relative;
+  padding-left: 42px;
+  &:before {
+    content: '';
+    width: 32px;
+    height: 4px;
+    background: #f09f4b;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
-.producers {
-  margin: 60px 0;
+.title {
+  font-size: 36px;
+  color: #005f73;
+  font-weight: bold;
 }
-.producer {
-  min-width: 120px;
-  min-height: 30px;
-  margin: 0 12px;
+.contentText {
+  margin-top: 8px;
+  font-size: 24px;
+  color: black;
 }
-.realisation-gallery {
-  padding: 0 24px;
+.counters {
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
 }
-.gallery {
+.singleCounter {
+  margin: 20px;
   display: flex;
   flex-direction: column;
+}
+.bigNumber {
+  color: #f09f4b;
+  font-size: 72px;
+  font-weight: bold;
+}
+.smallText {
+  font-size: 24px;
+  color: black;
+  max-width: 142px;
+}
+.systems {
+  padding: 32px;
+}
+.systemsTitle {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ae2012;
+}
+.systemsText {
+  font-size: 24px;
+  color: black;
+  margin-top: 8px;
+}
+.producers {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 120px;
+}
+.singleProducer {
+  max-width: 110px;
+  margin: 16px;
+}
+.howTo {
+  background: #f1f1f1;
+  position: relative;
+}
+.photo {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 12px 24px 1px rgba(0, 0, 0, 0.38);
+  margin-top: -96px;
+  margin-bottom: 64px;
+}
+.singleBox {
+  width: 260px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  padding: 32px;
+  margin: 0 12px;
+}
+.boxTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+.boxSubTitle {
+  font-size: 16px;
+  color: #363232;
+}
+button.prev,
+button.next {
+  background: #363636;
+  width: 42px;
+  height: 42px;
+  margin-top: 80px;
+  border: none;
+  margin: 96px 8px 0 0;
+}
+button.prev {
+  transform: rotate(180deg);
+}
+button.next {
+  margin-right: 32px;
+}
+.stripe {
+  width: 100%;
+  height: 60px;
+  background: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: flex-end;
+  justify-content: flex-end;
+}
+.contentButton {
+  padding: 8px 36px;
+  background: #005f73;
+  text-decoration: none;
+  color: white;
+  box-shadow: 2px 2px 12px #178b84;
+  width: 186px;
+  height: 42px;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 42px;
+}
+.realisations {
+  margin-top: 80px;
+}
+.realisationImages {
+  width: 324px;
+  height: 342px;
+  margin: 8px 0;
+}
+.offerList {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  padding: 32px;
+}
+.singleOffer {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-decoration: none;
+  // box-shadow: 0px 0px 0px 4000px rgba(27, 61, 88, 0.5) inset;
+  margin: 4px 0;
+}
+.offerTitle {
+  font-size: 24px;
+  color: white;
+  height: 30px;
+  margin: 16px;
+}
+.contact .content {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.single-image {
-  width: 100%;
-  height: 180px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: none;
-  margin: 12px 0;
-}
-.check {
-  width: 100%;
-  margin: 24px 0;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  svg {
-    margin: 0 0 0 16px;
-  }
-}
-.offer {
-  padding: 24px;
-  .section-title {
-    margin-bottom: 60px;
-  }
-}
-.single-offer {
-  width: 100%;
-  height: 180px;
-  background-size: cover;
-  background-position: center;
-  text-decoration: none;
-  margin: 12px 0;
-  .overlay {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding: 24px;
-  }
-  h4 {
-    color: white;
-    font-size: 16 px;
-    font-weight: bold;
-  }
-}
-.contact {
-  padding: 24px;
-}
-.contact-sub-title {
-  font-size: 16px;
+.contactSubTitle {
+  font-size: 18px;
   font-weight: bold;
-  color: black;
-  margin: 16px 0;
+  color: #f09f4b;
+  position: relative;
+  width: 340px;
+  padding: 0 44px;
+  &:before {
+    content: '';
+    width: 32px;
+    height: 4px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    background: #ee9b00;
+  }
+  &:after {
+    content: '';
+    width: 32px;
+    height: 4px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    background: #ee9b00;
+  }
 }
-.contact-form {
+.contactTitle {
+  font-size: 32px;
+  color: #005f73;
+  font-weight: bold;
+}
+.contactNdTitle {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 32px 0 16px 0;
+  color: #ee9b00;
+}
+.contactForm {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   input {
     width: 100%;
+    height: 40px;
+    background: white;
+    color: #6d6d6d;
+    border: 1px solid #6d6d6d;
     margin: 8px 0;
-    background: #f4f4f4;
-    border: 1px solid #f1f1f1;
-    height: 36x;
-    padding: 8px;
+    padding: 0 8px;
+    font-size: 16px;
   }
   textarea {
-    width: 100%;
-    height: 120px;
-    background: #f4f4f4;
-    border: 1px solid #f1f1f1;
-    padding: 8px;
-  }
-  input:nth-last-child(1) {
-    background: darkcyan;
-    width: 100%;
-    height: 36px;
-    border: none;
-    color: white;
-    font-weight: bold;
     font-size: 16px;
-    text-align: center;
+    padding: 8px;
+    height: 200px;
+    border: 1px solid #6d6d6d;
+    margin-top: 8px;
   }
-}
-.contact-box {
-  width: 100%;
-  margin-top: 16px;
-  height: 200px;
-  background-image: url('~/assets/gallery/img1.jpg');
-  background-size: cover;
-  background-position: center;
-  .overlay {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 25, 43, 0.81);
-    h4 {
-      margin: 8px 0;
-    }
-    h4,
-    p {
-      color: white;
-      margin-bottom: 12px;
-    }
-    a {
-      text-decoration: none;
-      color: white;
-    }
+  input[type='submit'] {
+    background: #005f73;
+    color: white;
   }
 }
 @media (min-width: 768px) {
@@ -634,17 +657,6 @@ export default {
       font-size: 36px;
     }
   }
-  .realisations,
-  .realisation-gallery,
-  .offer,
-  .contact {
-    padding: 0 48px;
-  }
-  .section-title {
-    font-size: 64px;
-    line-height: 62px;
-    width: 600px;
-  }
   .text {
     font-size: 36px;
     line-height: 34px;
@@ -655,36 +667,8 @@ export default {
       font-weight: bold;
     }
   }
-  .single-image {
-    height: 240px;
-  }
-  .single-offer {
-    height: 240px;
-    h4 {
-      font-size: 32px;
-    }
-  }
-  .contact-sub-title {
-    font-size: 24px;
-  }
-  .contact-form {
-    input,
-    input[type='submit'] {
-      height: 60px;
-      font-size: 24px;
-    }
-    textarea {
-      font-size: 24px;
-    }
-  }
 }
 @media (min-width: 1440px) {
-  .section-title {
-    font-size: 48px;
-    width: 600px;
-    line-height: 98%;
-    margin-bottom: 12px;
-  }
   .top-content p {
     font-size: 22px;
   }
@@ -699,75 +683,6 @@ export default {
   .text {
     font-size: 22px;
     color: #9b2226;
-  }
-  .producers {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 32px 0;
-
-    :nth-child(1) {
-      margin-left: 0;
-    }
-  }
-  .producer {
-    filter: grayscale(80%);
-    opacity: 0.5;
-    margin: 0 40px;
-  }
-  .gallery {
-    flex-wrap: wrap;
-    flex-direction: row;
-    cursor: pointer;
-  }
-  .single-image {
-    width: 46%;
-    margin: 12px;
-    &:nth-last-child(1) {
-      width: 94%;
-      height: 400px;
-    }
-  }
-  .offer-wrapper {
-    display: flex;
-    flex-direction: row;
-    .single-offer {
-      width: 50%;
-      margin: 0 6px;
-      cursor: pointer;
-      h4 {
-        font-size: 24px;
-      }
-    }
-  }
-  .contact-form {
-    width: 50%;
-    margin: 0 12px 0 0;
-  }
-  .contact-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .contact-box {
-    width: 50%;
-    height: 490px;
-    margin: 0 !important;
-  }
-  .bottom-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: initial;
-    width: initial;
-    a {
-      color: white;
-    }
-  }
-  section p {
-    width: 600px;
   }
 }
 </style>
