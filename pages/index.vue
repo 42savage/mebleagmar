@@ -80,7 +80,7 @@
           małą prezentację jak to wygląda od strony kuchni.
         </p>
       </div>
-      <client-only>
+      <client-only v-if="$mq !== 'lg'">
         <flicking class="boxes">
           <div
             class="singleBox"
@@ -103,10 +103,21 @@
           </div>
         </flicking>
       </client-only>
-
+      <div v-else class="boxes-lg">
+        <div v-for="box in boxes" :key="box.id" class="single-box">
+          <component
+            :is="`svg-${box.icon.name}`"
+            color="darkcyan"
+            :width="36"
+            :height="36"
+          />
+          <p class="boxTitle">{{ box.title }}</p>
+          <p class="boxSubTitle">{{ box.subTitle }}</p>
+        </div>
+      </div>
       <div class="stripe">
-        <button class="prev"><svg-arrow /></button>
-        <button class="next"><svg-arrow /></button>
+        <button v-if="$mq !== 'lg'" class="prev"><svg-arrow /></button>
+        <button v-if="$mq !== 'lg'" class="next"><svg-arrow /></button>
       </div>
     </section>
     <section class="realisations">
@@ -132,6 +143,14 @@
           class="realisationImages"
         />
       </div>
+      <div class="stripeGallery">
+        <div
+          v-for="image in stripeGallery"
+          :key="image.id"
+          class="singleStripe"
+          :style="` background: url(${image.src}); background-position: center; background-size: cover; `"
+        ></div>
+      </div>
     </section>
     <section class="offer">
       <div class="content">
@@ -142,6 +161,7 @@
           działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
           małą prezentację jak to wygląda od strony kuchni.
         </p>
+        <svg-people style="position: absolute; right: 160px" :width="460" />
       </div>
       <div class="offerList">
         <nuxt-link
@@ -156,9 +176,11 @@
       </div>
     </section>
     <section class="contact">
-      <div class="content">
-        <p class="contactSubTitle">Stworzymi Ci coś niezwykłego</p>
+      <div class="titleContent">
+        <p class="contactSubTitle">Stworzymy Ci coś niezwykłego</p>
         <p class="contactTitle">Skontaktuj się z nami</p>
+      </div>
+      <div class="content">
         <form class="contactForm">
           <p class="contactNdTitle">Przez formularz</p>
           <input type="text" class="name" placeholder="Imię i nazwisko" />
@@ -174,8 +196,9 @@
           ></textarea>
           <input type="submit" class="submit" value="Wyślij" />
         </form>
-        <p class="contactNdTitle">Telefonicznie lub mailowo</p>
+
         <div class="contactInfoBox">
+          <p class="contactNdTitle">Telefonicznie lub mailowo</p>
           <p class="phone">tel. 698-088-271</p>
           <p class="mail">email: kontakt@radommeble.pl</p>
           <p class="mail">email: dyniameble@wp.pl</p>
@@ -247,6 +270,11 @@ export default {
             height: 36,
           },
         },
+      ],
+      stripeGallery: [
+        { id: 0, src: require('~/assets/stripeGallery/img1.jpg') },
+        { id: 1, src: require('~/assets/stripeGallery/img2.jpg') },
+        { id: 2, src: require('~/assets/stripeGallery/img3.jpg') },
       ],
       producers: [
         {
@@ -655,6 +683,9 @@ button.next {
     color: white;
   }
 }
+.titleContent {
+  padding: 42px;
+}
 @media (min-width: 768px) {
   .top-content {
     margin: 0 48px;
@@ -692,6 +723,8 @@ button.next {
     width: 500px;
   }
   .bottom-content {
+    width: initial;
+    position: initial;
     a {
       font-size: 22px;
     }
@@ -699,6 +732,149 @@ button.next {
   .text {
     font-size: 22px;
     color: #9b2226;
+  }
+  .aboutus {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .content {
+    padding: 120px;
+    width: 800px;
+  }
+  .subTitle {
+    font-size: 24px;
+  }
+  .title {
+    font-size: 72px;
+    line-height: 68px;
+  }
+  .counters {
+    margin: 160px 0 0 0;
+  }
+  .systems {
+    padding-left: 120px;
+    width: 800px;
+  }
+  .photo {
+    position: absolute;
+    right: 80px;
+    top: -200px;
+    margin: initial;
+    width: 460px;
+    height: 600px;
+  }
+  .boxes-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 80px;
+    height: 360px;
+  }
+  .single-box {
+    border-top: 2px solid #dadada;
+    border-right: 2px solid #dadada;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0 36px;
+    .boxTitle {
+      margin-top: 24px;
+    }
+    p {
+      width: 260px;
+    }
+    &:hover {
+      background: darkcyan;
+      cursor: pointer;
+      svg {
+        fill: white;
+      }
+      p {
+        color: white;
+      }
+    }
+  }
+  #__layout
+    > div
+    > div.container
+    > section.howTo
+    > div.boxes-lg
+    > div:nth-child(1)
+    > svg {
+    // transform: rotate(45deg);
+    overflow: initial;
+    width: 40px;
+  }
+  .stripe {
+    height: 64px;
+  }
+  .realisations {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .realisationImages {
+    display: none;
+  }
+  .stripeGallery {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    padding: 100px 0;
+  }
+  .singleStripe {
+    height: 100%;
+    width: 160px;
+    margin: 0 8px;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+      width: 220px;
+    }
+  }
+  .offerList {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 160px;
+  }
+  .singleOffer {
+    width: 300px;
+    height: 300px;
+    margin: 0 8px;
+  }
+  .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .content {
+      padding-top: 0px;
+      width: 100%;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+    .contactForm {
+      width: 600px;
+    }
+  }
+  .titleContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 96px;
+  }
+  .contactTitle {
+    font-size: 64px;
   }
 }
 </style>

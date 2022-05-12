@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <net />
     <Navigation />
     <Nuxt />
     <footer>
@@ -63,20 +64,7 @@
   </div>
 </template>
 
-<style lang="scss">
-body {
-  position: relative;
-  // &:before {
-  //   position: absolute;
-  //   content: '';
-  //   width: 2px;
-  //   height: 100%;
-  //   background: red;
-  //   left: 80px;
-  //   top: 0;
-  //   z-index: 2;
-  // }
-}
+<style lang="scss" scoped>
 $base-font-family: 'Roboto', sans-serif;
 svg {
   margin-top: 32px;
@@ -94,6 +82,7 @@ footer {
   width: 100%;
   flex-direction: column;
   background: #f1f1f1;
+  padding: 0 120px 36px 120px;
 }
 .menuShortcut {
   width: 100%;
@@ -102,16 +91,16 @@ footer {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  padding: 32px;
+  padding: 64px 0;
 }
 .menuSection {
   display: flex;
   flex-direction: column;
-  margin: 16px;
+  margin: 8px 32px;
   li {
     list-style-type: none;
     margin: 4px 0;
-    font-size: 22px;
+    font-size: 16px;
   }
   li > a {
     text-decoration: none;
@@ -119,12 +108,15 @@ footer {
   }
 }
 .menuTitle {
-  font-size: 26px;
+  font-size: 16px;
   color: black;
   font-weight: bold;
   margin-bottom: 16px;
 }
 .author {
   color: #98bfd0;
+  position: absolute;
+  right: 150px;
+  bottom: 32px;
 }
 </style>
