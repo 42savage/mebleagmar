@@ -4,7 +4,7 @@
 export default {}
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @media (min-width: 1440px) {
   body {
     position: relative;

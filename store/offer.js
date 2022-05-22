@@ -136,7 +136,7 @@ export const state = () => ({
       name: 'fronty_drewniane',
       title: 'Fronty drewniane',
       bg: {
-        image: 'offer/fronty_drewniane.jpg',
+        image: require('~/assets/offer/fronty_drewniane.jpg'),
         color: 'crimson',
       },
     },
@@ -145,16 +145,25 @@ export const state = () => ({
       name: 'fronty_mdf',
       title: 'Fronty MDF',
       bg: {
-        image: 'offer/fronty_mdf.jpg',
+        image: require('~/assets/offer/fronty_mdf.jpg'),
         color: 'crimson',
       },
     },
     {
-      id: 0,
-      name: 'szklo_grafika',
-      title: 'Szkło grafika',
+      id: 2,
+      name: 'fronty_lakierowane',
+      title: 'Fronty lakierowane',
       bg: {
-        image: 'offer/szklo_grafika.jpg',
+        image: require('~/assets/offer/fronty_lakierowane.jpg'),
+        color: 'crimson',
+      },
+    },
+    {
+      id: 3,
+      name: 'fronty_akrylowe',
+      title: 'Fronty akrylowe',
+      bg: {
+        image: require('~/assets/offer/fronty_akrylowe.jpg'),
         color: 'crimson',
       },
     },
@@ -217,6 +226,32 @@ export const mutations = {}
 export const actions = {}
 
 export const getters = {
+  meble(state) {
+    const arr = []
+    state.offerList.forEach((element) => {
+      arr.push({
+        id: element.id,
+        title: element.title,
+        route: `oferta/${element.name}`,
+        bg: element.bg,
+        bgColor: element.bgColor,
+      })
+    })
+    return arr
+  },
+  frontyMeblowe(state) {
+    const arr = []
+    state.extrass.forEach((element) => {
+      arr.push({
+        id: element.id,
+        title: element.title,
+        route: `oferta/${element.name}`,
+        bg: element.bg.image,
+        bgColor: element.bg.color,
+      })
+    })
+    return arr
+  },
   offer(state) {
     return state.offerList
   },

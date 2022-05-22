@@ -1,6 +1,8 @@
 <template>
-  <div class="main-container">
-    <net />
+  <div
+    class="main-container"
+    :class="{ net: this.$route.path === '/' && this.$mq === 'lg' }"
+  >
     <Navigation />
     <Nuxt />
     <footer>
@@ -82,8 +84,9 @@ footer {
   width: 100%;
   flex-direction: column;
   background: #f1f1f1;
-  padding: 0 120px 36px 120px;
+  position: relative;
 }
+
 .menuShortcut {
   width: 100%;
   display: flex;
@@ -116,7 +119,39 @@ footer {
 .author {
   color: #98bfd0;
   position: absolute;
-  right: 150px;
-  bottom: 32px;
+  left: 0;
+  text-align: center;
+  bottom: 24px;
+  width: 100%;
+}
+@media (min-width: 1440px) {
+  footer {
+    padding: 0 120px 36px 120px;
+  }
+}
+// vertical lines throught whole page;
+// style for horizontal lines is put right into index page
+.net {
+  position: relative;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: calc(100% - 100vh);
+    background: #dadada;
+    left: 80px;
+    top: calc(100vh + 5px);
+    z-index: 2;
+  }
+  &:after {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: calc(100% - 100vh);
+    background: #dadada;
+    right: 80px;
+    top: calc(100vh + 5px);
+    z-index: 2;
+  }
 }
 </style>

@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="sec">
-          <svg-phone :width="24" :height="24" color="#94D2BD" />
+          <svg-phone class="phone" :width="24" :height="24" color="#94D2BD" />
           <div>
             <p class="title">Zadzwoń</p>
             <p class="subtitle">698-088-271</p>
@@ -142,6 +142,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.phone {
+  width: 50px;
+  transform: rotate(30deg);
+}
 li {
   overflow: hidden;
 }

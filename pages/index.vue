@@ -21,7 +21,10 @@
         <svg-check :width="66" :height="36" /><a>Nasze realizacje</a>
       </div>
     </header>
-    <section class="aboutus">
+    <section
+      class="aboutus"
+      :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
+    >
       <div class="content">
         <p class="subTitle">Dlaczego my?</p>
         <p class="title">Kilka słów o nas</p>
@@ -64,7 +67,10 @@
         </div>
       </div>
     </section>
-    <section class="howTo">
+    <section
+      class="howTo"
+      :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
+    >
       <div class="content">
         <img
           loading="lazy"
@@ -120,7 +126,10 @@
         <button v-if="$mq !== 'lg'" class="next"><svg-arrow /></button>
       </div>
     </section>
-    <section class="realisations">
+    <section
+      class="realisations"
+      :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
+    >
       <div class="content">
         <p class="subTitle">Jest tego na prawdę dużo</p>
         <p class="title">Sprawdź nasze realizacje</p>
@@ -152,7 +161,10 @@
         ></div>
       </div>
     </section>
-    <section class="offer">
+    <section
+      class="offer"
+      :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
+    >
       <div class="content">
         <p class="subTitle">Jest tego na prawdę dużo</p>
         <p class="title">Oferta tak ogromna, że czacha dyni dymi</p>
@@ -161,7 +173,11 @@
           działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
           małą prezentację jak to wygląda od strony kuchni.
         </p>
-        <svg-people style="position: absolute; right: 160px" :width="460" />
+        <svg-people
+          v-if="$mq === 'lg'"
+          style="position: absolute; right: 160px"
+          :width="460"
+        />
       </div>
       <div class="offerList">
         <nuxt-link
@@ -175,9 +191,14 @@
         </nuxt-link>
       </div>
     </section>
-    <section class="contact">
+    <section
+      class="contact"
+      :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
+    >
       <div class="titleContent">
-        <p class="contactSubTitle">Stworzymy Ci coś niezwykłego</p>
+        <p class="contactSubTitle">
+          Z przyjemnością stworzymy dla Ciebie coś niezwykłego
+        </p>
         <p class="contactTitle">Skontaktuj się z nami</p>
       </div>
       <div class="content">
@@ -373,6 +394,28 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+// style for horizontal lines that appears in every section, style for horziontal lines is put into default layout
+.netSection {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #dadada;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 64px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #dadada;
+  }
+}
 #__layout
   > div
   > div
@@ -622,8 +665,8 @@ button.next {
   font-size: 18px;
   font-weight: bold;
   color: #f09f4b;
+  text-align: center;
   position: relative;
-  width: 340px;
   padding: 0 44px;
   &:before {
     content: '';

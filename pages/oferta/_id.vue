@@ -1,11 +1,16 @@
 <template>
-  <div class="wrapper">
-    <div
-      class="header"
-      :style="{
-        background: `linear-gradient(to bottom, ${this.specifiedOffer.bgColor}, rgba(100, 100, 0, 0.01)), url(${this.specifiedOffer.bg})`,
-      }"
-    ></div>
+  <div class="wrapper" ref="container">
+    <div class="header">
+      <div
+        ref="backgroundImage"
+        class="image"
+        :style="{
+          background: `linear-gradient(to bottom, ${this.specifiedOffer.bgColor}, rgba(100, 100, 0, 0.01)), url(${this.specifiedOffer.bg})`,
+        }"
+      >
+        <h1>{{ specifiedOffer.title }}</h1>
+      </div>
+    </div>
     <section class="main-content">
       <div class="breadcrumbs">
         <nuxt-link to="/" class="back"
@@ -74,16 +79,35 @@ export default {
       specifiedExtrass: 'offer/specifiedExtrass',
     }),
   },
-  mounted() {},
+  mounted() {
+    this.$el.querySelector('.image').style.backgroundPosition = `50% ${
+      -innerHeight / 2
+    }px`
+
+    this.$gsap.to(this.$refs.backgroundImage, {
+      backgroundPosition: `50% ${innerHeight / 2}px`,
+      scrollTrigger: {
+        trigger: this.$el.querySelector('.wrapper'),
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    })
+  },
 }
 </script>
 
 <style scoped lang="scss">
 .header {
-  width: 100%;
-  height: 300px;
   background-size: cover;
   background-position: center;
+  .image {
+    width: 100%;
+    height: 300px;
+  }
+  h1 {
+    display: none;
+  }
 }
 .back {
   background: none;
@@ -153,5 +177,55 @@ export default {
 }
 .extrass {
   padding: 0 24px;
+}
+@media (min-width: 1440px) {
+  .header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    h1 {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 64px;
+    }
+    .image {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+  }
+  .content {
+    padding: 32px 120px;
+    p {
+      width: 600px;
+    }
+  }
+  .images {
+    display: flex;
+    li {
+      width: 33%;
+      height: 360px;
+      margin: 8px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .breadcrumbs {
+    margin-top: 60px;
+  }
+  .back {
+    left: 120px;
+  }
 }
 </style>
