@@ -11,6 +11,25 @@
       <div class="overlap">
         <p class="sectionTitle">Zapoznaj się z naszą ofertą</p>
       </div>
+      <div class="textInfo">
+        <h1 class="adnHeader">
+          Realizujemy zamówienia na terenie Radomia i okolic w promieniu 50km.
+        </h1>
+        <h3>
+          W skład naszej oferty wchodzą kuchnie, szafy, meble pokojowe jak i
+          meble łazienkowe
+        </h3>
+        <p class="adnText">
+          Proowadzimy również własne biuro projektowe, które znajdziesz pod
+          odnośnikiem
+          <a
+            href="https://projekty-agmar.pl/"
+            target="_blank"
+            title="Projekty AGMAR strona internetowa"
+            >Projekty AGMAR</a
+          >
+        </p>
+      </div>
       <div class="offerGrid">
         <p class="sectionSubTitle">Meble</p>
         <div class="subGrid">
@@ -32,9 +51,36 @@
             class="singleBox"
             v-for="box in frontyMeblowe"
             :key="box.id"
-            :style="{
-              background: `linear-gradient(to bottom, ${box.bgColor}, rgba(100, 100, 0, 0.01)), url(${box.bg})`,
-            }"
+            :style="`background: url(${box.bg}); background-size: cover; background-position: center; box-shadow: 0px 0px 0px 4000px ${box.bgColor} inset;`"
+            :to="box.route"
+          >
+            <p class="boxTitle">{{ box.title }}</p>
+          </nuxt-link>
+        </div>
+        <p class="sectionSubTitle">Systemy meblowe</p>
+        <div class="subGrid">
+          <nuxt-link
+            class="singleBox"
+            v-for="box in systemyMeblowe"
+            :key="box.id"
+            :style="`background: url(${box.bg}); background-size: cover; background-position: center;`"
+            :to="box.route"
+          >
+            <p class="boxTitle">{{ box.title }}</p>
+          </nuxt-link>
+        </div>
+        <p class="sectionSubTitle">Szkło grafika</p>
+        <p class="adnText">
+          Jeżeli nie znalazłeś na stronie interesującej Cie kategorii nie
+          przejmuj się. To nie znanczy, że nie mamy jej w ofercie.
+        </p>
+        <p>Skontaktuj się z nami, sprawdzimy co da się zrobić.</p>
+        <div class="subGrid">
+          <nuxt-link
+            class="singleBox"
+            v-for="box in szkloGrafika"
+            :key="box.id"
+            :style="`background: url(${box.bg}); background-size: cover; background-position: center;`"
             :to="box.route"
           >
             <p class="boxTitle">{{ box.title }}</p>
@@ -52,16 +98,25 @@ export default {
     ...mapGetters({
       meble: 'offer/meble',
       frontyMeblowe: 'offer/frontyMeblowe',
+      systemyMeblowe: 'offer/systemyMeblowe',
+      szkloGrafika: 'offer/szkloGrafika',
     }),
   },
 }
 </script>
 
 <style scoped lang="scss">
+.textInfo {
+  margin: 0 0 32px 0;
+}
 .backgroundImage {
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+.adnHeader {
+  color: #ae2012;
+  font-weight: bold;
 }
 .overlap {
   display: flex;
@@ -118,6 +173,9 @@ section {
   }
   .subGrid {
     flex-direction: row;
+  }
+  .adnText {
+    width: 600px;
   }
 }
 </style>

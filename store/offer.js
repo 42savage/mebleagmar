@@ -113,21 +113,25 @@ export const state = () => ({
       id: 0,
       name: 'Blum',
       img: 'blum.jpg',
+      bgImg: require('~/assets/offer/systemy_blum.jpg'),
     },
     {
       id: 1,
       name: 'Schwinn',
       img: 'schwinn.jpg',
+      bgImg: require('~/assets/offer/systemy_schwinn.jpg'),
     },
     {
       id: 2,
       name: 'Gamet',
       img: 'gamet.jpg',
+      bgImg: require('~/assets/offer/systemy_gamet.jpg'),
     },
     {
       id: 3,
       name: 'Siro',
       img: 'siro.jpg',
+      bgImg: require('~/assets/offer/systemy_siro.jpg'),
     },
   ],
   extrass: [
@@ -137,7 +141,6 @@ export const state = () => ({
       title: 'Fronty drewniane',
       bg: {
         image: require('~/assets/offer/fronty_drewniane.jpg'),
-        color: 'crimson',
       },
     },
     {
@@ -146,7 +149,6 @@ export const state = () => ({
       title: 'Fronty MDF',
       bg: {
         image: require('~/assets/offer/fronty_mdf.jpg'),
-        color: 'crimson',
       },
     },
     {
@@ -155,7 +157,6 @@ export const state = () => ({
       title: 'Fronty lakierowane',
       bg: {
         image: require('~/assets/offer/fronty_lakierowane.jpg'),
-        color: 'crimson',
       },
     },
     {
@@ -164,8 +165,74 @@ export const state = () => ({
       title: 'Fronty akrylowe',
       bg: {
         image: require('~/assets/offer/fronty_akrylowe.jpg'),
-        color: 'crimson',
       },
+    },
+  ],
+  szkloGrafika: [
+    {
+      id: 0,
+      name: 'Fraktale',
+      bg: require('~/assets/offer/szklo_grafika_fraktale.jpg'),
+    },
+    {
+      id: 1,
+      name: 'Tekstury',
+      bg: require('~/assets/offer/szklo_grafika_tekstury.jpg'),
+    },
+    {
+      id: 2,
+      name: 'Zwierzęta',
+      bg: require('~/assets/offer/szklo_grafika_zwierzeta.jpg'),
+    },
+    {
+      id: 3,
+      name: 'Krajobrazy',
+      bg: require('~/assets/offer/szklo_grafika_krajobrazy.jpg'),
+    },
+    {
+      id: 4,
+      name: 'Morskie',
+      bg: require('~/assets/offer/szklo_grafika_morskie.jpg'),
+    },
+    {
+      id: 5,
+      name: 'Pojazdy',
+      bg: require('~/assets/offer/szklo_grafika_fraktale_pojazdy.jpg'),
+    },
+    {
+      id: 6,
+      name: 'Szklane',
+      bg: require('~/assets/offer/szklo_grafika_szklane.jpg'),
+    },
+    {
+      id: 7,
+      name: 'Obrazy',
+      bg: require('~/assets/offer/szklo_grafika_obrazy.jpg'),
+    },
+    {
+      id: 8,
+      name: 'Las',
+      bg: require('~/assets/offer/szklo_grafika_las.jpg'),
+    },
+    {
+      id: 9,
+      name: 'Architektura',
+      bg: require('~/assets/offer/szklo_grafika_architektura.jpg'),
+    },
+    {
+      id: 10,
+      name: 'Niebo',
+      bg: require('~/assets/offer/szklo_grafika_niebo.jpg'),
+    },
+    {
+      id: 11,
+      name: 'Woda',
+      bg: require('~/assets/offer/szklo_grafika_woda.jpg'),
+    },
+    {
+      id: 12,
+      name: 'Jedzenie',
+      bg: require('~/assets/offer/szklo_grafika_jedzenie.jpg'),
     },
   ],
   fronty_drewniane: [
@@ -248,6 +315,31 @@ export const getters = {
         route: `oferta/${element.name}`,
         bg: element.bg.image,
         bgColor: element.bg.color,
+      })
+    })
+    return arr
+  },
+  systemyMeblowe(state) {
+    const arr = []
+
+    state.systems.forEach((element) => {
+      arr.push({
+        id: element.id,
+        bg: element.bgImg,
+        title: element.name,
+        route: element.name.toLowerCase(),
+      })
+    })
+    return arr
+  },
+  szkloGrafika(state) {
+    const arr = []
+    state.szkloGrafika.forEach((element) => {
+      arr.push({
+        id: element.id,
+        bg: element.bg,
+        title: element.name,
+        route: element.name.toLowerCase(),
       })
     })
     return arr

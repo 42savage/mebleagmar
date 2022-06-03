@@ -193,6 +193,7 @@
     </section>
     <section
       class="contact"
+      id="contact"
       :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
     >
       <div class="titleContent">

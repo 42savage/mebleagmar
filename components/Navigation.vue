@@ -1,6 +1,6 @@
 <template>
   <nav class="navigation" v-scroll-lock="state">
-    <nuxt-link to="/" ref="logo" class="logo" href="#"
+    <nuxt-link to="/" ref="logo" class="logo"
       ><svg-logo fill="white"
     /></nuxt-link>
     <button class="navBtn" ref="navBtn" @click="state = !state">
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="sec">
-          <svg-phone class="phone" :width="24" :height="24" color="#94D2BD" />
+          <svg-phone class="phone" :width="36" :height="36" color="#94D2BD" />
           <div>
             <p class="title">Zadzwoń</p>
             <p class="subtitle">698-088-271</p>
@@ -36,24 +36,36 @@
       <div class="second-section">
         <ul class="list" ref="list">
           <li>
-            <a class="active" href="#">Strona główna</a>
+            <nuxt-link to="/">Strona główna</nuxt-link>
           </li>
           <li>
-            <a href="#">Realizacje</a>
+            <nuxt-link to="/realizacje">Realizacje</nuxt-link>
           </li>
-          <li><a href="#">Oferta</a></li>
-          <li><a href="#">Kontakt</a></li>
+          <li><nuxt-link to="/oferta">Oferta</nuxt-link></li>
+          <li><a href="#contact">Kontakt</a></li>
         </ul>
         <div class="socials">
           <p ref="soc"><span>Zajrzyj na nasze sociale</span></p>
           <ul class="social-list">
             <li>
-              <svg-website color="#94D2BD" />
+              <a target="_blank" href="https://projekty-agmar.pl/"
+                ><svg-website color="#94D2BD"
+              /></a>
             </li>
             <li>
-              <svg-fb color="#94D2BD" />
+              <a
+                href="https://www.facebook.com/MebleNaWymiarAgmar/"
+                target="_blank"
+                ><svg-fb color="#94D2BD"
+              /></a>
             </li>
-            <li><svg-instagram color="#94D2BD" /></li>
+            <li>
+              <a
+                href="https://www.instagram.com/agmarmeblenawymiar/"
+                target="_blank"
+                ><svg-instagram color="#94D2BD"
+              /></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -232,6 +244,7 @@ li {
 }
 .list {
   list-style-type: none;
+  white-space: nowrap;
   li {
     margin: 8px 0;
     position: relative;
@@ -246,8 +259,17 @@ li {
     position: absolute;
   }
 }
-.active {
-  color: #8d8d8d !important;
+.nuxt-link-exact-active {
+  position: relative;
+  .list &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: -10px;
+    background: white;
+  }
 }
 .socials {
   position: absolute;
@@ -354,7 +376,7 @@ li {
     font-size: 18px;
     line-height: initial;
     &:hover {
-      color: darkcyan;
+      font-weight: bold;
     }
   }
   #__layout > div > nav > div > div.first-section > div:nth-child(2) > svg {

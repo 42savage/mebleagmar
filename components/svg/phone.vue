@@ -71,3 +71,16 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+#__layout
+  > div
+  > nav
+  > div
+  > div.first-section
+  > div:nth-child(2)
+  > svg
+  > g
+  > path {
+  transform: scale(1.2);
+}
+</style>
