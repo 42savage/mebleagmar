@@ -172,7 +172,11 @@ section {
     padding: 64px;
   }
   .subGrid {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 6px;
+    grid-row-gap: 6px;
+    flex-direction: column;
   }
   .adnText {
     width: 600px;

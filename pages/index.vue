@@ -4,11 +4,12 @@
     <header>
       <div class="top-content">
         <h1>Meble na wymiar Radom</h1>
-        <p>Produkujemy meble na wymiar na terenie Radomia.</p>
+        <p>Produkujemy meble na wymiar na terenie Radomia i okolic.</p>
         <p>
-          W naszej ofercie znajdziesz szerokiej maści meble, zaczynająć od
-          prostych stolików, kończąc na pełnoprawnych zabudowach kuchennych.
+          Oferujemy meble kuchenne, meble pokojowe, meble łazienkowe oraz łoża
+          sypialniane i zabudowy RTV.
         </p>
+        <p>Zajrzyj do naszych realizacji.</p>
         <div v-if="$mq === 'lg'" class="bottom-content">
           <svg-check :width="120" :height="120" /><a>Nasze realizacje</a>
         </div>
@@ -29,10 +30,12 @@
         <p class="subTitle">Dlaczego my?</p>
         <p class="title">Kilka słów o nas</p>
         <p class="contentText">
-          W prężnie rozwijająćym się rynku stolarskim jesteśmy od lat. Od lat
-          produkujemy dla was szerokiej maści meble kuchenne, meble pokojowe,
-          meble łazienkowe oraz łoża sypialniane. Od niedawna rozszerzyliśmy
-          nasze struktury o pełnoprawne biuro projektowe.
+          Od nieco ponad 20 lat prowadzimy rodzinny zakład stolarski w małym
+          miasteczku pod Radomiem.
+        </p>
+        <p class="contentText">
+          Pracujemy od lat na swoją opinie, dlatego do każdego zamówienia
+          podchodzimy z należytym staraniem.
         </p>
       </div>
       <div class="counters">
@@ -52,8 +55,9 @@
       <div class="systems">
         <p class="systemsTitle">Wykorzystujemy systemy renomowanych firm</p>
         <p class="systemsText">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-          purus sit
+          Przez te wszystkie lata w branży i tysiące wykonanych mebli
+          znaleźliśmym najlepsze pod względem jakości systemy meblowe, które
+          spełnią oczekiwania najbardziej wymagających Klientów.
         </p>
         <div class="producers">
           <img
@@ -79,11 +83,10 @@
           class="photo"
         />
         <p class="subTitle">Jest to na prawdę banalnie proste</p>
-        <p class="title">Jak wygląda proces realizacji zamówienia?</p>
+        <p class="title">Realizacja zamówienia to pestka</p>
         <p class="contentText">
-          Meble kuchnne jak i zarówno meble pokojowe to trzon naszej
-          działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
-          małą prezentację jak to wygląda od strony kuchni.
+          Cały proces jest na tyle prosty, że postanowiliśmy przedstawić go za
+          pomocą czterech poniższych kroków.
         </p>
       </div>
       <client-only v-if="$mq !== 'lg'">
@@ -134,11 +137,21 @@
         <p class="subTitle">Jest tego na prawdę dużo</p>
         <p class="title">Sprawdź nasze realizacje</p>
         <p class="contentText">
-          Meble kuchnne jak i zarówno meble pokojowe to trzon naszej
-          działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
-          małą prezentację jak to wygląda od strony kuchni.
+          Przez lata pracy udało nam się stworzyć dosyć pokaźne portfolio, z
+          którym możesz się zapoznać na tej właśnie stronie, wystarczy, że
+          klikniesz w poniższy odnośnik.
         </p>
         <a href="#" class="contentButton">Zajrzyj do galerii</a>
+        <p>
+          Prowadzimy również
+          <a
+            href="https://www.facebook.com/MebleNaWymiarAgmar"
+            target="_blank"
+            title="Strona na facebooku"
+            >fanpage na facebooku</a
+          >, na którego wrzucamy wszystkie swoje zamówienia, konkursy,
+          ogłoszenia oraz wydarzenia branżowe w jakich braliśmy udział.
+        </p>
         <img
           loading="lazy"
           src="~/assets/gallery/img1.jpg"
@@ -166,13 +179,10 @@
       :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
     >
       <div class="content">
-        <p class="subTitle">Jest tego na prawdę dużo</p>
-        <p class="title">Oferta tak ogromna, że czacha dyni dymi</p>
-        <p class="contentText">
-          Meble kuchnne jak i zarówno meble pokojowe to trzon naszej
-          działalności. To nimi w głównej mierze się zajmujemy. Przygotowaliśmy
-          małą prezentację jak to wygląda od strony kuchni.
-        </p>
+        <p class="subTitle">Wysoka jakość i profesjonalizm</p>
+        <p class="title">Zapoznaj się z naszą ofertą</p>
+        <p class="contentText"></p>
+        <nuxt-link to="/oferta" class="offerBtn">Oferta</nuxt-link>
         <svg-people
           v-if="$mq === 'lg'"
           style="position: absolute; right: 160px"
@@ -246,7 +256,7 @@ export default {
           id: 0,
           title: 'Kontakt',
           subTitle:
-            'Pierwszy i zarazem kluczowy punkt. To tu się wszystko zaczyna.',
+            'Kontakt z naszym pracownikiem i umówienie się na pomiar. To tutaj zaczyna się całą historia.',
           color: '#E9D8A6',
           icon: {
             name: 'phone',
@@ -259,7 +269,7 @@ export default {
           id: 1,
           title: 'Pomiar',
           subTitle:
-            'Wizyta u klienta w celu wymierzenia ścian i określenia charakterystycznych punktów.',
+            'Wizyta u klienta w celu wymierzenia ścian, określenia charakterystycznych punktów i doprecyzowaniu szczegółów i oczekiwań.',
           color: '#94D2BD',
           icon: {
             name: 'ruler',
@@ -271,7 +281,8 @@ export default {
         {
           id: 2,
           title: 'Realizacja',
-          subTitle: 'Proddukcja mebli skrojonych idealnie pod Twoje potrzeby.',
+          subTitle:
+            'Przedstawienie przez nas kosztorysu i ewentualnego planu 3D. Po akceptacji przez klienta produkcja mebli.',
           color: '#F09F4B',
           icon: {
             name: 'box',
@@ -283,7 +294,7 @@ export default {
         {
           id: 3,
           title: 'Dostawa i montaż',
-          subTitle: 'Montaż mebli w wybranym przez Ciebie terminie.',
+          subTitle: 'Umówienie się na montaż i realizacja zamówienia.',
           color: '#E56659',
           icon: {
             name: 'truck',
@@ -395,6 +406,18 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.offerBtn {
+  padding: 8px 36px;
+  background: #005f73;
+  text-decoration: none;
+  color: white;
+  box-shadow: 2px 2px 12px #178b84;
+  width: 186px;
+  height: 42px;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 42px;
+}
 // style for horizontal lines that appears in every section, style for horziontal lines is put into default layout
 .netSection {
   position: relative;
