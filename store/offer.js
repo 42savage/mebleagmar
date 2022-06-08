@@ -114,6 +114,94 @@ export const state = () => ({
       name: 'Blum',
       img: 'blum.jpg',
       bgImg: require('~/assets/offer/systemy_blum.jpg'),
+      subPage: {
+        header: {
+          title: 'Systemy meblowe Blum',
+          bgImg: require('~/assets/offer/sub/systems/blumBackground.jpg'),
+        },
+        body: {
+          title: 'Rozwiązania firmy Blum',
+          text: 'To wysokiej jakości systemy meblowe, sprawiające, że z twojej kuchni korzysta się wygodniej i przyjemniej',
+          grid: {
+            img1: {
+              id: 0,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/img1.jpg'),
+              title: 'Łatwy dostęp',
+              text: 'AVENTOS przez cały czas zapewnia użytkownikowi swobodę ruchu i wolną przestrzeń nad głową. Podczas pracy w kuchni front może bez przeszkód pozostać cały czas otwarty.',
+            },
+            img2: {
+              id: 1,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/img2.jpg'),
+              title: 'Łatwe otwieranie i wygodne zamykanie',
+              text: 'Połączenie lekkiego otwierania i zintegrowanego BLUMOTION to zupełnie nowa jakość otwierania i zamykania frontów górnych. Zastosowanie technologii ruchu SERVO-DRIVE lub TIP-ON to komfortowe otwieranie mebli bez uchwytów.',
+            },
+            img3: {
+              id: 2,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/img3.jpg'),
+              title: 'Zatrzymuje się na dowolnej wysokości',
+              text: 'Front zatrzymuje się na dowolnej wysokości pozostając zawsze w zasięgu ręki! Wystarczy wyregulować siłownik odpowiednio do wagi frontu.',
+            },
+            img4: {
+              id: 3,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/img4.jpg'),
+              title: 'Identyczny design w szafkach dolnych i górnych',
+              text: 'Poziome szczeliny definiują wygląd i nie powinny być zakłócane przez zbyt wiele pionowych szczelin. Dzięki systemom AVENTOS zachowamy taki sam design w szafkach górnych, jak i w dolnych.',
+            },
+          },
+        },
+      },
+      extra: {
+        title: 'Systemy podnośników do frontów górnych',
+        offerGrid: [
+          {
+            id: 0,
+            title: 'Aventos HF',
+            subTitle: 'Dwuczęściowy front, składa się podczas otwierania',
+            name: 'aventos_hf',
+            image: require('~/assets/offer/sub/systems/aventos_hf.jpg'),
+          },
+          {
+            id: 1,
+            title: 'Aventos HS',
+            subTitle: 'Jednoczęściowy front nachodzi na korpus',
+            name: 'aventos_hs',
+            image: require('~/assets/offer/sub/systems/aventos_hs.jpg'),
+          },
+          {
+            id: 2,
+            title: 'Aventos HL',
+            subTitle:
+              'Jednoczęściowy front jest unoszony równolegle do korpusu',
+            name: 'aventos_hl',
+            image: require('~/assets/offer/sub/systems/aventos_hl.jpg'),
+          },
+          {
+            id: 3,
+            title: 'Aventos HK Top',
+            subTitle: 'Mały podnośnik do frontów górnych',
+            name: 'aventos_hk_top',
+            image: require('~/assets/offer/sub/systems/aventos_hk_top.jpg'),
+          },
+          {
+            id: 4,
+            title: 'Aventos HK-S',
+            subTitle: 'Mały podnośnik do frontów górnych',
+            name: 'aventos_hk_s',
+            image: require('~/assets/offer/sub/systems/aventos_hk_s.jpg'),
+          },
+          {
+            id: 5,
+            title: 'Aventos HK-XS',
+            subTitle: 'Do małych frontów uchylnych w szafkach górnych',
+            name: 'aventos_hl',
+            image: require('~/assets/offer/sub/systems/aventos_hk_xs.jpg'),
+          },
+        ],
+      },
     },
     {
       id: 1,
@@ -327,7 +415,7 @@ export const getters = {
         id: element.id,
         bg: element.bgImg,
         title: element.name,
-        route: element.name.toLowerCase(),
+        route: `oferta/systemy_meblowe/${element.name.toLowerCase()}`,
       })
     })
     return arr
@@ -339,7 +427,7 @@ export const getters = {
         id: element.id,
         bg: element.bg,
         title: element.name,
-        route: element.name.toLowerCase(),
+        route: `oferta/szklo_grafika/${element.name.toLowerCase()}`,
       })
     })
     return arr
@@ -356,6 +444,11 @@ export const getters = {
   specifiedOffer(state, getters, rootState) {
     return state.offerList.find(
       (offer) => offer.name === rootState.route.params.id
+    )
+  },
+  specifiedSystemy(state, getters, rootState) {
+    return state.systems.find(
+      (offer) => offer.name.toLowerCase() === rootState.route.params.id
     )
   },
   specifiedExtrass(state, getters, rootState) {

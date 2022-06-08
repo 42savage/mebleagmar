@@ -181,7 +181,11 @@
       <div class="content">
         <p class="subTitle">Wysoka jakość i profesjonalizm</p>
         <p class="title">Zapoznaj się z naszą ofertą</p>
-        <p class="contentText"></p>
+        <p class="contentText">
+          Wychodząc na przeciw Państwa oczekiwaniom cały czas rozszerzamy swoją
+          ofertę o nowe produkty. Sprawdź co mamy do zaoferowania i skontaktuj
+          się z nami.
+        </p>
         <nuxt-link to="/oferta" class="offerBtn">Oferta</nuxt-link>
         <svg-people
           v-if="$mq === 'lg'"
@@ -406,6 +410,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+
 .offerBtn {
   padding: 8px 36px;
   background: #005f73;
@@ -541,6 +547,7 @@ export default {
   margin-top: 8px;
   font-size: 24px;
   color: black;
+  font-family: 'Rajdhani', sans-serif;
 }
 .counters {
   padding: 24px;
@@ -574,6 +581,7 @@ export default {
   font-size: 24px;
   color: black;
   margin-top: 8px;
+  font-family: 'Rajdhani', sans-serif;
 }
 .producers {
   display: flex;
@@ -583,6 +591,7 @@ export default {
 .singleProducer {
   max-width: 110px;
   margin: 16px;
+  object-fit: contain;
 }
 .howTo {
   background: #f1f1f1;
