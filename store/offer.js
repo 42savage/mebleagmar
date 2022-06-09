@@ -155,8 +155,8 @@ export const state = () => ({
         },
       },
       extra: {
-        title: 'Systemy podnośników do frontów górnych',
-        offerGrid: [
+        podnosniki_title: 'Systemy podnośników do frontów górnych',
+        podnosniki: [
           {
             id: 0,
             title: 'Aventos HF',
@@ -199,6 +199,54 @@ export const state = () => ({
             subTitle: 'Do małych frontów uchylnych w szafkach górnych',
             name: 'aventos_hl',
             image: require('~/assets/offer/sub/systems/aventos_hk_xs.jpg'),
+          },
+        ],
+        szuflady_title: 'Systemy szuflad',
+        szuflady: [
+          {
+            id: 0,
+            title: 'Legrabox',
+            subTitle: 'Prosta linia, elegancja.',
+            name: 'legrabox',
+            image: require('~/assets/offer/sub/systems/legrabox.jpg'),
+          },
+          {
+            id: 1,
+            title: 'Merivobox',
+            subTitle: 'Jedna platforma, wiele możliwości.',
+            name: 'Merivobox',
+            image: require('~/assets/offer/sub/systems/merivobox.jpg'),
+          },
+          {
+            id: 2,
+            title: 'Tandembox antaro',
+            subTitle: 'Prosty i wyrazisty.',
+            name: 'tandembox_antaro',
+            image: require('~/assets/offer/sub/systems/tandembox_antaro.jpg'),
+          },
+        ],
+        zawiasy_title: 'Systemy zawiasów',
+        zawiasy: [
+          {
+            id: 0,
+            title: 'Clip top BLUMOTION',
+            subTitle: 'Innowacyjna technika',
+            name: 'cliptop_blumotion',
+            image: require('~/assets/offer/sub/systems/cliptop_blumotion.jpg'),
+          },
+          {
+            id: 1,
+            title: 'Clip top ',
+            subTitle: 'Sprawdzone działanie i atrakcyjny design',
+            name: 'cliptop',
+            image: require('~/assets/offer/sub/systems/cliptop.jpg'),
+          },
+          {
+            id: 2,
+            title: 'Modul',
+            subTitle: 'Technika i wysoka efektywność',
+            name: 'modul',
+            image: require('~/assets/offer/sub/systems/modul.jpg'),
           },
         ],
       },

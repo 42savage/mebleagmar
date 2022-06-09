@@ -238,6 +238,14 @@
           <p class="phone">tel. 698-088-271</p>
           <p class="mail">email: kontakt@radommeble.pl</p>
           <p class="mail">email: dyniameble@wp.pl</p>
+          <iframe
+            class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2493.2744593087295!2d21.241886015628552!3d51.32447147960556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471867383b56d30f%3A0xfbd398022dbb76c0!2sMeble%20na%20wymiar%20Agmar!5e0!3m2!1spl!2snl!4v1654792879571!5m2!1spl!2snl"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </section>
@@ -762,6 +770,10 @@ button.next {
 .titleContent {
   padding: 42px;
 }
+.map {
+  width: 100%;
+  height: 200px;
+}
 @media (min-width: 768px) {
   .top-content {
     margin: 0 48px;
@@ -789,6 +801,10 @@ button.next {
       font-size: 24px;
       font-weight: bold;
     }
+  }
+  .map {
+    width: 600px;
+    margin-top: 32px;
   }
 }
 @media (min-width: 1440px) {
@@ -951,6 +967,9 @@ button.next {
   }
   .contactTitle {
     font-size: 64px;
+  }
+  .map {
+    height: 400px;
   }
 }
 </style>

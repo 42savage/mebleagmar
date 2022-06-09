@@ -31,22 +31,56 @@
         </div>
       </div>
     </section>
-    <section v-if="systems.extra" class="extra">
-      <h1>{{ systems.extra.title }}</h1>
-      <div class="offerGrid">
-        <div
-          class="offerItem"
-          v-for="singleItem in systems.extra.offerGrid"
-          :key="singleItem.id"
-        >
-          <img :src="singleItem.image" :alt="singleItem.subTitle" />
-          <div class="bottom">
-            <p class="singleTitle">{{ singleItem.title }}</p>
-            <p class="sungleSubTitle">{{ singleItem.subTitle }}</p>
+    <div class="extrContent" v-if="systems.extra">
+      <section class="extra">
+        <h1>{{ systems.extra.podnosniki_title }}</h1>
+        <div class="offerGrid">
+          <div
+            class="offerItem"
+            v-for="singleItem in systems.extra.podnosniki"
+            :key="singleItem.id"
+          >
+            <img :src="singleItem.image" :alt="singleItem.subTitle" />
+            <div class="bottom">
+              <p class="singleTitle">{{ singleItem.title }}</p>
+              <p class="sungleSubTitle">{{ singleItem.subTitle }}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="extra">
+        <h1>{{ systems.extra.szuflady_title }}</h1>
+        <div class="offerGrid">
+          <div
+            class="offerItem"
+            v-for="singleItem in systems.extra.szuflady"
+            :key="singleItem.id"
+          >
+            <img :src="singleItem.image" :alt="singleItem.subTitle" />
+            <div class="bottom">
+              <p class="singleTitle">{{ singleItem.title }}</p>
+              <p class="sungleSubTitle">{{ singleItem.subTitle }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="extra">
+        <h1>{{ systems.extra.zawiasy_title }}</h1>
+        <div class="offerGrid">
+          <div
+            class="offerItem"
+            v-for="singleItem in systems.extra.zawiasy"
+            :key="singleItem.id"
+          >
+            <img :src="singleItem.image" :alt="singleItem.subTitle" />
+            <div class="bottom">
+              <p class="singleTitle">{{ singleItem.title }}</p>
+              <p class="sungleSubTitle">{{ singleItem.subTitle }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
