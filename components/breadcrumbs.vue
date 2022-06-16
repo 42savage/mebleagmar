@@ -1,6 +1,6 @@
 <template>
   <div class="breadcrumbs">
-    <nuxt-link to="/" class="back"><svg-arrow color="black" /></nuxt-link>
+    <nuxt-link to="/oferta" class="back"><svg-arrow color="black" /></nuxt-link>
     <div>
       <nuxt-link class="link" to="/">Strona główna</nuxt-link><span> > </span>
       <nuxt-link class="link" to="/oferta">Oferta</nuxt-link><span> > </span
@@ -50,7 +50,7 @@ export default {
     background: none;
     border: none;
     position: absolute;
-    left: 24px;
+    left: 64px;
   }
 }
 </style>

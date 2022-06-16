@@ -33,11 +33,11 @@
     </section>
     <div class="extrContent" v-if="systems.extra">
       <section class="extra">
-        <h1>{{ systems.extra.podnosniki_title }}</h1>
+        <h1>{{ systems.extra.first_title }}</h1>
         <div class="offerGrid">
           <div
             class="offerItem"
-            v-for="singleItem in systems.extra.podnosniki"
+            v-for="singleItem in systems.extra.first"
             :key="singleItem.id"
           >
             <img :src="singleItem.image" :alt="singleItem.subTitle" />
@@ -49,11 +49,11 @@
         </div>
       </section>
       <section class="extra">
-        <h1>{{ systems.extra.szuflady_title }}</h1>
+        <h1>{{ systems.extra.second_title }}</h1>
         <div class="offerGrid">
           <div
             class="offerItem"
-            v-for="singleItem in systems.extra.szuflady"
+            v-for="singleItem in systems.extra.second"
             :key="singleItem.id"
           >
             <img :src="singleItem.image" :alt="singleItem.subTitle" />
@@ -65,11 +65,11 @@
         </div>
       </section>
       <section class="extra">
-        <h1>{{ systems.extra.zawiasy_title }}</h1>
+        <h1>{{ systems.extra.third_title }}</h1>
         <div class="offerGrid">
           <div
             class="offerItem"
-            v-for="singleItem in systems.extra.zawiasy"
+            v-for="singleItem in systems.extra.third"
             :key="singleItem.id"
           >
             <img :src="singleItem.image" :alt="singleItem.subTitle" />

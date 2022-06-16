@@ -133,7 +133,7 @@ export default {
 .sectionTitle {
   color: #f09f4b;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 32px;
 }
 section {
   position: relative;
@@ -166,6 +166,7 @@ section {
 .subGrid {
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 @media (min-width: 768px) {
   section {
@@ -180,6 +181,11 @@ section {
   }
   .adnText {
     width: 600px;
+  }
+}
+@media (min-width: 1440px) {
+  .offer {
+    padding: 120px;
   }
 }
 </style>

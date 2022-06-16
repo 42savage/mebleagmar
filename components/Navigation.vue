@@ -42,7 +42,7 @@
             <nuxt-link to="/realizacje">Realizacje</nuxt-link>
           </li>
           <li><nuxt-link to="/oferta">Oferta</nuxt-link></li>
-          <li><a href="#contact">Kontakt</a></li>
+          <li><nuxt-link to="/#contact">Kontakt</nuxt-link></li>
         </ul>
         <div class="socials">
           <p ref="soc"><span>Zajrzyj na nasze sociale</span></p>
@@ -79,6 +79,14 @@ export default {
     return {
       state: false,
     }
+  },
+  methods: {
+    contactHref() {
+      console.log(this.$route)
+      if (this.$route.path === '/') {
+        console.log(this.$root)
+      }
+    },
   },
 
   watch: {

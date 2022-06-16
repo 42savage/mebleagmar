@@ -59,7 +59,8 @@
           </li>
         </ul>
         <p class="author">
-          Projekt i realizacja: <b>Strony internetowe Radom</b>
+          Projekt i realizacja:
+          <a href="https://kzweb.dev/" target="_blank">kzweb.dev</a>
         </p>
       </div>
     </footer>
