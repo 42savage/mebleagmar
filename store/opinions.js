@@ -49,5 +49,18 @@ export const state = () => ({
         'Solidna firma, profesjonalna i rzeczowa obsługa, zamówione biurko stało przede mną praktycznie na następny dzień.Zdecydowanie polecam',
       stars: 5,
     },
+    {
+      id: 7,
+      name: 'Lucyna',
+      content:
+        'Firma na wysokim poziomie, godna polecenia. Pełen profesjonalizm oraz wiele ciekawych wskazówek co do zagospodarowania przestrzeni. Meble wykonane solidnie oraz estetycznie. Montaż bez żadnych opóźnień w umówionym terminie. Świetny kontakt z wykonawcą. Polecam',
+      stars: 5,
+    },
   ],
 })
+
+export const getters = {
+  opinions(state) {
+    return state.opinions
+  },
+}

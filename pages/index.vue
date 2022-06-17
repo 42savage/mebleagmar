@@ -11,7 +11,9 @@
         </p>
         <p>Zajrzyj do naszych realizacji.</p>
         <div v-if="$mq === 'lg'" class="bottom-content">
-          <svg-check :width="120" :height="120" /><a>Nasze realizacje</a>
+          <svg-check :width="120" :height="120" /><nuxt-link to="/realizacje"
+            >Nasze realizacje</nuxt-link
+          >
         </div>
       </div>
       <div class="overlay">
@@ -19,7 +21,9 @@
         <video src="bg.mp4" muted loop autoplay></video>
       </div>
       <div class="bottom-content" v-if="$mq !== 'lg'">
-        <svg-check :width="66" :height="36" /><a>Nasze realizacje</a>
+        <svg-check :width="66" :height="36" /><nuxt-link to="/realizacje"
+          >Nasze realizacje</nuxt-link
+        >
       </div>
     </header>
     <section
@@ -52,12 +56,46 @@
           <p class="smallText">Zadowolonych klientów</p>
         </div>
       </div>
+      <div class="opinions">
+        <p class="opinionsTitle">Opinie naszych zadowolonych Klientów</p>
+        <div
+          class="singleOpinion"
+          v-for="opinion in opinions"
+          :key="opinion.id"
+        >
+          <p class="opinionName">
+            {{ opinion.name }}
+            <span>
+              <client-only
+                ><vue-stars
+                  :value="opinion.stars"
+                  :readonly="true" /></client-only
+            ></span>
+          </p>
+          <p class="opinionContent">{{ opinion.content }}</p>
+        </div>
+        <div class="moreBox">
+          <span class="moreOpinions">Więcej opinii znajdziesz na </span>
+          <a
+            class="moreOpinions"
+            href="https://www.google.com/search?q=meble+agmar+radom&oq=meble+agmar+r&aqs=chrome.0.69i59j69i57j0i22i30l3j69i60l3.4522j0j7&sourceid=chrome&ie=UTF-8#lrd=0x471867383b56d30f:0xfbd398022dbb76c0,1,,,"
+            target="_blank"
+            >mapach google</a
+          ><span class="moreOpinions"> oraz na </span
+          ><a
+            href="https://fixly.pl/profil/NkaKOW5F"
+            class="moreOpinions"
+            target="_blank"
+            >portalu fixly.pl</a
+          >
+        </div>
+      </div>
       <div class="systems">
         <p class="systemsTitle">Wykorzystujemy systemy renomowanych firm</p>
         <p class="systemsText">
-          Przez te wszystkie lata w branży i tysiące wykonanych mebli
-          znaleźliśmym najlepsze pod względem jakości systemy meblowe, które
-          spełnią oczekiwania najbardziej wymagających Klientów.
+          Przez lata w branży i setki wykonanych projektów znaleźliśmym
+          najlepsze pod względem jakości systemy i akcesoria meblowe, które
+          zdecydowanie spełnią Państwa wymagania.
         </p>
         <div class="producers">
           <img
@@ -141,7 +179,9 @@
           którym możesz się zapoznać na tej właśnie stronie, wystarczy, że
           klikniesz w poniższy odnośnik.
         </p>
-        <a href="#" class="contentButton">Zajrzyj do galerii</a>
+        <nuxt-link to="/realizacje" href="#" class="contentButton"
+          >Zajrzyj do galerii</nuxt-link
+        >
         <p>
           Prowadzimy również
           <a
@@ -187,11 +227,11 @@
           się z nami.
         </p>
         <nuxt-link to="/oferta" class="offerBtn">Oferta</nuxt-link>
-        <svg-people
+        <!-- <svg-people
           v-if="$mq === 'lg'"
           style="position: absolute; right: 160px"
           :width="460"
-        />
+        /> -->
       </div>
       <div class="offerList">
         <nuxt-link
@@ -255,6 +295,7 @@
 
 <script>
 import { AutoPlay } from '@egjs/flicking-plugins'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
@@ -395,6 +436,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      opinions: 'opinions/opinions',
+    }),
     selectedProducers() {
       const arr = []
       for (let i = 0; i <= 3; i++) {
@@ -775,7 +819,33 @@ button.next {
   width: 100%;
   height: 200px;
 }
+.moreOpinions {
+  font-weight: bold;
+  color: darkcyan;
+  margin: 0 2px;
+}
+.singleOpinion {
+  width: 100%;
+  padding: 24px;
+}
+.opinionsTitle {
+  font-size: 24px;
+  color: darkcyan;
+  font-weight: bold;
+  padding: 0 24px;
+}
+.opinionName {
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+}
+.opinionContent {
+  color: rgb(20, 20, 20);
+  margin-bottom: 16px;
+}
 @media (min-width: 768px) {
+  .singleOpinion {
+    padding: 32px;
+  }
   .top-content {
     margin: 0 48px;
     width: 600px;
@@ -971,6 +1041,26 @@ button.next {
   }
   .map {
     height: 400px;
+  }
+  .opinionsTitle {
+    font-size: 32px;
+    padding: 0;
+  }
+  .opinions {
+    width: 100%;
+    padding: 0 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .singleOpinion {
+    padding: 0;
+    width: 600px;
+  }
+  .moreBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
   }
 }
 </style>
