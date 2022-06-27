@@ -14,9 +14,12 @@
   "dependencies": {
     "@egjs/flicking-plugins": "^4.3.0",
     "@egjs/vue-flicking": "^4.5.2",
+    "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.19.3",
+    "dotenv": "^16.0.1",
     "gsap": "^3.9.1",
     "nuxt": "^2.15.8",
+    "nuxt-mail": "^3.0.23",
     "nuxt-mq": "^2.0.2",
     "sass": "^1.49.9",
     "v-scroll-lock": "^1.3.1",
