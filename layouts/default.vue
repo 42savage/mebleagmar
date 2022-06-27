@@ -4,6 +4,7 @@
     :class="{ net: this.$route.path === '/' && this.$mq === 'lg' }"
   >
     <Navigation />
+    <ThetransitionObject />
     <Nuxt />
     <footer>
       <svg-logo />
@@ -77,6 +78,10 @@ svg {
   padding: 0;
   box-sizing: border-box;
   font-family: $base-font-family;
+}
+.main-container {
+  position: relative;
+  overflow: hidden;
 }
 footer {
   display: flex;

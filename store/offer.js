@@ -6,7 +6,7 @@ export const state = () => ({
       title: 'Meble kuchenne',
       subTitle: 'Z myślą o Tobie.',
       textContent:
-        'Meble kuchenne wykonujemy z dbałością o każdy szczegół. Bierzemy pod uwagę rozmieszenie gniazdek ściennych, rozmieszczenie rur i wymiary pomieszczenia.',
+        'Meble kuchenne to tak na prawdę trzon naszej działalności. Od 20 lat w głównej mierze produkujemy właśnie meble kuchenne. Przez lata nabraliśmy doświadczenia, które pozwala nam dopasować się do preferencji każdego klienta. Przez te lata również nabraliśmy również więdzę, która pozwala nam dobrać odpowiednie systemy i akcesoria meblowe.',
       bg: require('~/assets/offer/kitchen.jpg'),
       bgColor: '#ca6602',
       images: [
@@ -26,13 +26,15 @@ export const state = () => ({
           desc: 'Zdjęcie przedstawiające drewnianą kuchnię',
         },
       ],
-      header: 'Dodatkowo do wyboru',
-      list: ['Projekt 3D pomieszczenia', 'Systemy', 'Szkło-grafika'],
-      extrass: [
-        { id: 0, name: 'szklo_grafika' },
-        { id: 1, name: 'fronty_mdf' },
-        { id: 2, name: 'fronty_drewniane' },
+      header:
+        'Do każdego projektu podchodzimy indywidualnie, a w jego skład wchodzi',
+      list: [
+        'Indywidualny i niepowtarzalny projekt komputerowy 3D',
+        'Dobór systemu w zależności od potrzeb klienta',
+        'Ściana w najróżniejsze wzorki dzięki szkle z graficznym nadrukiem',
       ],
+      extraTitle: 'Dodatkowo do wyboru: ',
+      extra: [0, 1, 2, 3],
     },
     {
       id: 1,
@@ -858,5 +860,22 @@ export const getters = {
   },
   specifiedExtrass(state, getters, rootState) {
     return state.extrass.find((extrass) => {})
+  },
+  extraOffer(state, getters, rootState) {
+    const specified = getters.specifiedOffer.extra
+    const offer = state.systems
+    const selected = []
+    if (typeof specified != 'undefined') {
+      specified.forEach((i) => {
+        offer.find((singleItem) => {
+          if (singleItem.id === i) {
+            selected.push(singleItem.extra)
+          }
+        })
+      })
+      return selected
+    } else {
+      return
+    }
   },
 }

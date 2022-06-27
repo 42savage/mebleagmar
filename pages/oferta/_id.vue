@@ -55,16 +55,33 @@
         </div>
       </div>
     </section>
-    <section v-if="this.specifiedOffer.extrass" class="extrass">
-      <p>
-        W zależności od Twoich potrzeb możesz skonfigurować swoją wymarzoną
-        kuchnię.
-      </p>
-      <p>
-        Możesz dobrać szereg różnych podzespołów takich jak systemy jakie mamy
-        zastosować, typ frontów jak i szkło z grafiką.
-      </p>
-      <p>Extrass: {{ this.specifiedExtrass }}</p>
+    <section v-if="extra" class="extraSection">
+      <p>{{ specifiedOffer.extraTitle }}</p>
+      <div class="miniSection" v-for="item in extra" :key="item.id">
+        <h2>{{ item.first_title }}</h2>
+        <div class="itemGrid">
+          <div v-for="el in item.first" :key="el.id">
+            <img :src="el.image" :alt="el.subTitle" />
+            <p>{{ el.title }}</p>
+          </div>
+        </div>
+
+        <h2>{{ item.second_title }}</h2>
+        <div class="itemGrid">
+          <div v-for="el in item.second" :key="el.id">
+            <img :src="el.image" :alt="el.subTitle" />
+            <p>{{ el.title }}</p>
+          </div>
+        </div>
+
+        <h2>{{ item.third_title }}</h2>
+        <div class="itemGrid">
+          <div v-for="el in item.third" :key="el.id">
+            <img :src="el.image" :alt="el.subTitle" />
+            <p>{{ el.title }}</p>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -77,6 +94,7 @@ export default {
       offer: 'offer/offer',
       specifiedOffer: 'offer/specifiedOffer',
       specifiedExtrass: 'offer/specifiedExtrass',
+      extra: 'offer/extraOffer',
     }),
   },
   mounted() {
@@ -98,6 +116,31 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.extraSection {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.miniSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+h2 {
+  margin-bottom: 24px;
+  text-align: center;
+  color: darkcyan;
+}
+.itemGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    width: 270px;
+  }
+}
 .header {
   background-size: cover;
   background-position: center;
@@ -160,7 +203,7 @@ export default {
 }
 .listTitle {
   font-size: 24px;
-  margin-bottom: 16px;
+  margin: 16px 0;
 }
 .list {
   font-size: 18px;
@@ -226,6 +269,17 @@ export default {
   }
   .back {
     left: 120px;
+  }
+  .extraSection {
+    padding: 0 120px;
+  }
+  .itemGrid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    div {
+      margin: 16px;
+    }
   }
 }
 </style>

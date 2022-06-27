@@ -69,7 +69,7 @@
             <p class="boxTitle">{{ box.title }}</p>
           </nuxt-link>
         </div>
-        <p class="sectionSubTitle">Szkło grafika</p>
+        <!-- <p class="sectionSubTitle">Szkło grafika</p>
         <p class="adnText">
           Jeżeli nie znalazłeś na stronie interesującej Cie kategorii nie
           przejmuj się. To nie znanczy, że nie mamy jej w ofercie.
@@ -85,7 +85,7 @@
           >
             <p class="boxTitle">{{ box.title }}</p>
           </nuxt-link>
-        </div>
+        </div> -->
       </div>
     </section>
   </div>
@@ -99,7 +99,7 @@ export default {
       meble: 'offer/meble',
       frontyMeblowe: 'offer/frontyMeblowe',
       systemyMeblowe: 'offer/systemyMeblowe',
-      szkloGrafika: 'offer/szkloGrafika',
+      // szkloGrafika: 'offer/szkloGrafika',
     }),
   },
 }

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navigation" v-scroll-lock="state">
+  <nav class="navigation" ref="navigation" v-scroll-lock="state">
     <nuxt-link to="/" ref="logo" class="logo"
       ><svg-logo fill="white"
     /></nuxt-link>
@@ -157,11 +157,26 @@ export default {
         yPercent: 100,
       })
     }
+    this.$gsap.fromTo(
+      this.$refs.navigation,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        delay: 2,
+        duration: 1,
+      }
+    )
   },
 }
 </script>
 
 <style scoped lang="scss">
+#__layout > div > nav > div > div.second-section > ul > li:nth-child(2),
+#__layout > div > nav > div > div.second-section > ul > li:nth-child(4) {
+  overflow: visible;
+}
 .phone {
   width: 50px;
   transform: rotate(30deg);

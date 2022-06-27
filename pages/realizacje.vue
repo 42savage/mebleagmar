@@ -30,6 +30,7 @@ export default {
   grid-template-columns: 1fr;
   grid-gap: 24px;
   padding: 24px;
+  margin-top: 40px;
 }
 .singleItem {
   width: 100%;

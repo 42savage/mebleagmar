@@ -112,6 +112,11 @@ header {
   background-size: cover !important;
   background-position: center !important;
 }
+h1 {
+  color: darkcyan;
+  font-weight: bold;
+  font-size: 24px;
+}
 .content {
   padding: 24px;
 }
@@ -152,6 +157,7 @@ header {
 .offerGrid {
   display: flex;
   flex-direction: column;
+  margin-bottom: 64px;
 }
 .offerItem {
   width: 270px;
@@ -162,7 +168,7 @@ header {
 }
 .singleTitle {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 18px;
 }
 .sungleSubTitle {
   font-size: 18px;

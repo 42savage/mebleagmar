@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <modalImage :imageSrc="currentImage" />
-    <header>
-      <div class="top-content">
+    <header class="mainHeader">
+      <div ref="topContent" class="top-content">
         <h1>Meble na wymiar Radom</h1>
         <p>Produkujemy meble na wymiar na terenie Radomia i okolic.</p>
         <p>
@@ -448,18 +448,68 @@ export default {
     },
   },
   methods: {
+    revealSections() {
+      const sections = [
+        this.$el.querySelector('.content'),
+        this.$el.querySelector('.counters'),
+        this.$el.querySelector('.opinions'),
+        this.$el.querySelector('.systems'),
+        this.$el.querySelector('.howTo > .content >.subTitle'),
+        this.$el.querySelector('.howTo>.content>.title'),
+        this.$el.querySelector('.howTo>.content>.contentText'),
+        this.$el.querySelectorAll('.boxes-lg'),
+        this.$el.querySelector('.realisations > .content'),
+        this.$el.querySelector('.realisations > .stripeGallery'),
+        this.$el.querySelector('.offer > .content'),
+        this.$el.querySelector('.offer > .offerList'),
+        this.$el.querySelector('.contact > .titleContent'),
+        this.$el.querySelector('.contact > .content'),
+      ]
+      sections.forEach((section) => {
+        this.$gsap.fromTo(
+          section,
+          {
+            y: 100,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.2,
+            duration: 1,
+            ease: 'easeInOut',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom + 20',
+              // markers: true,
+              toggleActions: 'play pause resume reverse',
+            },
+          }
+        )
+      })
+    },
     openModal(src) {
       this.currentImage = src
     },
     enter: function (el, done) {
-      console.log(el)
-
       done()
     },
   },
-  // beforeMount() {
-  //   this.$router.push('/build')
-  // },
+  mounted() {
+    this.revealSections()
+    let gsap = this.$gsap
+    gsap.fromTo(
+      this.$refs.topContent,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        delay: 2,
+        duration: 1,
+      }
+    )
+  },
 }
 </script>
 <style lang="scss" scoped>
