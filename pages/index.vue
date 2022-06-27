@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div ref="message" class="message" v-show="message">
+      <p>{{ this.message }}</p>
+    </div>
     <modalImage :imageSrc="currentImage" />
     <header class="mainHeader">
       <div ref="topContent" class="top-content">
@@ -227,11 +230,6 @@
           się z nami.
         </p>
         <nuxt-link to="/oferta" class="offerBtn">Oferta</nuxt-link>
-        <!-- <svg-people
-          v-if="$mq === 'lg'"
-          style="position: absolute; right: 160px"
-          :width="460"
-        /> -->
       </div>
       <div class="offerList">
         <nuxt-link
@@ -258,18 +256,39 @@
         <p class="contactTitle">Skontaktuj się z nami</p>
       </div>
       <div class="content">
-        <form class="contactForm">
+        <form class="contactForm" @submit.prevent="mailSubmit">
           <p class="contactNdTitle">Przez formularz</p>
-          <input type="text" class="name" placeholder="Imię i nazwisko" />
+          <p class="error" v-if="errors.name">{{ errors.name }}</p>
+          <input
+            type="text"
+            class="name"
+            placeholder="Imię i nazwisko"
+            v-model="mail.name"
+          />
           <input
             type="text,"
             class="company"
             placeholder="Firma(opcjonalnie)"
+            v-model="mail.company"
           />
-          <input type="text," class="email" placeholder="Adres email" />
-          <input type="text," class="phone" placeholder="Numer telefonu" />
+          <p class="error" v-if="errors.email">{{ errors.email }}</p>
+          <input
+            type="text,"
+            class="email"
+            placeholder="Adres email"
+            v-model="mail.email"
+          />
+          <p class="error" v-if="errors.phone">{{ errors.phone }}</p>
+          <input
+            type="text,"
+            class="phone"
+            placeholder="Numer telefonu"
+            v-model="mail.phone"
+          />
+          <p class="error" v-if="errors.message">{{ errors.message }}</p>
           <textarea
             placeholder="Opisz w kilku słowach swoje zamówienie"
+            v-model="mail.message"
           ></textarea>
           <input type="submit" class="submit" value="Wyślij" />
         </form>
@@ -278,7 +297,7 @@
           <p class="contactNdTitle">Telefonicznie lub mailowo</p>
           <p class="phone">tel. 698-088-271</p>
           <p class="mail">email: kontakt@radommeble.pl</p>
-          <p class="mail">email: dyniameble@wp.pl</p>
+          <p class="mail">email: danielmeble@wp.pl</p>
           <iframe
             class="map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2493.2744593087295!2d21.241886015628552!3d51.32447147960556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471867383b56d30f%3A0xfbd398022dbb76c0!2sMeble%20na%20wymiar%20Agmar!5e0!3m2!1spl!2snl!4v1654792879571!5m2!1spl!2snl"
@@ -433,6 +452,20 @@ export default {
           route: 'loza_sypialniane',
         },
       ],
+      errors: {
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      },
+      message: '',
+      mail: {
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        message: '',
+      },
     }
   },
   computed: {
@@ -494,6 +527,45 @@ export default {
     enter: function (el, done) {
       done()
     },
+    mailSubmit() {
+      if (!this.mail.name) {
+        this.errors.name = 'Przed wysłaniem musisz uzupełnić imię i nazwisko'
+      } else {
+        this.errors.name = ''
+      }
+      if (!this.mail.phone) {
+        this.errors.phone = 'Przed wysłaniem musisz uzupełnić numer telefonu'
+      } else {
+        this.errors.phone = ''
+      }
+      if (!this.mail.email) {
+        this.errors.email = 'Przed wysłaniem musisz uzupełnić adres e-mail'
+      } else {
+        this.errors.email = ''
+      }
+      if (!this.mail.message) {
+        this.errors.message =
+          'Przed wysłaniem musisz uzupełnić treść wiadomości'
+      } else {
+        this.errors.message = ''
+      }
+      if (
+        !this.errors.name &&
+        !this.errors.email &&
+        !this.errors.phone &&
+        !this.errors.message
+      ) {
+        this.$mail.send({
+          from: this.mail.email,
+          subject: 'Kontakt wysłany z formularza na stronie',
+          text: this.mail.message,
+        })
+        this.message = 'Wiadomość została wysłana.'
+        setTimeout(() => {
+          this.message = ''
+        }, 2000)
+      }
+    },
   },
   mounted() {
     this.revealSections()
@@ -514,7 +586,31 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
-
+.message {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1;
+  height: 40px;
+  background: rgb(175, 175, 175);
+  border: 1px solid rgb(62, 62, 62);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+@media (min-width: 1440px) {
+  .message {
+    right: 120px;
+  }
+}
+.submit {
+  cursor: pointer;
+}
+.error {
+  color: crimson;
+}
 .offerBtn {
   padding: 8px 36px;
   background: #005f73;

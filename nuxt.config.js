@@ -51,7 +51,26 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['nuxt-mq'],
+  modules: [
+    'nuxt-mq',
+    '@nuxtjs/axios',
+    [
+      'nuxt-mail',
+      {
+        message: {
+          to: process.env.MAILDIRECTION,
+        },
+        smtp: {
+          host: process.env.MAILHOST,
+          port: process.env.MAILPORT,
+          auth: {
+            user: process.env.MAILUSERNAME,
+            pass: process.env.MAILPASSWORD,
+          },
+        },
+      },
+    ],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
