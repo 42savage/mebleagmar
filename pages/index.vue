@@ -6,7 +6,7 @@
     <modalImage :imageSrc="currentImage" />
     <header class="mainHeader">
       <div ref="topContent" class="top-content">
-        <h1>Meble na wymiar Radom</h1>
+        <h1>Meble na wymiar</h1>
         <p>Produkujemy meble na wymiar na terenie Radomia i okolic.</p>
         <p>
           Oferujemy meble kuchenne, meble pokojowe, meble łazienkowe oraz łoża
@@ -30,6 +30,7 @@
       </div>
     </header>
     <section
+      ref="net"
       class="aboutus"
       :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
     >
@@ -66,16 +67,16 @@
           v-for="opinion in opinions"
           :key="opinion.id"
         >
-          <p class="opinionName">
-            {{ opinion.name }}
-            <span>
-              <client-only
-                ><vue-stars
-                  :value="opinion.stars"
-                  :readonly="true" /></client-only
-            ></span>
-          </p>
+          <div class="left">
+            <svg-user />
+            <p class="opinionName">
+              {{ opinion.name }}
+            </p>
+          </div>
           <p class="opinionContent">{{ opinion.content }}</p>
+          <client-only
+            ><vue-stars class="stars" :value="opinion.stars" :readonly="true"
+          /></client-only>
         </div>
         <div class="moreBox">
           <span class="moreOpinions">Więcej opinii znajdziesz na </span>
@@ -130,8 +131,11 @@
           pomocą czterech poniższych kroków.
         </p>
       </div>
-      <client-only v-if="$mq !== 'lg'">
-        <flicking class="boxes">
+      <!-- <client-only v-if="$mq !== 'lg'">
+        <flicking
+          class="boxes"
+          :options="{ align: 'center', horizontal: true }"
+        >
           <div
             class="singleBox"
             v-for="box in boxes"
@@ -151,9 +155,9 @@
               {{ box.subTitle }}
             </p>
           </div>
-        </flicking>
-      </client-only>
-      <div v-else class="boxes-lg">
+        </flicking> -->
+      <!-- </client-only> -->
+      <div v-if="$mq === 'lg'" class="boxes-lg">
         <div v-for="box in boxes" :key="box.id" class="single-box">
           <component
             :is="`svg-${box.icon.name}`"
@@ -586,6 +590,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+$text-color: #083233;
 .message {
   position: fixed;
   bottom: 32px;
@@ -599,6 +604,9 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 32px;
+}
+.moreBox {
+  padding: 0 32px;
 }
 @media (min-width: 1440px) {
   .message {
@@ -657,6 +665,9 @@ export default {
   width: 48px;
   margin-bottom: 8px;
 }
+.boxes {
+  display: flex;
+}
 .overlay {
   overflow: hidden;
   position: relative;
@@ -666,7 +677,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background: black;
+    background: $text-color;
     opacity: 0.6;
   }
   video {
@@ -718,7 +729,8 @@ export default {
   padding: 32px;
   display: flex;
   flex-direction: column;
-  place-content: center;
+  justify-content: center;
+  align-items: center;
 }
 .subTitle {
   font-size: 24px;
@@ -745,7 +757,7 @@ export default {
 .contentText {
   margin-top: 8px;
   font-size: 24px;
-  color: black;
+  color: $text-color;
   font-family: 'Rajdhani', sans-serif;
 }
 .counters {
@@ -765,7 +777,7 @@ export default {
 }
 .smallText {
   font-size: 24px;
-  color: black;
+  color: $text-color;
   max-width: 142px;
 }
 .systems {
@@ -778,7 +790,7 @@ export default {
 }
 .systemsText {
   font-size: 24px;
-  color: black;
+  color: $text-color;
   margin-top: 8px;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -803,38 +815,50 @@ export default {
   margin-top: -96px;
   margin-bottom: 64px;
 }
+.boxes {
+  display: flex;
+  flex-direction: row;
+}
 .singleBox {
-  width: 260px;
-  height: 260px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  place-content: center;
-  padding: 32px;
-  margin: 0 12px;
+  justify-content: center;
+  align-items: center;
 }
-.boxTitle {
-  font-size: 18px;
-  font-weight: bold;
-}
-.boxSubTitle {
-  font-size: 16px;
-  color: #363232;
-}
-button.prev,
-button.next {
-  background: #363636;
-  width: 42px;
-  height: 42px;
-  margin-top: 80px;
-  border: none;
-  margin: 96px 8px 0 0;
-}
-button.prev {
-  transform: rotate(180deg);
-}
-button.next {
-  margin-right: 32px;
-}
+// .singleBox {
+//   width: 260px;
+//   height: 260px;
+//   display: flex;
+//   flex-direction: column;
+//   place-content: center;
+//   padding: 32px;
+//   margin: 0 12px;
+// }
+// .boxTitle {
+//   font-size: 18px;
+//   font-weight: bold;
+// }
+// .boxSubTitle {
+//   font-size: 16px;
+//   color: #363232;
+// }
+// button.prev,
+// button.next {
+//   background: #363636;
+//   width: 42px;
+//   height: 42px;
+//   margin-top: 80px;
+//   border: none;
+//   margin: 96px 8px 0 0;
+// }
+// button.prev {
+//   transform: rotate(180deg);
+// }
+// button.next {
+//   margin-right: 32px;
+// }
 .stripe {
   width: 100%;
   height: 60px;
@@ -925,6 +949,7 @@ button.next {
   font-size: 32px;
   color: #005f73;
   font-weight: bold;
+  text-align: center;
 }
 .contactNdTitle {
   font-size: 22px;
@@ -971,8 +996,28 @@ button.next {
   margin: 0 2px;
 }
 .singleOpinion {
+  position: relative;
   width: 100%;
-  padding: 24px;
+  background: #f9f9f9;
+  color: #4e4e4e;
+  display: flex;
+  margin: 8px 0;
+  .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.stars {
+  position: absolute;
+  right: 32px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: row;
+}
+.opinions {
+  padding: 0 32px;
 }
 .opinionsTitle {
   font-size: 24px;
@@ -987,6 +1032,7 @@ button.next {
 .opinionContent {
   color: rgb(20, 20, 20);
   margin-bottom: 16px;
+  padding: 16px;
 }
 @media (min-width: 768px) {
   .singleOpinion {
@@ -1025,6 +1071,9 @@ button.next {
   }
 }
 @media (min-width: 1440px) {
+  .left {
+    margin-right: 32px;
+  }
   .top-content p {
     font-size: 22px;
   }
@@ -1199,7 +1248,7 @@ button.next {
     grid-template-columns: 1fr 1fr;
   }
   .singleOpinion {
-    padding: 0;
+    padding: 32px;
     width: 600px;
   }
   .moreBox {
@@ -1207,6 +1256,7 @@ button.next {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    padding: 0;
   }
 }
 </style>

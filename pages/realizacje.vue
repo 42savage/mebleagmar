@@ -1,11 +1,12 @@
 <template>
   <div class="wrapper">
-    <div class="grid">
+    <div class="grid" ref="grid">
       <img
         v-for="image in images"
         :key="image.id"
         :src="image.src"
         :alt="image.alt"
+        ref="singleItem"
         class="singleItem"
       />
     </div>
@@ -21,6 +22,28 @@ export default {
       images: 'realisations/images',
     }),
   },
+  mounted() {
+    this.$gsap.fromTo(
+      this.$refs.grid,
+      {
+        y: 100,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.2,
+        duration: 1,
+        ease: 'easeInOut',
+        scrollTrigger: {
+          trigger: this.$refs.grid,
+          start: 'top bottom + 20',
+          // markers: true,
+          toggleActions: 'play pause resume reverse',
+        },
+      }
+    )
+  },
 }
 </script>
 
@@ -30,7 +53,6 @@ export default {
   grid-template-columns: 1fr;
   grid-gap: 24px;
   padding: 24px;
-  margin-top: 40px;
 }
 .singleItem {
   width: 100%;

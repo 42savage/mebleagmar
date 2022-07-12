@@ -91,7 +91,7 @@ export const state = () => ({
       name: 'loza_sypialniane',
       title: 'Łoża sypialniane',
       subTitle: 'W których wreszcie się wyśpisz!',
-      textContent: 'Wisienką na torcie w naszej ofercie są łoża sypialniane',
+      textContent: 'W naszej ofercie wisienką na torcie są łoża sypialniane',
       bg: require('~/assets/offer/bed.jpg'),
       bgColor: '#94d2bd',
       images: [
@@ -106,8 +106,8 @@ export const state = () => ({
           desc: 'Zdjęcie przedstawiające sypialnie w stylu klasycznym',
         },
       ],
-      header: 'Nagłówek, a do tego lista.',
-      list: ['Element 1', 'Element 2', 'Element 3'],
+      header: 'Do wyboru',
+      list: ['Łoża tapicerowane', 'Łoża z pojemnikami', 'W stylu basic'],
     },
   ],
   systems: [

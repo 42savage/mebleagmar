@@ -34,15 +34,33 @@
         <div class="line"></div>
       </div>
       <div class="second-section">
-        <ul class="list" ref="list">
+        <ul class="list" ref="list" v-if="$mq == 'sm'">
+          <li @click="state = !state">
+            <nuxt-link to="/">Strona główna</nuxt-link>
+          </li>
+          <li @click="state = !state">
+            <nuxt-link to="/realizacje">Realizacje</nuxt-link>
+          </li>
+          <li @click="state = !state">
+            <nuxt-link to="/oferta">Oferta</nuxt-link>
+          </li>
+          <li @click="state = !state">
+            <nuxt-link to="/#contact">Kontakt</nuxt-link>
+          </li>
+        </ul>
+        <ul v-else class="list">
           <li>
             <nuxt-link to="/">Strona główna</nuxt-link>
           </li>
           <li>
             <nuxt-link to="/realizacje">Realizacje</nuxt-link>
           </li>
-          <li><nuxt-link to="/oferta">Oferta</nuxt-link></li>
-          <li><nuxt-link to="/#contact">Kontakt</nuxt-link></li>
+          <li>
+            <nuxt-link to="/oferta">Oferta</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/#contact">Kontakt</nuxt-link>
+          </li>
         </ul>
         <div class="socials">
           <p ref="soc"><span>Zajrzyj na nasze sociale</span></p>
@@ -173,10 +191,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#__layout > div > nav > div > div.second-section > ul > li:nth-child(2),
-#__layout > div > nav > div > div.second-section > ul > li:nth-child(4) {
-  overflow: visible;
-}
 .phone {
   width: 50px;
   transform: rotate(30deg);
@@ -336,6 +350,10 @@ li {
   }
 }
 @media (min-width: 1440px) {
+  #__layout > div > nav > div > div.second-section > ul > li:nth-child(2),
+  #__layout > div > nav > div > div.second-section > ul > li:nth-child(4) {
+    overflow: visible;
+  }
   .navBtn {
     display: none;
   }

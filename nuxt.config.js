@@ -12,7 +12,23 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Firma z wieloletnim doświadczeniem, zajmujemy się produkcją różnego rodzaju mebli na wymiar.',
+          'Zajmujemu się produkcją mebli na wymiar. Oferujemy meble kuchenne, pokojowe, łazienkowe, łoża sypialniane, szafki RTV i zabudowy pawlaczy.',
+      },
+      {
+        hid: 'og-title',
+        property: 'og:title',
+        content: 'AGMAR - Meble na wymiar',
+      },
+      {
+        hid: 'og-image',
+        property: 'og:image',
+        content: '~/assets/fbimg.jpg',
+      },
+      {
+        hid: 'og-desc',
+        property: 'og:description',
+        content:
+          'Zajmujemu się produkcją mebli na wymiar. Oferujemy meble kuchenne, pokojowe, łazienkowe, łoża sypialniane, szafki RTV i zabudowy pawlaczy. ',
       },
       { name: 'format-detection', content: 'telephone=no' },
       {
@@ -38,7 +54,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/gsap.js' },
-    { src: '~/plugins/flicking.js', mode: 'server', ssr: false },
     { src: '~/plugins/scrollLock.js' },
     { src: '~/plugins/vuexSync.js' },
     { src: '~/plugins/stars.js', mode: 'client' },

@@ -73,6 +73,7 @@ $base-font-family: 'Roboto', sans-serif;
 svg {
   margin-top: 32px;
 }
+
 * {
   margin: 0;
   padding: 0;

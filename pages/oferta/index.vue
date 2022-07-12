@@ -107,7 +107,7 @@ export default {
 
 <style scoped lang="scss">
 .textInfo {
-  margin: 0 0 32px 0;
+  margin: 32px 0 32px 0;
 }
 .backgroundImage {
   width: 100%;
@@ -184,6 +184,9 @@ section {
   }
 }
 @media (min-width: 1440px) {
+  .textInfo {
+    margin: 0 0 32px 0;
+  }
   .offer {
     padding: 120px;
   }
