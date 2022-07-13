@@ -27,6 +27,7 @@
     "vue-server-renderer": "^2.6.14",
     "vue-stars": "^1.2.2",
     "vue-template-compiler": "^2.6.14",
+    "vueperslides": "^2.15.3",
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {

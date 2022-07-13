@@ -130,6 +130,11 @@ footer {
   text-align: center;
   bottom: 24px;
   width: 100%;
+  a {
+    color: crimson;
+    text-decoration: none;
+    font-weight: bold;
+  }
 }
 @media (min-width: 1440px) {
   footer {

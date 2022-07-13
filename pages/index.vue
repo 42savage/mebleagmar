@@ -131,7 +131,7 @@
           pomocą czterech poniższych kroków.
         </p>
       </div>
-      <!-- <client-only v-if="$mq !== 'lg'">
+      <client-only v-if="$mq !== 'lg'">
         <flicking
           class="boxes"
           :options="{ align: 'center', horizontal: true }"
@@ -155,8 +155,8 @@
               {{ box.subTitle }}
             </p>
           </div>
-        </flicking> -->
-      <!-- </client-only> -->
+        </flicking>
+      </client-only>
       <div v-if="$mq === 'lg'" class="boxes-lg">
         <div v-for="box in boxes" :key="box.id" class="single-box">
           <component
@@ -169,10 +169,10 @@
           <p class="boxSubTitle">{{ box.subTitle }}</p>
         </div>
       </div>
-      <div class="stripe">
+      <!-- <div class="stripe">
         <button v-if="$mq !== 'lg'" class="prev"><svg-arrow /></button>
         <button v-if="$mq !== 'lg'" class="next"><svg-arrow /></button>
-      </div>
+      </div> -->
     </section>
     <section
       class="realisations"
@@ -730,10 +730,10 @@ $text-color: #083233;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 .subTitle {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
   color: #f09f4b;
   position: relative;
@@ -820,45 +820,22 @@ $text-color: #083233;
   flex-direction: row;
 }
 .singleBox {
-  width: 200px;
-  height: 200px;
+  width: 260px;
+  height: 260px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  place-content: center;
+  padding: 32px;
+  margin: 0 12px;
 }
-// .singleBox {
-//   width: 260px;
-//   height: 260px;
-//   display: flex;
-//   flex-direction: column;
-//   place-content: center;
-//   padding: 32px;
-//   margin: 0 12px;
-// }
-// .boxTitle {
-//   font-size: 18px;
-//   font-weight: bold;
-// }
-// .boxSubTitle {
-//   font-size: 16px;
-//   color: #363232;
-// }
-// button.prev,
-// button.next {
-//   background: #363636;
-//   width: 42px;
-//   height: 42px;
-//   margin-top: 80px;
-//   border: none;
-//   margin: 96px 8px 0 0;
-// }
-// button.prev {
-//   transform: rotate(180deg);
-// }
-// button.next {
-//   margin-right: 32px;
-// }
+.boxTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+.boxSubTitle {
+  font-size: 16px;
+  color: #363232;
+}
 .stripe {
   width: 100%;
   height: 60px;
@@ -871,13 +848,11 @@ $text-color: #083233;
   justify-content: flex-end;
 }
 .contentButton {
-  padding: 8px 36px;
+  padding: 16px 36px;
   background: #005f73;
   text-decoration: none;
   color: white;
   box-shadow: 2px 2px 12px #178b84;
-  width: 186px;
-  height: 42px;
   text-align: center;
   margin-top: 16px;
   margin-bottom: 42px;
@@ -886,7 +861,7 @@ $text-color: #083233;
   margin-top: 80px;
 }
 .realisationImages {
-  width: 324px;
+  width: 100%;
   height: 342px;
   margin: 8px 0;
 }
@@ -1099,6 +1074,7 @@ $text-color: #083233;
   .content {
     padding: 120px;
     width: 800px;
+    align-items: flex-start;
   }
   .subTitle {
     font-size: 24px;

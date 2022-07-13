@@ -54,6 +54,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/gsap.js' },
+    { src: '~/plugins/flicking.js' },
     { src: '~/plugins/scrollLock.js' },
     { src: '~/plugins/vuexSync.js' },
     { src: '~/plugins/stars.js', mode: 'client' },
