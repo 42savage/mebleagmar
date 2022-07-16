@@ -169,10 +169,10 @@
           <p class="boxSubTitle">{{ box.subTitle }}</p>
         </div>
       </div>
-      <!-- <div class="stripe">
+      <div class="stripe">
         <button v-if="$mq !== 'lg'" class="prev"><svg-arrow /></button>
         <button v-if="$mq !== 'lg'" class="next"><svg-arrow /></button>
-      </div> -->
+      </div>
     </section>
     <section
       class="realisations"
@@ -494,7 +494,7 @@ export default {
         this.$el.querySelector('.howTo > .content >.subTitle'),
         this.$el.querySelector('.howTo>.content>.title'),
         this.$el.querySelector('.howTo>.content>.contentText'),
-        this.$el.querySelectorAll('.boxes-lg'),
+        // this.$el.querySelectorAll('.boxes-lg'),
         this.$el.querySelector('.realisations > .content'),
         this.$el.querySelector('.realisations > .stripeGallery'),
         this.$el.querySelector('.offer > .content'),
@@ -591,6 +591,12 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
 $text-color: #083233;
+iframe {
+  margin-top: 16px;
+}
+.flicking-camera {
+  display: flex !important;
+}
 .message {
   position: fixed;
   bottom: 32px;
@@ -756,7 +762,7 @@ $text-color: #083233;
 }
 .contentText {
   margin-top: 8px;
-  font-size: 24px;
+  font-size: 16px;
   color: $text-color;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -818,6 +824,7 @@ $text-color: #083233;
 .boxes {
   display: flex;
   flex-direction: row;
+  margin: 36px 0;
 }
 .singleBox {
   width: 260px;
@@ -1046,6 +1053,9 @@ $text-color: #083233;
   }
 }
 @media (min-width: 1440px) {
+  .contentText {
+    font-size: 22px;
+  }
   .left {
     margin-right: 32px;
   }
