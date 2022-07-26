@@ -127,19 +127,24 @@ export default {
   top: -32px;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 80%;
+  width: calc(100% - 32px);
   padding: 8px 16px;
 }
 .sectionTitle {
   color: #f09f4b;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 24px;
+  text-align: center;
+}
+h1,
+h3 {
+  margin: 12px 0;
 }
 section {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 0 32px;
 }
 .sectionSubTitle {
   font-size: 24px;

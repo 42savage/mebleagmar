@@ -22,7 +22,7 @@ export default {
       {
         hid: 'og-image',
         property: 'og:image',
-        content: '~/assets/fbimg.jpg',
+        content: '@assets/fbimg.jpg',
       },
       {
         hid: 'og-desc',
@@ -49,7 +49,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/main.scss'],
+  css: ['@/assets/css/main.scss', '@/assets/css/flicking.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

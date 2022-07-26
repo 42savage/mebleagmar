@@ -60,7 +60,7 @@
           <p class="smallText">Zadowolonych klientów</p>
         </div>
       </div>
-      <div class="opinions">
+      <div class="opinions" v-if="$mq === 'lg'">
         <p class="opinionsTitle">Opinie naszych zadowolonych Klientów</p>
         <div
           class="singleOpinion"
@@ -93,6 +93,31 @@
             >portalu fixly.pl</a
           >
         </div>
+      </div>
+      <div v-else>
+        <client-only>
+          <flicking class="opinions">
+            <div
+              class="singleOpinion"
+              v-for="opinion in opinions"
+              :key="opinion.id"
+            >
+              <div class="left">
+                <svg-user />
+                <p class="opinionName">
+                  {{ opinion.name }}
+                </p>
+              </div>
+              <p class="opinionContent">{{ opinion.content }}</p>
+
+              <vue-stars
+                class="stars"
+                :value="opinion.stars"
+                :readonly="true"
+              />
+            </div>
+          </flicking>
+        </client-only>
       </div>
       <div class="systems">
         <p class="systemsTitle">Wykorzystujemy systemy renomowanych firm</p>
@@ -131,32 +156,31 @@
           pomocą czterech poniższych kroków.
         </p>
       </div>
-      <client-only v-if="$mq !== 'lg'">
-        <flicking
-          class="boxes"
-          :options="{ align: 'center', horizontal: true }"
-        >
-          <div
-            class="singleBox"
-            v-for="box in boxes"
-            :key="box.id"
-            :style="{ background: box.color }"
-          >
-            <component
-              :is="`svg-${box.icon.name}`"
-              :width="box.icon.width"
-              :height="box.icon.height"
-              :color="box.icon.color"
-            ></component>
-            <p class="boxTitle" :style="{ color: box.icon.color }">
-              {{ box.title }}
-            </p>
-            <p :style="{ color: box.icon.color }" class="boxSubTitle">
-              {{ box.subTitle }}
-            </p>
-          </div>
-        </flicking>
-      </client-only>
+      <div v-if="$mq !== 'lg'">
+        <client-only>
+          <flicking>
+            <div
+              class="singleBox"
+              v-for="box in boxes"
+              :key="box.id"
+              :style="{ background: box.color }"
+            >
+              <component
+                :is="`svg-${box.icon.name}`"
+                :width="box.icon.width"
+                :height="box.icon.height"
+                :color="box.icon.color"
+              ></component>
+              <p class="boxTitle" :style="{ color: box.icon.color }">
+                {{ box.title }}
+              </p>
+              <p :style="{ color: box.icon.color }" class="boxSubTitle">
+                {{ box.subTitle }}
+              </p>
+            </div>
+          </flicking>
+        </client-only>
+      </div>
       <div v-if="$mq === 'lg'" class="boxes-lg">
         <div v-for="box in boxes" :key="box.id" class="single-box">
           <component
@@ -170,8 +194,8 @@
         </div>
       </div>
       <div class="stripe">
-        <button v-if="$mq !== 'lg'" class="prev"><svg-arrow /></button>
-        <button v-if="$mq !== 'lg'" class="next"><svg-arrow /></button>
+        <!-- <button v-if="$mq !== 'lg'" class="prev"><svg-arrow /></button>
+        <button v-if="$mq !== 'lg'" class="next"><svg-arrow /></button> -->
       </div>
     </section>
     <section
@@ -317,16 +341,16 @@
 </template>
 
 <script>
-import { AutoPlay } from '@egjs/flicking-plugins'
+// import { AutoPlay } from '@egjs/flicking-plugins'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
   data() {
     return {
-      plugins: [
-        new AutoPlay({ duration: 600, direction: 'NEXT', stopOnHover: false }),
-      ],
+      // plugins: [
+      //   new AutoPlay({ duration: 600, direction: 'NEXT', stopOnHover: false }),
+      // ],
       currentImage: '',
       boxes: [
         {
@@ -593,6 +617,11 @@ export default {
 $text-color: #083233;
 iframe {
   margin-top: 16px;
+}
+.tst {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .flicking-camera {
   display: flex !important;
@@ -983,7 +1012,7 @@ iframe {
   background: #f9f9f9;
   color: #4e4e4e;
   display: flex;
-  margin: 8px 0;
+  margin: 8px 4px;
   .left {
     display: flex;
     justify-content: center;

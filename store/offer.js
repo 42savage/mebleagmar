@@ -57,7 +57,7 @@ export const state = () => ({
           desc: 'Zdjęcie przedstawiające salon w stylu klasycznym',
         },
       ],
-      header: 'Do wyboru masz',
+      header: 'Do wyboru',
       list: ['Zastosowane systemy', 'Projekt 3D pomieszczenia', 'Fronty'],
       extrass: ['fronty_mdf'],
     },
@@ -82,7 +82,7 @@ export const state = () => ({
           desc: 'Zdjęcie przedstawiające łazienkę w stylu klasycznym',
         },
       ],
-      header: 'Do wyboru masz',
+      header: 'Do wyboru',
       list: ['Projekt 3D pomieszczenia', 'Zastosowane systemy', 'Fronty'],
       extrass: ['fronty_mdf'],
     },
@@ -629,6 +629,151 @@ export const state = () => ({
       },
     },
   ],
+  fronty: [
+    {
+      id: 0,
+      name: 'Fronty drewniane',
+      route: 'fronty_drewniane',
+      img: 'blum.jpg',
+      bgImg: require('~/assets/offer/systemy_blum.jpg'),
+      subPage: {
+        header: {
+          title: 'Systemy meblowe Blum',
+          bgImg: require('~/assets/offer/sub/systems/blum/blumBackground.jpg'),
+        },
+        body: {
+          title: 'Rozwiązania firmy Blum',
+          text: 'To wysokiej jakości systemy meblowe, sprawiające, że z twojej kuchni korzysta się wygodniej i przyjemniej',
+          grid: {
+            img1: {
+              id: 0,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/blum/img1.jpg'),
+              title: 'Łatwy dostęp',
+              text: 'AVENTOS przez cały czas zapewnia użytkownikowi swobodę ruchu i wolną przestrzeń nad głową. Podczas pracy w kuchni front może bez przeszkód pozostać cały czas otwarty.',
+            },
+            img2: {
+              id: 1,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/blum/img2.jpg'),
+              title: 'Łatwe otwieranie i wygodne zamykanie',
+              text: 'Połączenie lekkiego otwierania i zintegrowanego BLUMOTION to zupełnie nowa jakość otwierania i zamykania frontów górnych. Zastosowanie technologii ruchu SERVO-DRIVE lub TIP-ON to komfortowe otwieranie mebli bez uchwytów.',
+            },
+            img3: {
+              id: 2,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/blum/img3.jpg'),
+              title: 'Zatrzymuje się na dowolnej wysokości',
+              text: 'Front zatrzymuje się na dowolnej wysokości pozostając zawsze w zasięgu ręki! Wystarczy wyregulować siłownik odpowiednio do wagi frontu.',
+            },
+            img4: {
+              id: 3,
+              alt: 'Zdjęcie przedstawiające nowoczesną kuchnię wyposażoną w systemy renomowanego producenta Blum',
+              src: require('~/assets/offer/sub/systems/blum/img4.jpg'),
+              title: 'Identyczny design w szafkach dolnych i górnych',
+              text: 'Poziome szczeliny definiują wygląd i nie powinny być zakłócane przez zbyt wiele pionowych szczelin. Dzięki systemom AVENTOS zachowamy taki sam design w szafkach górnych, jak i w dolnych.',
+            },
+          },
+        },
+      },
+      extra: {
+        first_title: 'Systemy podnośników do frontów górnych',
+        first: [
+          {
+            id: 0,
+            title: 'Aventos HF',
+            subTitle: 'Dwuczęściowy front, składa się podczas otwierania',
+            name: 'aventos_hf',
+            image: require('~/assets/offer/sub/systems/blum/aventos_hf.jpg'),
+          },
+          {
+            id: 1,
+            title: 'Aventos HS',
+            subTitle: 'Jednoczęściowy front nachodzi na korpus',
+            name: 'aventos_hs',
+            image: require('~/assets/offer/sub/systems/blum/aventos_hs.jpg'),
+          },
+          {
+            id: 2,
+            title: 'Aventos HL',
+            subTitle:
+              'Jednoczęściowy front jest unoszony równolegle do korpusu',
+            name: 'aventos_hl',
+            image: require('~/assets/offer/sub/systems/blum/aventos_hl.jpg'),
+          },
+          {
+            id: 3,
+            title: 'Aventos HK Top',
+            subTitle: 'Mały podnośnik do frontów górnych',
+            name: 'aventos_hk_top',
+            image: require('~/assets/offer/sub/systems/blum/aventos_hk_top.jpg'),
+          },
+          {
+            id: 4,
+            title: 'Aventos HK-S',
+            subTitle: 'Mały podnośnik do frontów górnych',
+            name: 'aventos_hk_s',
+            image: require('~/assets/offer/sub/systems/blum/aventos_hk_s.jpg'),
+          },
+          {
+            id: 5,
+            title: 'Aventos HK-XS',
+            subTitle: 'Do małych frontów uchylnych w szafkach górnych',
+            name: 'aventos_hl',
+            image: require('~/assets/offer/sub/systems/blum/aventos_hk_xs.jpg'),
+          },
+        ],
+        second_title: 'Systemy szuflad',
+        second: [
+          {
+            id: 0,
+            title: 'Legrabox',
+            subTitle: 'Prosta linia, elegancja.',
+            name: 'legrabox',
+            image: require('~/assets/offer/sub/systems/blum/legrabox.jpg'),
+          },
+          {
+            id: 1,
+            title: 'Merivobox',
+            subTitle: 'Jedna platforma, wiele możliwości.',
+            name: 'Merivobox',
+            image: require('~/assets/offer/sub/systems/blum/merivobox.jpg'),
+          },
+          {
+            id: 2,
+            title: 'Tandembox antaro',
+            subTitle: 'Prosty i wyrazisty.',
+            name: 'tandembox_antaro',
+            image: require('~/assets/offer/sub/systems/blum/tandembox_antaro.jpg'),
+          },
+        ],
+        third_title: 'Systemy zawiasów',
+        third: [
+          {
+            id: 0,
+            title: 'Clip top BLUMOTION',
+            subTitle: 'Innowacyjna technika',
+            name: 'cliptop_blumotion',
+            image: require('~/assets/offer/sub/systems/blum/cliptop_blumotion.jpg'),
+          },
+          {
+            id: 1,
+            title: 'Clip top ',
+            subTitle: 'Sprawdzone działanie i atrakcyjny design',
+            name: 'cliptop',
+            image: require('~/assets/offer/sub/systems/blum/cliptop.jpg'),
+          },
+          {
+            id: 2,
+            title: 'Modul',
+            subTitle: 'Technika i wysoka efektywność',
+            name: 'modul',
+            image: require('~/assets/offer/sub/systems/blum/modul.jpg'),
+          },
+        ],
+      },
+    },
+  ],
   extrass: [
     {
       id: 0,
@@ -856,6 +1001,11 @@ export const getters = {
   specifiedSystemy(state, getters, rootState) {
     return state.systems.find(
       (offer) => offer.name.toLowerCase() === rootState.route.params.id
+    )
+  },
+  specifiedFronty(state, getters, rootState) {
+    return state.fronty.find(
+      (offer) => offer.route === rootState.route.params.id
     )
   },
   specifiedExtrass(state, getters, rootState) {

@@ -11,44 +11,48 @@
       <div class="menuShortcut">
         <ul class="menuSection">
           <p class="menuTitle">Meble</p>
-          <li><nuxt-link to="oferta/meble/kuchenne">Kuchenne</nuxt-link></li>
-          <li><nuxt-link to="oferta/meble/pokojowe">Pokojowe</nuxt-link></li>
+          <li><nuxt-link to="/oferta/meble_kuchenne">Kuchenne</nuxt-link></li>
+          <li><nuxt-link to="/oferta/meble_pokojowe">Pokojowe</nuxt-link></li>
           <li>
-            <nuxt-link to="oferta/meble/lazienkowe">Łazienkowe</nuxt-link>
+            <nuxt-link to="/oferta/meble_lazienkowe">Łazienkowe</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="oferta/meble/loza_sypialniane"
+            <nuxt-link to="/oferta/loza_sypialniane"
               >Łoża sypialniane</nuxt-link
             >
           </li>
         </ul>
         <ul class="menuSection">
           <p class="menuTitle">Systemy</p>
-          <li><nuxt-link to="oferta/systemy/blum">Blum</nuxt-link></li>
-          <li><nuxt-link to="oferta/systemy/schwinn">Schwinn</nuxt-link></li>
+          <li><nuxt-link to="/oferta/systemy_meblowe/blum">Blum</nuxt-link></li>
           <li>
-            <nuxt-link to="oferta/systemy/gamet">Gamet</nuxt-link>
+            <nuxt-link to="/oferta/systemy_meblowe/schwinn">Schwinn</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="oferta/systemy/siro">Siro</nuxt-link>
+            <nuxt-link to="/oferta/systemy_meblowy/gamet">Gamet</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/oferta/systemy_meblowe/siro">Siro</nuxt-link>
           </li>
         </ul>
         <ul class="menuSection">
           <p class="menuTitle">Fronty</p>
-          <li><nuxt-link to="oferta/fronty/mdf">Fronty MDF</nuxt-link></li>
+          <li><nuxt-link to="/oferta/fronty/mdf">Fronty MDF</nuxt-link></li>
           <li>
-            <nuxt-link to="oferta/fronty/drewniane">Fronty drewniane</nuxt-link>
+            <nuxt-link to="/oferta/fronty/drewniane"
+              >Fronty drewniane</nuxt-link
+            >
           </li>
           <li>
-            <nuxt-link to="oferta/fronty/lakierowane"
+            <nuxt-link to="/oferta/fronty/lakierowane"
               >Fronty lakierowane</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link to="oferta/fronty/akrylowe">Fronty akrylowe</nuxt-link>
+            <nuxt-link to="/oferta/fronty/akrylowe">Fronty akrylowe</nuxt-link>
           </li>
         </ul>
-        <ul class="menuSection">
+        <!-- <ul class="menuSection">
           <p class="menuTitle">Szkło grafika</p>
           <li><nuxt-link to="oferta/szklo/fraktale">Fraktale</nuxt-link></li>
           <li><nuxt-link to="oferta/szklo/tekstsury">Tekstury</nuxt-link></li>
@@ -58,7 +62,7 @@
           <li>
             <nuxt-link to="oferta/szklo/krajobrazy">Krajobrazy</nuxt-link>
           </li>
-        </ul>
+        </ul> -->
         <p class="author">
           Projekt i realizacja:
           <a href="https://kzweb.dev/" target="_blank">kzweb.dev</a>
