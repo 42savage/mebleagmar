@@ -5,6 +5,7 @@
   >
     <Navigation />
     <ThetransitionObject />
+    <messenger />
     <Nuxt />
     <footer>
       <svg-logo />
@@ -138,6 +139,11 @@ footer {
     color: crimson;
     text-decoration: none;
     font-weight: bold;
+  }
+}
+@media (min-width: 1280px) {
+  .menuShortcut {
+    padding: 64px 120px 80px;
   }
 }
 @media (min-width: 1440px) {

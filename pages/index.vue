@@ -285,15 +285,23 @@
       </div>
       <div class="content">
         <form class="contactForm" @submit.prevent="mailSubmit">
+          <div class="communicate">
+            <p>
+              Formularz chwilowo jest nieobsługiwany. Zachęcamy do skorzystania
+              z <span class="messenger">messengera.</span>
+            </p>
+          </div>
           <p class="contactNdTitle">Przez formularz</p>
           <p class="error" v-if="errors.name">{{ errors.name }}</p>
           <input
+            disabled
             type="text"
             class="name"
             placeholder="Imię i nazwisko"
             v-model="mail.name"
           />
           <input
+            disabled
             type="text,"
             class="company"
             placeholder="Firma(opcjonalnie)"
@@ -301,6 +309,7 @@
           />
           <p class="error" v-if="errors.email">{{ errors.email }}</p>
           <input
+            disabled
             type="text,"
             class="email"
             placeholder="Adres email"
@@ -308,6 +317,7 @@
           />
           <p class="error" v-if="errors.phone">{{ errors.phone }}</p>
           <input
+            disabled
             type="text,"
             class="phone"
             placeholder="Numer telefonu"
@@ -315,10 +325,11 @@
           />
           <p class="error" v-if="errors.message">{{ errors.message }}</p>
           <textarea
+            disabled
             placeholder="Opisz w kilku słowach swoje zamówienie"
             v-model="mail.message"
           ></textarea>
-          <input type="submit" class="submit" value="Wyślij" />
+          <input disabled type="submit" class="submit" value="Wyślij" />
         </form>
 
         <div class="contactInfoBox">
@@ -583,11 +594,11 @@ export default {
         !this.errors.phone &&
         !this.errors.message
       ) {
-        this.$mail.send({
-          from: this.mail.email,
-          subject: 'Kontakt wysłany z formularza na stronie',
-          text: this.mail.message,
-        })
+        // this.$mail.send({
+        //   from: this.mail.email,
+        //   subject: 'Kontakt wysłany z formularza na stronie',
+        //   text: this.mail.message,
+        // })
         this.message = 'Wiadomość została wysłana.'
         setTimeout(() => {
           this.message = ''
@@ -617,6 +628,27 @@ export default {
 $text-color: #083233;
 iframe {
   margin-top: 16px;
+}
+img {
+  object-fit: cover;
+}
+.communicate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 120px;
+  background: rgb(246, 246, 246);
+  color: rgb(117, 117, 117);
+  padding: 24px;
+  font-size: 18px;
+}
+.messenger {
+  color: rgb(0, 117, 206);
+}
+.contactForm {
+  position: relative;
 }
 .tst {
   display: flex;
@@ -1081,6 +1113,109 @@ iframe {
     margin-top: 32px;
   }
 }
+@media (min-width: 1280px) {
+  // fix because of problem with reveal animation
+  .list a {
+    bottom: initial;
+  }
+  // end of fix
+  .bottom-content {
+    bottom: -160px !important;
+    left: -100px !important;
+  }
+  .content {
+    padding: 96px 120px;
+  }
+  .contentText {
+    width: 400px;
+  }
+  .counters {
+    padding: 0 120px;
+  }
+  .opinions {
+    padding: 120px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .singleOpinion {
+    padding: 0;
+    margin: 8px;
+  }
+  .moreBox {
+    margin-top: 60px;
+  }
+  .systems {
+    padding: 80px 120px;
+  }
+  .photo {
+    margin: 0;
+  }
+  #__layout
+    > div
+    > div.container
+    > section.howTo.netSection
+    > div.content
+    > p.subTitle {
+    margin-top: 56px;
+  }
+  .boxes-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 80px;
+    height: 360px;
+  }
+  .single-box {
+    border-top: 2px solid #dadada;
+    border-right: 2px solid #dadada;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0 8px;
+    .boxTitle {
+      margin-top: 24px;
+    }
+    p {
+      width: 260px;
+    }
+    &:hover {
+      background: darkcyan;
+      cursor: pointer;
+      svg {
+        fill: white;
+      }
+      p {
+        color: white;
+      }
+    }
+  }
+  #__layout > div > div.container > section.offer.netSection > div.content {
+    padding-bottom: 0;
+  }
+  .offerList {
+    padding: 0 120px 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+  }
+  .titleContent {
+    padding: 0 360px;
+  }
+  .contactForm {
+    padding: 32px 180px;
+  }
+  iframe.map {
+    width: 100%;
+    height: 320px;
+  }
+}
 @media (min-width: 1440px) {
   .contentText {
     font-size: 22px;
@@ -1136,42 +1271,6 @@ iframe {
     margin: initial;
     width: 460px;
     height: 600px;
-  }
-  .boxes-lg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-    padding: 0 80px;
-    height: 360px;
-  }
-  .single-box {
-    border-top: 2px solid #dadada;
-    border-right: 2px solid #dadada;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 0 36px;
-    .boxTitle {
-      margin-top: 24px;
-    }
-    p {
-      width: 260px;
-    }
-    &:hover {
-      background: darkcyan;
-      cursor: pointer;
-      svg {
-        fill: white;
-      }
-      p {
-        color: white;
-      }
-    }
   }
   #__layout
     > div

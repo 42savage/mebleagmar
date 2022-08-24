@@ -48,6 +48,8 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  serverMiddleware: [{ path: '/api/mail', handler: '~/api/mail' }],
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.scss', '@/assets/css/flicking.css'],
 
@@ -67,26 +69,7 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    'nuxt-mq',
-    '@nuxtjs/axios',
-    [
-      'nuxt-mail',
-      {
-        message: {
-          to: process.env.MAILDIRECTION,
-        },
-        smtp: {
-          host: process.env.MAILHOST,
-          port: process.env.MAILPORT,
-          auth: {
-            user: process.env.MAILUSERNAME,
-            pass: process.env.MAILPASSWORD,
-          },
-        },
-      },
-    ],
-  ],
+  modules: ['nuxt-mq'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
