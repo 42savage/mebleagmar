@@ -2,11 +2,11 @@
   <div class="wrapper">
     <div class="grid" ref="grid">
       <img
+        loading="lazy"
         v-for="image in images"
         :key="image.id"
         :src="image.src"
         :alt="image.alt"
-        ref="singleItem"
         class="singleItem"
       />
     </div>
@@ -17,12 +17,25 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters({
-      images: 'realisations/images',
-    }),
+  data() {
+    return {
+      images: [],
+    }
   },
+  // computed: {
+  //   ...mapGetters({
+  //     images: 'realisations/images',
+  //   }),
+  // },
   mounted() {
+    for (let i = 0; i < 61; i++) {
+      this.images.push({
+        id: i,
+        src: require(`~/assets/gallery/realisations/img${i}.jpg`),
+        alt: 'Zdjęcie przedstawiające kuchnie.',
+      })
+    }
+    console.log(this.images)
     this.$gsap.fromTo(
       this.$refs.grid,
       {
@@ -56,6 +69,8 @@ export default {
 }
 .singleItem {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 @media (min-width: 1440px) {
   .grid {

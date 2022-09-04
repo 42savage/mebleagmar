@@ -1,9 +1,14 @@
 <template>
   <nav class="navigation" ref="navigation" v-scroll-lock="state">
-    <nuxt-link to="/" ref="logo" class="logo"
+    <nuxt-link to="/" ref="logo" class="logo" name="Logo Meble Agmar"
       ><svg-logo fill="white"
     /></nuxt-link>
-    <button class="navBtn" ref="navBtn" @click="state = !state">
+    <button
+      class="navBtn"
+      ref="navBtn"
+      @click="state = !state"
+      name="Włącz/wyłącz menu"
+    >
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
@@ -36,49 +41,54 @@
       <div class="second-section">
         <ul class="list" ref="list" v-if="$mq == 'sm'">
           <li @click="state = !state">
-            <nuxt-link to="/">Strona główna</nuxt-link>
+            <nuxt-link name="Strona główna" to="/">Strona główna</nuxt-link>
           </li>
           <li @click="state = !state">
-            <nuxt-link to="/realizacje">Realizacje</nuxt-link>
+            <nuxt-link name="Realizacje" to="/realizacje">Realizacje</nuxt-link>
           </li>
           <li @click="state = !state">
-            <nuxt-link to="/oferta">Oferta</nuxt-link>
+            <nuxt-link name="Oferta" to="/oferta">Oferta</nuxt-link>
           </li>
           <li @click="state = !state">
-            <nuxt-link to="/#contact">Kontakt</nuxt-link>
+            <nuxt-link name="Kontakt" to="/#contact">Kontakt</nuxt-link>
           </li>
         </ul>
         <ul v-else class="list">
           <li>
-            <nuxt-link to="/">Strona główna</nuxt-link>
+            <nuxt-link name="Strona główna" to="/">Strona główna</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/realizacje">Realizacje</nuxt-link>
+            <nuxt-link name="Realizacje" to="/realizacje">Realizacje</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/oferta">Oferta</nuxt-link>
+            <nuxt-link name="Oferta" to="/oferta">Oferta</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/#contact">Kontakt</nuxt-link>
+            <nuxt-link name="Kontakt" to="/#contact">Kontakt</nuxt-link>
           </li>
         </ul>
         <div class="socials">
           <p ref="soc"><span>Zajrzyj na nasze sociale</span></p>
           <ul class="social-list">
             <li>
-              <a target="_blank" href="https://projekty-agmar.pl/"
+              <a
+                name="Strona internetowa bliźniaczej działalności - Projekty AGMAR"
+                target="_blank"
+                href="https://projekty-agmar.pl/"
                 ><svg-website color="#94D2BD"
               /></a>
             </li>
             <li>
               <a
                 href="https://www.facebook.com/MebleNaWymiarAgmar/"
+                name="Facebook strony meble na wymiar AGMAR"
                 target="_blank"
                 ><svg-fb color="#94D2BD"
               /></a>
             </li>
             <li>
               <a
+                name="Instagram strony meble na wymiar AGMAR"
                 href="https://www.instagram.com/agmarmeblenawymiar/"
                 target="_blank"
                 ><svg-instagram color="#94D2BD"
@@ -100,7 +110,7 @@ export default {
   },
   methods: {
     contactHref() {
-      console.log(this.$route)
+      // console.log(this.$route)
       if (this.$route.path === '/') {
         console.log(this.$root)
       }

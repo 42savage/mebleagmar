@@ -343,6 +343,7 @@
             style="border: 0"
             allowfullscreen=""
             loading="lazy"
+            title="Mapa przedstawiająca lokalizację firmy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
@@ -1336,6 +1337,7 @@ img {
     }
     .contactForm {
       width: 600px;
+      padding: 0;
     }
   }
   .titleContent {
