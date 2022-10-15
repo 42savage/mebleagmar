@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -59,31 +60,20 @@ export default {
     { src: '~/plugins/stars.js', mode: 'client' },
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  // modules: ['nuxt-mq'],
-  modules: [
-    'nuxt-mq',
-    '@nuxtjs/axios',
-    [
-      'nuxt-mail',
-      {
-        message: {
-          to: 'kontakt@radommeble.pl',
-        },
-        smtp: {
-          host: process.env.MAIL_HOST,
-          port: process.env.MAIL_PORT,
-        },
-      },
-    ],
-  ],
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/recaptcha', 'nuxt-mq', '@nuxtjs/axios'],
+
+  publicRuntimeConfig: {
+    recaptcha: {
+      siteKey: process.env.RECAPTCHA_SITE_KEY,
+      version: 3,
+      hideBadge: true,
+      mode: 'base',
+    },
+  },
   build: {},
   server: {
     host: '0.0.0.0',

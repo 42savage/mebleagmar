@@ -9,8 +9,8 @@
         <h1>Meble na wymiar</h1>
         <p>Produkujemy meble na wymiar na terenie Radomia i okolic.</p>
         <p>
-          Oferujemy meble kuchenne, meble pokojowe, meble łazienkowe oraz łoża
-          sypialniane i zabudowy RTV.
+          Oferujemy meble kuchenne, meble pokojowe, meble łazienkowe, szafy oraz
+          łoża sypialniane i zabudowy RTV.
         </p>
         <p>Zajrzyj do naszych realizacji.</p>
         <div v-if="$mq === 'lg'" class="bottom-content">
@@ -203,8 +203,8 @@
       :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
     >
       <div class="content">
-        <p class="subTitle">Jest tego na prawdę dużo</p>
-        <p class="title">Sprawdź nasze realizacje</p>
+        <p class="subTitle">Meble to nasza pasja</p>
+        <p class="title">Kochamy to co robimy, a oto tego efekty</p>
         <p class="contentText">
           Przez lata pracy udało nam się stworzyć dosyć pokaźne portfolio, z
           którym możesz się zapoznać na tej właśnie stronie, wystarczy, że
@@ -284,18 +284,26 @@
         <p class="contactTitle">Skontaktuj się z nami</p>
       </div>
       <div class="content">
-        <form class="contactForm" @submit.prevent="mailSubmit">
+        <form class="contactForm" ref="form" @submit.prevent="mailSubmit">
           <p class="contactNdTitle">Przez formularz</p>
           <p class="error" v-if="errors.name">{{ errors.name }}</p>
           <input
+            type="hidden"
+            id="g-recaptcha-response"
+            name="g-recaptcha-response"
+          />
+          <input type="hidden" name="action" value="validate_captcha" />
+          <input
             type="text"
             class="name"
+            name="name"
             placeholder="Imię i nazwisko"
             v-model="mail.name"
           />
           <input
             type="text,"
             class="company"
+            name="company"
             placeholder="Firma(opcjonalnie)"
             v-model="mail.company"
           />
@@ -303,6 +311,7 @@
           <input
             type="text,"
             class="email"
+            name="email"
             placeholder="Adres email"
             v-model="mail.email"
           />
@@ -310,6 +319,7 @@
           <input
             type="text,"
             class="phone"
+            name="phone"
             placeholder="Numer telefonu"
             v-model="mail.phone"
           />
@@ -317,8 +327,16 @@
           <textarea
             placeholder="Opisz w kilku słowach swoje zamówienie"
             v-model="mail.message"
+            name="message"
           ></textarea>
-          <input type="submit" class="submit" value="Wyślij" />
+          <input
+            type="submit"
+            class="submit g-recaptcha"
+            data-sitekey="reCAPTCHA_site_key"
+            data-callback="onSubmit"
+            data-action="submit"
+            value="Wyślij"
+          />
         </form>
 
         <div class="contactInfoBox">
@@ -342,10 +360,24 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser'
+
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
+  head() {
+    return {
+      script: [
+        {
+          src: 'https://smtpjs.com/v3/smtp.js',
+          body: true,
+          async: true,
+          defer: true,
+        },
+      ],
+    }
+  },
   data() {
     return {
       currentImage: '',
@@ -552,7 +584,7 @@ export default {
     enter: function (el, done) {
       done()
     },
-    mailSubmit() {
+    async mailSubmit() {
       if (!this.mail.name) {
         this.errors.name = 'Przed wysłaniem musisz uzupełnić imię i nazwisko'
       } else {
@@ -580,19 +612,46 @@ export default {
         !this.errors.phone &&
         !this.errors.message
       ) {
-        this.$mail.send({
-          from: 'John Doe',
-          subject: 'Testowa wiadomość',
-          text: 'This is an tego typu text message bęc',
-        })
+        emailjs.sendForm(
+          process.env.SERVICE_ID,
+          process.env.TEMPLATE_ID,
+          this.$refs.form,
+          process.env.MAIL_KEY
+        )
         this.message = 'Wiadomość została wysłana.'
+        this.mail.email = ''
+        this.mail.phone = ''
+        this.mail.name = ''
+        this.mail.message = ''
+        this.mail.company = ''
         setTimeout(() => {
           this.message = ''
         }, 2000)
+        // grecaptcha.ready(function () {
+        //   grecaptcha
+        //     .execute(process.env.RECAPTCHA_SITE_KEY, { action: 'submit' })
+        //     .then(function (token) {
+        //       // Add your logic to submit to your backend server here.
+        //       sendMail()
+        //     })
+        // })
       }
     },
   },
-  mounted() {
+  // async mounted() {
+  // try {
+  //   await this.$recaptcha.init()
+  // } catch (e) {
+  //   console.error(e)
+  // }
+  // },
+
+  async mounted() {
+    try {
+      await this.$recaptcha.init()
+    } catch (e) {
+      console.error(e)
+    }
     this.revealSections()
     let gsap = this.$gsap
     gsap.fromTo(
@@ -606,6 +665,9 @@ export default {
         duration: 1,
       }
     )
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
   },
 }
 </script>
@@ -1342,8 +1404,9 @@ img {
   .contactTitle {
     font-size: 64px;
   }
-  .map {
-    height: 400px;
+  .contactInfoBox {
+    width: 50%;
+    margin: 0 12px;
   }
   .opinionsTitle {
     font-size: 32px;
