@@ -285,23 +285,15 @@
       </div>
       <div class="content">
         <form class="contactForm" @submit.prevent="mailSubmit">
-          <div class="communicate">
-            <p>
-              Formularz chwilowo jest nieobsługiwany. Zachęcamy do skorzystania
-              z <span class="messenger">messengera.</span>
-            </p>
-          </div>
           <p class="contactNdTitle">Przez formularz</p>
           <p class="error" v-if="errors.name">{{ errors.name }}</p>
           <input
-            disabled
             type="text"
             class="name"
             placeholder="Imię i nazwisko"
             v-model="mail.name"
           />
           <input
-            disabled
             type="text,"
             class="company"
             placeholder="Firma(opcjonalnie)"
@@ -309,7 +301,6 @@
           />
           <p class="error" v-if="errors.email">{{ errors.email }}</p>
           <input
-            disabled
             type="text,"
             class="email"
             placeholder="Adres email"
@@ -317,7 +308,6 @@
           />
           <p class="error" v-if="errors.phone">{{ errors.phone }}</p>
           <input
-            disabled
             type="text,"
             class="phone"
             placeholder="Numer telefonu"
@@ -325,11 +315,10 @@
           />
           <p class="error" v-if="errors.message">{{ errors.message }}</p>
           <textarea
-            disabled
             placeholder="Opisz w kilku słowach swoje zamówienie"
             v-model="mail.message"
           ></textarea>
-          <input disabled type="submit" class="submit" value="Wyślij" />
+          <input type="submit" class="submit" value="Wyślij" />
         </form>
 
         <div class="contactInfoBox">
@@ -353,16 +342,12 @@
 </template>
 
 <script>
-// import { AutoPlay } from '@egjs/flicking-plugins'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
   data() {
     return {
-      // plugins: [
-      //   new AutoPlay({ duration: 600, direction: 'NEXT', stopOnHover: false }),
-      // ],
       currentImage: '',
       boxes: [
         {
@@ -595,11 +580,11 @@ export default {
         !this.errors.phone &&
         !this.errors.message
       ) {
-        // this.$mail.send({
-        //   from: this.mail.email,
-        //   subject: 'Kontakt wysłany z formularza na stronie',
-        //   text: this.mail.message,
-        // })
+        this.$mail.send({
+          from: 'John Doe',
+          subject: 'Testowa wiadomość',
+          text: 'This is an tego typu text message bęc',
+        })
         this.message = 'Wiadomość została wysłana.'
         setTimeout(() => {
           this.message = ''
@@ -630,20 +615,26 @@ $text-color: #083233;
 iframe {
   margin-top: 16px;
 }
+#__layout
+  > div
+  > div.container
+  > section.aboutus.netSection
+  > div.systems
+  > div
+  > img:nth-child(2) {
+  width: 60px;
+}
+#__layout
+  > div
+  > div.container
+  > section.aboutus.netSection
+  > div.systems
+  > div
+  > img:nth-child(4) {
+  width: 80px;
+}
 img {
   object-fit: cover;
-}
-.communicate {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 120px;
-  background: rgb(246, 246, 246);
-  color: rgb(117, 117, 117);
-  padding: 24px;
-  font-size: 18px;
 }
 .messenger {
   color: rgb(0, 117, 206);
@@ -1259,6 +1250,7 @@ img {
     line-height: 68px;
   }
   .counters {
+    padding: 0;
     margin: 160px 0 0 0;
   }
   .systems {
@@ -1373,6 +1365,9 @@ img {
     align-items: center;
     flex-direction: row;
     padding: 0;
+  }
+  .singleProducer {
+    margin: 8px;
   }
 }
 </style>

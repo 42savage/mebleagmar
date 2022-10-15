@@ -10,6 +10,9 @@
         class="singleItem"
       />
     </div>
+    <button class="backTop" @click="backTop">
+      <svg-arrow class="arrow" />
+    </button>
   </div>
 </template>
 
@@ -22,11 +25,11 @@ export default {
       images: [],
     }
   },
-  // computed: {
-  //   ...mapGetters({
-  //     images: 'realisations/images',
-  //   }),
-  // },
+  methods: {
+    backTop() {
+      window.scrollTo(0, 0)
+    },
+  },
   mounted() {
     for (let i = 0; i < 61; i++) {
       this.images.push({
@@ -35,7 +38,6 @@ export default {
         alt: 'Zdjęcie przedstawiające kuchnie.',
       })
     }
-    console.log(this.images)
     this.$gsap.fromTo(
       this.$refs.grid,
       {
@@ -51,7 +53,6 @@ export default {
         scrollTrigger: {
           trigger: this.$refs.grid,
           start: 'top bottom + 20',
-          // markers: true,
           toggleActions: 'play pause resume reverse',
         },
       }
@@ -61,6 +62,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.backTop {
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  width: 60px;
+  height: 60px;
+  background: rgb(18, 17, 17);
+  cursor: pointer;
+}
+.arrow {
+  transform: rotate(270deg);
+}
 .grid {
   display: grid;
   grid-template-columns: 1fr;

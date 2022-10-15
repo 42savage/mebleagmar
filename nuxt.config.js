@@ -47,9 +47,6 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
-  serverMiddleware: [{ path: '/api/mail', handler: '~/api/mail' }],
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.scss', '@/assets/css/flicking.css'],
 
@@ -69,8 +66,23 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['nuxt-mq'],
-
+  // modules: ['nuxt-mq'],
+  modules: [
+    'nuxt-mq',
+    '@nuxtjs/axios',
+    [
+      'nuxt-mail',
+      {
+        message: {
+          to: 'kontakt@radommeble.pl',
+        },
+        smtp: {
+          host: process.env.MAIL_HOST,
+          port: process.env.MAIL_PORT,
+        },
+      },
+    ],
+  ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   server: {

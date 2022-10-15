@@ -66,7 +66,12 @@
         </ul> -->
         <p class="author">
           Projekt i realizacja:
-          <a href="https://kzweb.dev/" target="_blank">kzweb.dev</a>
+          <a
+            href="https://kzweb.dev/"
+            title="Nowoczesne strony internetowe"
+            target="_blank"
+            >kzweb.dev</a
+          >
         </p>
       </div>
     </footer>
