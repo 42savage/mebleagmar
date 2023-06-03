@@ -26,7 +26,7 @@
           <svg-phone class="phone" :width="36" :height="36" color="#94D2BD" />
           <div>
             <p class="title">Zadzwoń</p>
-            <p class="subtitle">698-088-271</p>
+            <a href="tel:698088271" class="subtitle">698-088-271</a>
           </div>
         </div>
         <div class="sec">
@@ -280,6 +280,8 @@ li {
 }
 .subtitle {
   font-size: 12px;
+  text-decoration: none;
+  color: white;
 }
 .sec svg {
   margin-right: 16px;

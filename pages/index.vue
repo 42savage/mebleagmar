@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <div ref="message" class="message" v-show="message">
-      <p>{{ this.message }}</p>
-    </div>
     <modalImage :imageSrc="currentImage" />
     <header class="mainHeader">
       <div ref="topContent" class="top-content">
@@ -35,15 +32,16 @@
       :class="{ netSection: this.$route.path === '/' && this.$mq === 'lg' }"
     >
       <div class="content">
-        <p class="subTitle">Dlaczego my?</p>
-        <p class="title">Kilka słów o nas</p>
+        <p class="subTitle">Wysoka jakość i profejsonalizm</p>
+        <p class="title">Dowiedz się o nas więcej</p>
         <p class="contentText">
-          Od nieco ponad 20 lat prowadzimy rodzinny zakład stolarski w małym
-          miasteczku pod Radomiem.
+          Produkcją mebli zajmujemy się od 20 lat. Do każdego zamówienia
+          podchodzimy z należytym staraniem aby jakość wykonania zadowoliła
+          każdego nawet najbardziej wymagająceog Klienta.
         </p>
         <p class="contentText">
-          Pracujemy od lat na swoją opinie, dlatego do każdego zamówienia
-          podchodzimy z należytym staraniem.
+          Naszym priorytetem jest satysfakcja Klienta dlatego dbale podchodzmy
+          do szczegółów.
         </p>
       </div>
       <div class="counters">
@@ -64,6 +62,7 @@
         <p class="opinionsTitle">Opinie naszych zadowolonych Klientów</p>
         <div
           class="singleOpinion"
+          ref="singleOpinion"
           v-for="opinion in opinions"
           :key="opinion.id"
         >
@@ -284,66 +283,16 @@
         <p class="contactTitle">Skontaktuj się z nami</p>
       </div>
       <div class="content">
-        <form class="contactForm" ref="form" @submit.prevent="mailSubmit">
-          <p class="contactNdTitle">Przez formularz</p>
-          <p class="error" v-if="errors.name">{{ errors.name }}</p>
-          <input
-            type="hidden"
-            id="g-recaptcha-response"
-            name="g-recaptcha-response"
-          />
-          <input type="hidden" name="action" value="validate_captcha" />
-          <input
-            type="text"
-            class="name"
-            name="name"
-            placeholder="Imię i nazwisko"
-            v-model="mail.name"
-          />
-          <input
-            type="text,"
-            class="company"
-            name="company"
-            placeholder="Firma(opcjonalnie)"
-            v-model="mail.company"
-          />
-          <p class="error" v-if="errors.email">{{ errors.email }}</p>
-          <input
-            type="text,"
-            class="email"
-            name="email"
-            placeholder="Adres email"
-            v-model="mail.email"
-          />
-          <p class="error" v-if="errors.phone">{{ errors.phone }}</p>
-          <input
-            type="text,"
-            class="phone"
-            name="phone"
-            placeholder="Numer telefonu"
-            v-model="mail.phone"
-          />
-          <p class="error" v-if="errors.message">{{ errors.message }}</p>
-          <textarea
-            placeholder="Opisz w kilku słowach swoje zamówienie"
-            v-model="mail.message"
-            name="message"
-          ></textarea>
-          <input
-            type="submit"
-            class="submit g-recaptcha"
-            data-sitekey="reCAPTCHA_site_key"
-            data-callback="onSubmit"
-            data-action="submit"
-            value="Wyślij"
-          />
-        </form>
+        <contact />
 
         <div class="contactInfoBox">
           <p class="contactNdTitle">Telefonicznie lub mailowo</p>
-          <p class="phone">tel. 698-088-271</p>
-          <p class="mail">email: kontakt@radommeble.pl</p>
-          <p class="mail">email: danielmeble@wp.pl</p>
+          <div class="contactContainer">
+            <a href="tel:698088271" class="phone">tel. 698-088-271</a>
+            <a href="mailto:kontakt@radommeble.pl" class="mail"
+              >email: kontakt@radommeble.pl</a
+            >
+          </div>
           <iframe
             class="map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2493.2744593087295!2d21.241886015628552!3d51.32447147960556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471867383b56d30f%3A0xfbd398022dbb76c0!2sMeble%20na%20wymiar%20Agmar!5e0!3m2!1spl!2snl!4v1654792879571!5m2!1spl!2snl"
@@ -360,24 +309,10 @@
 </template>
 
 <script>
-import emailjs from '@emailjs/browser'
-
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
-  head() {
-    return {
-      script: [
-        {
-          src: 'https://smtpjs.com/v3/smtp.js',
-          body: true,
-          async: true,
-          defer: true,
-        },
-      ],
-    }
-  },
   data() {
     return {
       currentImage: '',
@@ -508,21 +443,14 @@ export default {
           overlay: 'rgba(148, 210, 189,  0.615)',
           route: 'loza_sypialniane',
         },
+        {
+          id: 4,
+          name: 'Szafy',
+          bg: require('~/assets/offer/wardrobe.jpg'),
+          overlay: 'rgba(233, 161, 66,  0.615)',
+          route: 'szafy',
+        },
       ],
-      errors: {
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-      },
-      message: '',
-      mail: {
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        message: '',
-      },
     }
   },
   computed: {
@@ -539,22 +467,44 @@ export default {
   },
   methods: {
     revealSections() {
-      const sections = [
-        this.$el.querySelector('.content'),
-        this.$el.querySelector('.counters'),
-        this.$el.querySelector('.opinions'),
-        this.$el.querySelector('.systems'),
-        this.$el.querySelector('.howTo > .content >.subTitle'),
-        this.$el.querySelector('.howTo>.content>.title'),
-        this.$el.querySelector('.howTo>.content>.contentText'),
-        // this.$el.querySelectorAll('.boxes-lg'),
-        this.$el.querySelector('.realisations > .content'),
-        this.$el.querySelector('.realisations > .stripeGallery'),
-        this.$el.querySelector('.offer > .content'),
-        this.$el.querySelector('.offer > .offerList'),
-        this.$el.querySelector('.contact > .titleContent'),
-        this.$el.querySelector('.contact > .content'),
-      ]
+      let sections = []
+      if (this.$mq !== 'sm') {
+        sections = [
+          this.$el.querySelector('.content'),
+          this.$el.querySelector('.counters'),
+          this.$el.querySelector('.opinions'),
+          this.$el.querySelector('.systems'),
+          this.$el.querySelector('.howTo > .content >.subTitle'),
+          this.$el.querySelector('.howTo>.content>.title'),
+          this.$el.querySelector('.howTo>.content>.contentText'),
+          this.$el.querySelectorAll('.boxes-lg'),
+          this.$el.querySelector('.realisations > .content'),
+          this.$el.querySelector('.realisations > .stripeGallery'),
+          this.$el.querySelector('.offer > .content'),
+          this.$el.querySelector('.offer > .offerList'),
+          this.$el.querySelector('.contact > .titleContent'),
+          this.$el.querySelector('.contact > .content'),
+          this.$el.querySelectorAll('.singleOpinion'),
+          this.$el.querySelectorAll('.moreBox'),
+          this.$el.querySelectorAll('.opinionsTitle'),
+        ]
+      } else {
+        sections = [
+          this.$el.querySelector('.content'),
+          this.$el.querySelector('.counters'),
+          this.$el.querySelector('.opinions'),
+          this.$el.querySelector('.systems'),
+          this.$el.querySelector('.howTo > .content >.subTitle'),
+          this.$el.querySelector('.howTo>.content>.title'),
+          this.$el.querySelector('.howTo>.content>.contentText'),
+          this.$el.querySelector('.realisations > .content'),
+          this.$el.querySelector('.offer > .content'),
+          this.$el.querySelector('.offer > .offerList'),
+          this.$el.querySelector('.contact > .titleContent'),
+          this.$el.querySelector('.contact > .content'),
+          this.$el.querySelectorAll('.singleOpinion'),
+        ]
+      }
       sections.forEach((section) => {
         this.$gsap.fromTo(
           section,
@@ -583,59 +533,6 @@ export default {
     },
     enter: function (el, done) {
       done()
-    },
-    async mailSubmit() {
-      if (!this.mail.name) {
-        this.errors.name = 'Przed wysłaniem musisz uzupełnić imię i nazwisko'
-      } else {
-        this.errors.name = ''
-      }
-      if (!this.mail.phone) {
-        this.errors.phone = 'Przed wysłaniem musisz uzupełnić numer telefonu'
-      } else {
-        this.errors.phone = ''
-      }
-      if (!this.mail.email) {
-        this.errors.email = 'Przed wysłaniem musisz uzupełnić adres e-mail'
-      } else {
-        this.errors.email = ''
-      }
-      if (!this.mail.message) {
-        this.errors.message =
-          'Przed wysłaniem musisz uzupełnić treść wiadomości'
-      } else {
-        this.errors.message = ''
-      }
-      if (
-        !this.errors.name &&
-        !this.errors.email &&
-        !this.errors.phone &&
-        !this.errors.message
-      ) {
-        emailjs.sendForm(
-          process.env.SERVICE_ID,
-          process.env.TEMPLATE_ID,
-          this.$refs.form,
-          process.env.MAIL_KEY
-        )
-        this.message = 'Wiadomość została wysłana.'
-        this.mail.email = ''
-        this.mail.phone = ''
-        this.mail.name = ''
-        this.mail.message = ''
-        this.mail.company = ''
-        setTimeout(() => {
-          this.message = ''
-        }, 2000)
-        // grecaptcha.ready(function () {
-        //   grecaptcha
-        //     .execute(process.env.RECAPTCHA_SITE_KEY, { action: 'submit' })
-        //     .then(function (token) {
-        //       // Add your logic to submit to your backend server here.
-        //       sendMail()
-        //     })
-        // })
-      }
     },
   },
   // async mounted() {
@@ -701,9 +598,6 @@ img {
 .messenger {
   color: rgb(0, 117, 206);
 }
-.contactForm {
-  position: relative;
-}
 .tst {
   display: flex;
   flex-direction: row;
@@ -712,33 +606,9 @@ img {
 .flicking-camera {
   display: flex !important;
 }
-.message {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  z-index: 1;
-  height: 40px;
-  background: rgb(175, 175, 175);
-  border: 1px solid rgb(62, 62, 62);
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 32px;
-}
+
 .moreBox {
   padding: 0 32px;
-}
-@media (min-width: 1440px) {
-  .message {
-    right: 120px;
-  }
-}
-.submit {
-  cursor: pointer;
-}
-.error {
-  color: crimson;
 }
 .offerBtn {
   padding: 8px 36px;
@@ -825,6 +695,7 @@ img {
   p {
     color: white;
     font-size: 16px;
+    text-shadow: 2px 2px #000000;
     &:nth-child(2) {
       margin-top: 24px;
     }
@@ -1004,10 +875,9 @@ img {
   margin: 4px 0;
 }
 .offerTitle {
-  font-size: 24px;
+  font-size: 20px;
   color: white;
-  height: 30px;
-  margin: 16px;
+  margin: 8px;
 }
 .contact .content {
   display: flex;
@@ -1048,38 +918,7 @@ img {
   font-weight: bold;
   text-align: center;
 }
-.contactNdTitle {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 32px 0 16px 0;
-  color: #ee9b00;
-}
-.contactForm {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  input {
-    width: 100%;
-    height: 40px;
-    background: white;
-    color: #6d6d6d;
-    border: 1px solid #6d6d6d;
-    margin: 8px 0;
-    padding: 0 8px;
-    font-size: 16px;
-  }
-  textarea {
-    font-size: 16px;
-    padding: 8px;
-    height: 200px;
-    border: 1px solid #6d6d6d;
-    margin-top: 8px;
-  }
-  input[type='submit'] {
-    background: #005f73;
-    color: white;
-  }
-}
+
 .titleContent {
   padding: 42px;
 }
@@ -1130,6 +969,20 @@ img {
   color: rgb(20, 20, 20);
   margin-bottom: 16px;
   padding: 16px;
+}
+.phone,
+.mail {
+  text-decoration: none;
+  color: #083233;
+  width: initial;
+  &:hover {
+    color: darkcyan;
+    font-weight: bold;
+  }
+}
+.contactContainer {
+  display: flex;
+  flex-direction: column;
 }
 @media (min-width: 768px) {
   .singleOpinion {
@@ -1310,6 +1163,7 @@ img {
   .title {
     font-size: 72px;
     line-height: 68px;
+    margin-bottom: 16px;
   }
   .counters {
     padding: 0;

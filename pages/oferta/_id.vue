@@ -83,6 +83,13 @@
         </div>
       </div>
     </section>
+    <div class="contactInfo">
+      <h2>Skontaktuj się z nami</h2>
+      <p>Przedstawimy Ci katalog i pomożemy w doborze odpowiedniego wzoru.</p>
+    </div>
+    <div class="contactWrapper">
+      <contact />
+    </div>
   </div>
 </template>
 
@@ -99,7 +106,7 @@ export default {
   },
   mounted() {
     this.$el.querySelector('.image').style.backgroundPosition = `50% ${
-      -innerHeight / 2
+      -innerHeight / 2.66
     }px`
 
     this.$gsap.to(this.$refs.backgroundImage, {
@@ -116,6 +123,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.contactWrapper {
+  padding: 32px;
+}
+.contactInfo {
+  text-align: center;
+}
 .extraSection {
   width: 100%;
   padding: 24px;
@@ -197,7 +210,7 @@ h2 {
   img {
     margin: 8px 0;
     width: 100%;
-    height: 140px;
+    // height: 140px;
     object-fit: cover;
   }
 }
@@ -222,6 +235,9 @@ h2 {
   padding: 0 24px;
 }
 @media (min-width: 1440px) {
+  .contactWrapper {
+    margin: 0 120px;
+  }
   .header {
     position: relative;
     width: 100%;

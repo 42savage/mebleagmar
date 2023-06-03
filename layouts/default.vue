@@ -22,6 +22,9 @@
               >Łoża sypialniane</nuxt-link
             >
           </li>
+          <li>
+            <nuxt-link to="/oferta/szafy">Szafy</nuxt-link>
+          </li>
         </ul>
         <ul class="menuSection">
           <p class="menuTitle">Systemy</p>
@@ -40,17 +43,19 @@
           <p class="menuTitle">Fronty</p>
           <li><nuxt-link to="/oferta/fronty/mdf">Fronty MDF</nuxt-link></li>
           <li>
-            <nuxt-link to="/oferta/fronty/drewniane"
+            <nuxt-link to="/oferta/fronty/fronty_drewniane"
               >Fronty drewniane</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link to="/oferta/fronty/lakierowane"
+            <nuxt-link to="/oferta/fronty/fronty_lakierowane"
               >Fronty lakierowane</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link to="/oferta/fronty/akrylowe">Fronty akrylowe</nuxt-link>
+            <nuxt-link to="/oferta/fronty/fronty_akrylowe"
+              >Fronty akrylowe</nuxt-link
+            >
           </li>
         </ul>
         <!-- <ul class="menuSection">
@@ -102,6 +107,7 @@ footer {
   flex-direction: column;
   background: #f1f1f1;
   position: relative;
+  padding-bottom: 64px;
 }
 
 .menuShortcut {
@@ -124,7 +130,11 @@ footer {
   }
   li > a {
     text-decoration: none;
-    color: black;
+    color: rgb(14, 14, 14);
+    &:hover {
+      color: darkcyan;
+      font-weight: bold;
+    }
   }
 }
 .menuTitle {
@@ -137,9 +147,10 @@ footer {
   color: #98bfd0;
   position: absolute;
   left: 0;
-  text-align: center;
-  bottom: 24px;
-  width: 100%;
+  text-align: left;
+  bottom: 64px;
+  width: 50%;
+  padding-left: 32px;
   a {
     color: crimson;
     text-decoration: none;
@@ -147,6 +158,12 @@ footer {
   }
 }
 @media (min-width: 1280px) {
+  .author {
+    width: 100%;
+    padding-left: initial;
+    text-align: center;
+    bottom: 24px;
+  }
   .menuShortcut {
     padding: 64px 120px 80px;
   }

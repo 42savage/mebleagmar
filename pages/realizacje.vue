@@ -64,7 +64,7 @@ export default {
 <style scoped lang="scss">
 .backTop {
   position: fixed;
-  bottom: 60px;
+  bottom: 120px;
   right: 60px;
   width: 60px;
   height: 60px;

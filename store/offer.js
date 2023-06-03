@@ -109,6 +109,29 @@ export const state = () => ({
       header: 'Do wyboru',
       list: ['Łoża tapicerowane', 'Łoża z pojemnikami', 'W stylu basic'],
     },
+    {
+      id: 4,
+      name: 'szafy',
+      title: 'Szafy',
+      subTitle: 'Otwarte? Zabudowane? A może wolnostojące?',
+      textContent: 'W stylu nowoczesnym lub klasycznym, to Ty wybierasz.',
+      bg: require('~/assets/offer/sub/szafy/wardrobe1.jpg'),
+      bgColor: '#E9A142',
+      images: [
+        {
+          id: 0,
+          src: require('~/assets/offer/sub/szafy/wardrobe1.jpg'),
+          desc: 'Zdjęcie przedstawiające szafe w stylu nowoczesnym',
+        },
+        {
+          id: 1,
+          src: require('~/assets/offer/sub/szafy/wardrobe2.jpg'),
+          desc: 'Zdjęcie przedstawiające szafe w stylu klasycznym',
+        },
+      ],
+      // header: 'Do wyboru',
+      // list: ['Łoża tapicerowane', 'Łoża z pojemnikami', 'W stylu basic'],
+    },
   ],
   systems: [
     {
@@ -642,6 +665,38 @@ export const state = () => ({
         {
           id: 0,
           alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
+          src: require('~/assets/offer/sub/fronty/drewniane/drewno1.jpg'),
+        },
+        {
+          id: 1,
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
+          src: require('~/assets/offer/sub/fronty/drewniane/drewno2.jpg'),
+        },
+        {
+          id: 2,
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
+          src: require('~/assets/offer/sub/fronty/drewniane/drewno3.jpg'),
+        },
+      ],
+      extra: {
+        title: 'Wybierz coś dla siebie',
+        description: 'Skontaktuj się z nami',
+        content:
+          'Przedstawimy Ci katalog i pomożemy w doborze odpowiedniego wzoru.',
+      },
+    },
+    {
+      id: 1,
+      route: 'fronty_mdf',
+      title: 'Fronty MDF',
+      description: 'Najczęsciej spotykana klasyka',
+      content:
+        'Fronty MDF to niezwykłe uniwersalny wybór, charakteryzuje ich różnorodny rodzaj wykończenia, połysk, półpołysk lub mat.',
+      bgImg: require('~/assets/offer/sub/fronty/bgImg2.jpg'),
+      images: [
+        {
+          id: 0,
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
           src: require('~/assets/offer/sub/fronty/img1.jpg'),
         },
         {
@@ -663,28 +718,60 @@ export const state = () => ({
       },
     },
     {
-      id: 1,
-      route: 'fronty_mdf',
-      title: 'Fronty MDDF',
-      description: 'Najczęsciej spotykana klasyka',
+      id: 2,
+      route: 'fronty_lakierowane',
+      title: 'Fronty lakierowane',
+      description: 'Przykuwają uwage',
       content:
-        'Fronty MDF to niezwykłe uniwersalny wybór, charakteryzuje ich różnorodny rodzaj wykończenia, połysk, półpołysk lub mat.',
-      bgImg: require('~/assets/offer/sub/fronty/bgImg2.jpg'),
+        'Fronty lakierowane to niezwykłe uniwersalny wybór, charakteryzuje ich różnorodny rodzaj wykończenia, połysk, półpołysk lub mat.',
+      bgImg: require('~/assets/offer/sub/fronty/bgImg3.jpg'),
       images: [
         {
           id: 0,
-          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
-          src: require('~/assets/offer/sub/fronty/img1.jpg'),
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem lakierowanych frontów.',
+          src: require('~/assets/offer/sub/fronty/lakierowane/lakier1.jpg'),
         },
         {
           id: 1,
-          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
-          src: require('~/assets/offer/sub/fronty/img2.jpg'),
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem lakierowanych frontów.',
+          src: require('~/assets/offer/sub/fronty/lakierowane/lakier2.jpg'),
         },
         {
           id: 2,
-          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem drewnianych frontów.',
-          src: require('~/assets/offer/sub/fronty/img3.jpg'),
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem lakierowanych frontów.',
+          src: require('~/assets/offer/sub/fronty/lakierowane/lakier3.jpg'),
+        },
+      ],
+      extra: {
+        title: 'Wybierz coś dla siebie',
+        description: 'Skontaktuj się z nami',
+        content:
+          'Przedstawimy Ci katalog i pomożemy w doborze odpowiedniego wzoru.',
+      },
+    },
+    {
+      id: 3,
+      route: 'fronty_akrylowe',
+      title: 'Fronty akrylowe',
+      description: 'Przykuwają uwage',
+      content:
+        'Fronty akrylowe to niezwykłe uniwersalny wybór, charakteryzuje ich różnorodny rodzaj wykończenia, połysk, półpołysk lub mat.',
+      bgImg: require('~/assets/offer/sub/fronty/bgImg4.jpg'),
+      images: [
+        {
+          id: 0,
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem lakierowanych frontów.',
+          src: require('~/assets/offer/sub/fronty/akrylowe/akryl1.jpg'),
+        },
+        {
+          id: 1,
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem lakierowanych frontów.',
+          src: require('~/assets/offer/sub/fronty/akrylowe/akryl2.jpg'),
+        },
+        {
+          id: 2,
+          alt: 'Zdjęcie przedstawiające nowoczesną kuchnie z wykorzystaniem lakierowanych frontów.',
+          src: require('~/assets/offer/sub/fronty/akrylowe/akryl3.jpg'),
         },
       ],
       extra: {

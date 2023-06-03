@@ -28,6 +28,7 @@
       <p class="description">{{ fronty.extra.description }}</p>
       <p class="contentText">{{ fronty.extra.content }}</p>
     </div>
+    <div class="contactWrapper"><contact /></div>
   </div>
 </template>
 
@@ -42,6 +43,10 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.contactWrapper {
+  padding: 24px;
+  margin-bottom: 32px;
+}
 .mainHeader {
   width: 100vw;
   height: 300px;

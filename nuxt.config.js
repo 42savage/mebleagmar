@@ -58,6 +58,10 @@ export default {
     { src: '~/plugins/scrollLock.js' },
     { src: '~/plugins/vuexSync.js' },
     { src: '~/plugins/stars.js', mode: 'client' },
+    {
+      src: '~/plugins/gtag.js',
+      mode: 'client',
+    },
   ],
 
   components: true,

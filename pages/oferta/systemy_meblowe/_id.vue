@@ -81,6 +81,10 @@
         </div>
       </section>
     </div>
+    <div class="contactWrapper">
+      <h2>Skontaktuj się z nami</h2>
+      <contact />
+    </div>
   </div>
 </template>
 
@@ -101,6 +105,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.contactWrapper {
+  padding: 0 32px;
+}
 header {
   width: 100%;
   height: 600px;
@@ -174,6 +181,10 @@ h1 {
   font-size: 18px;
 }
 @media (min-width: 768px) {
+  .contactWrapper {
+    padding: 0 120px;
+    margin: 32px 120px;
+  }
   .singleBox {
     flex-direction: row;
     img {
